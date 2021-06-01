@@ -2,26 +2,27 @@ class User < ActiveRecord::Base
 
     has_many :user_puzzles
     has_many :puzzles, through: :user_puzzles
-
+    
+    
     def checkout(puzzle)
-        self.user_puzzles.create(user: self, puzzle: puzzle, check_out_date: DateTime.now, due_date: DateTime.now)
-        # need to find out how to add 3 weeks to DateTime
-        # for now check_out_date and due_date are the same
+        t = DateTime.now
+        self.user_puzzles.create(user: self, puzzle: puzzle, check_out_date: t, due_date: (t + 21))
         puzzle.checked_out = true
         puzzle.save
     end
-
+    
     def return(puzzle)
         returned_puzzle = self.user_puzzles.find {|up| up.puzzle_id == puzzle.id}
         returned_puzzle.destroy
         puzzle.checked_out = false
         puzzle.save
     end
-
+    
     def renew(puzzle)
+        # t = DateTime.now
         renewed_puzzle = self.user_puzzles.find {|up| up.puzzle_id == puzzle.id}
-        # this will not work... need to determine how to add 3 weeks
-        # renewed_puzzle.due_date += 2 weeks
+       
+        renewed_puzzle.due_date += (60 * 60 * 24 * 7 * 3)
         renewed_puzzle.save
     end
 
