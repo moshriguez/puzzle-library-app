@@ -3,8 +3,10 @@ import React from 'react';
 class Contribute extends React.Component {
 	state = {
 		name: '',
-        pieces_missing: 0, 
-        category: ''
+		num_of_pieces: '',
+        pieces_missing: '', 
+        category: '',
+		img_url: ''
 	}
 
 	handleInupt = (e) => {
@@ -20,8 +22,10 @@ class Contribute extends React.Component {
 		this.props.handleContribute(puzzleObj)
 		this.setState({
 			name: '',
-            pieces_missing: 0, 
-            category: ''
+			num_of_pieces: '',
+			pieces_missing: '', 
+			category: '',
+			img_url: ''
 		})
 	}
 	
@@ -43,6 +47,15 @@ class Contribute extends React.Component {
 					<br />
                     <input
 						type="number"
+						name="num_of_pieces"
+						placeholder="How many pieces?"
+						className="input-text"
+						onChange={(e) => this.handleInupt(e)}
+						value={this.state.num_of_pieces}
+					/>
+					<br />
+                    <input
+						type="number"
 						name="pieces_missing"
 						placeholder="Are there any pieces missing?"
 						className="input-text"
@@ -57,6 +70,15 @@ class Contribute extends React.Component {
 						className="input-text"
 						onChange={(e) => this.handleInupt(e)}
 						value={this.state.category}
+					/>
+					<br />
+					<input
+						type="text"
+						name="img_url"
+						placeholder="Enter an image URL"
+						className="input-text"
+						onChange={(e) => this.handleInupt(e)}
+						value={this.state.img_url}
 					/>
 					<br />
 					<input
