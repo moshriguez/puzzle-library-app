@@ -34,6 +34,12 @@ class App
 
             return [200, { 'Content-Type' => 'application/json' }, [ {puzzle: puzzle, borrow: borrow}.to_json ]]
 
+        elsif req.path.match(/user_puzzles/) && req.patch?
+            # renews a puzzle
+            id = req.path.split("/user_puzzles/").last
+            updated_borrow = UserPuzzle.find(id).renew
+            return [200, { 'Content-Type' => 'application/json' }, [ {borrow: updated_borrow}.to_json ]]
+
         elsif req.path.match(/users/) && req.post?
             # finds or creates a new user
             # returns user's borrowed puzzles and borrow objects

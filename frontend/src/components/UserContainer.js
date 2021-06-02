@@ -9,7 +9,9 @@ const UserContainer = (props) => {
                 <UserPuzzleCard 
 				key={puzzle.id} 
 				puzzle={puzzle}
-				handleReturn={props.handleReturn}/>
+				handleReturn={props.handleReturn}
+				handleRenew={props.handleRenew}
+				/>
             )
         })
     }

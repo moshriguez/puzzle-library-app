@@ -19,11 +19,9 @@ class UserPuzzle < ActiveRecord::Base
         puzzle.save
     end
     
-    def renew(puzzle)
-        # t = DateTime.now
-        renewed_puzzle = self.find {|up| up.puzzle_id == puzzle.id}
-       
-        renewed_puzzle.due_date += (60 * 60 * 24 * 7 * 3)
-        renewed_puzzle.save
+    def renew
+        self.due_date += (60 * 60 * 24 * 7 * 3)
+        self.save
+        self
     end
 end

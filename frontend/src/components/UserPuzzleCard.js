@@ -12,7 +12,7 @@ class UserPuzzleCard extends Component {
         <p>{this.props.puzzle.pieces_missing} pieces missing </p>
         <button 
         className="renew-btn" 
-        // onClick={()=> this.props.handleRenew(this.props.puzzle)}
+        onClick={()=> this.props.handleRenew(this.props.puzzle.borrow_id)}
         >Renew</button>
         <button 
         className="return-btn" 

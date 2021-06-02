@@ -122,6 +122,31 @@ class App extends React.Component {
 		})
 	}
 
+	handleRenew = (borrow_id) => {
+		const configObj = {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({})
+		}
+		fetch(URL + `user_puzzles/${borrow_id}`, configObj)
+		.then(res => res.json())
+		.then(borrowData => {
+			const updatedUserPuzzles = this.state.userPuzzles.map(puzzle => {
+				if (puzzle.id === borrowData.borrow.puzzle_id) {
+					puzzle.due_date = borrowData.borrow.due_date
+					return puzzle
+				} else {
+					return puzzle
+				}
+			})
+			this.setState({
+				userPuzzles: updatedUserPuzzles
+			})
+		})
+	}
+
 	render() {
 		return (
 			<Router>
@@ -166,6 +191,7 @@ class App extends React.Component {
 									userData={this.state.currentUser}
 									puzzles={this.state.userPuzzles}
 									handleReturn={this.handleReturn}
+									handleRenew={this.handleRenew}
 								/>
 							)}
 						/>
