@@ -10,13 +10,15 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_05_29_034304) do
+ActiveRecord::Schema.define(version: 2021_06_02_043852) do
 
   create_table "puzzles", force: :cascade do |t|
     t.string "name"
     t.boolean "checked_out"
     t.integer "pieces_missing"
     t.string "category"
+    t.string "img_url"
+    t.integer "num_of_pieces"
   end
 
   create_table "user_puzzles", force: :cascade do |t|
