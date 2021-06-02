@@ -10,7 +10,7 @@ class PuzzleCard extends Component {
         <p>{this.props.puzzle.num_of_pieces} pieces</p>
         <p>{this.props.puzzle.pieces_missing} pieces missing</p>
         <button 
-        disabled={this.props.puzzle.checked_out}
+        disabled={this.props.noOneLoggedIn || this.props.puzzle.checked_out}
         className="borrow-btn" 
         onClick={()=> this.props.handleBorrow(this.props.puzzle.id)}
         >Borrow</button>

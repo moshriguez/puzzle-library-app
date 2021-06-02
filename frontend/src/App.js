@@ -180,6 +180,7 @@ class App extends React.Component {
 								<PuzzleContainer
 									puzzleData={this.state.puzzles}
 									handleBorrow={this.handleBorrow}
+									noOneLoggedIn={this.state.currentUser.name === 'no one'}
 								/>
 							)}
 						/>
