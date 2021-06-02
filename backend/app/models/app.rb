@@ -27,7 +27,7 @@ class App
         #     puzzle.update(data)
         #     return [200, { 'Content-Type' => 'application/json' }, [ {puzzle: puzzle}.to_json ]]
 
-        elsif req.path.match(/user/) && req.post?
+        elsif req.path.match(/users/) && req.post?
             data = JSON.parse(req.body)
             user = User.find_or_create_by name: data
                 
