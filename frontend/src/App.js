@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 
@@ -35,7 +35,7 @@ class App extends React.Component {
 			},
 			body: JSON.stringify(userObj)
 		}
-		fetch(URL + 'user', configObj)
+		fetch(URL + 'users', configObj)
 		.then((res) => res.json())
 		.then(console.log)
 		// this.setState({
@@ -53,7 +53,8 @@ class App extends React.Component {
 		}
 		fetch(URL + 'puzzles', configObj)
 		.then((res) => res.json())
-		.then(console.log)
+		.then(data => this.setState({puzzles: [...this.state.puzzles, data.puzzle]}))
+		return <Redirect to="/puzzles" />
 	}
 
 	render() {
