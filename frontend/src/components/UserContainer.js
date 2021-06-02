@@ -2,16 +2,9 @@ import React, { useEffect, useState } from 'react';
 import UserPuzzleCard from './UserPuzzleCard'
 
 const UserContainer = (props) => {
-	const [puzzles, setPuzzles] = useState([]);
-
-	useEffect(() => {
-		fetch(`http://localhost:9393/${props.userData.id}`)
-			.then((res) => res.json())
-			.then(puzzles => setPuzzles(puzzles.puzzles));
-	}, []);
 
     const renderBorrowedPuzzles = () => {
-        return puzzles.map((puzzle) => {
+        return props.puzzles.map((puzzle) => {
             return (
                 <UserPuzzleCard key={puzzle.id} puzzle={puzzle}/>
             )

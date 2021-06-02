@@ -15,7 +15,6 @@ class App extends React.Component {
 		currentUser: { name: 'no one' },
 		userPuzzles: [],
 		puzzles: [],
-		// users: [],
 	};
 
 	componentDidMount() {
@@ -26,13 +25,6 @@ class App extends React.Component {
 					puzzles: puzzleData.puzzles,
 				});
 			});
-		// fetch(URL + 'user')
-		// 	.then((res) => res.json())
-		// 	.then((userData) => {
-		// 		this.setState({
-		// 			users: userData.users,
-		// 		});
-		// 	});
 	}
 
 	handleLogin = (userObj) => {
@@ -129,6 +121,7 @@ class App extends React.Component {
 							render={() => (
 								<UserContainer
 									userData={this.state.currentUser}
+									puzzles={this.state.userPuzzles}
 								/>
 							)}
 						/>
