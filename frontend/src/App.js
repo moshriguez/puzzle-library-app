@@ -11,6 +11,7 @@ import './App.css';
 import Login from './components/Login';
 import Contribute from './components/Contribute';
 import PuzzleContainer from './components/PuzzleContainer';
+import UserContainer from './components/UserContainer';
 
 const URL = 'http://localhost:9393/';
 
@@ -113,6 +114,15 @@ class App extends React.Component {
 								render={() => (
 									<PuzzleContainer
 										puzzleData={this.state.puzzles}
+									/>
+								)}
+							/>
+							<Route
+								exact
+								path="/user"
+								render={() => (
+									<UserContainer
+										userData={this.state.currentUser}
 									/>
 								)}
 							/>
