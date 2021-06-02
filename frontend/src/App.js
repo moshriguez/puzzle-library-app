@@ -35,14 +35,6 @@ class App extends React.Component {
 			});
 	}
 
-	loginComponent = () => (
-		<Login
-			handleLogin={this.handleLogin}
-			users={this.state.users}
-			createUser={this.createUser}
-		/>
-	);
-
 	handleLogin = (userObj) => {
 		// FETCH HAS CORS ERRORS??
 		// const configObj = {
@@ -128,8 +120,14 @@ class App extends React.Component {
 						/>
 						<Route
 							exact
-							path="/login"
-							component={this.loginComponent}
+							path="/login"	
+							render={() => (
+								<Login
+								handleLogin={this.handleLogin}
+								users={this.state.users}
+								createUser={this.createUser}
+								/>
+							)}
 						/>
 						<Route
 							exact
