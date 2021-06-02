@@ -1,8 +1,5 @@
 .App-header {
   background-color: rgb(146, 146, 146);
-  /* display: flex;
-  flex-direction: column;
-  align-items: center; */
   /* font-size: calc(10px + 2vmin); */
   color: white;
 }
@@ -120,7 +117,7 @@ main {
   outline: none;
 }
 
-.btn {
+.btn, button {
   height: 50px;
   width: 100%;
   border-radius: 5px;
@@ -130,5 +127,10 @@ main {
   font-weight: bolder;
   color: #fff;
   font-size: 18px;
+  
+}
 
+button:disabled {
+  background-color: rgb(219, 193, 121);
+  cursor: auto;
 }
