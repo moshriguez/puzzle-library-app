@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-// import UserPuzzleCard from './UserPuzzleCard'
+import UserPuzzleCard from './UserPuzzleCard'
 
 const UserContainer = (props) => {
 	const [puzzles, setPuzzles] = useState([]);
@@ -10,10 +10,19 @@ const UserContainer = (props) => {
 			.then(puzzles => setPuzzles(puzzles.puzzles));
 	}, []);
 
+    const renderBorrowedPuzzles = () => {
+        return puzzles.map((puzzle) => {
+            return (
+                <UserPuzzleCard puzzle={puzzle}/>
+            )
+        })
+    }
+
 	return (
 		<div id="user-container">
 			<h1>{props.userData.name}</h1>
 			<h4>You have borrowed these puzzles:</h4>
+            {renderBorrowedPuzzles()}
 		</div>
 	);
 };
