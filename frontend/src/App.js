@@ -85,26 +85,26 @@ class App extends React.Component {
 	render() {
 		return (
 			<Router>
+				<ul className="navbar">
+					<li>
+						<Link to="/">Home</Link>
+					</li>
+					<li>
+						<Link to="/puzzles">Puzzles</Link>
+					</li>
+					<li>
+						<Link to="/user">User</Link>
+					</li>
+					<li>
+						<Link to="/login">Login</Link>
+					</li>
+					<li>
+						<Link to="/contribute">Donate a Puzzle</Link>
+					</li>
+				</ul>
 				<header className="App-header">
 					<h1>Puzzle Library</h1>
 					<p>{this.state.currentUser.name} is currently logged in</p>
-					<ul>
-						<li>
-							<Link to="/">Home</Link>
-						</li>
-						<li>
-							<Link to="/puzzles">Puzzles</Link>
-						</li>
-						<li>
-							<Link to="/user">User</Link>
-						</li>
-						<li>
-							<Link to="/login">Login</Link>
-						</li>
-						<li>
-							<Link to="/contribute">Donate a Puzzle</Link>
-						</li>
-					</ul>
 				</header>
 				<Switch>
 					<main>
