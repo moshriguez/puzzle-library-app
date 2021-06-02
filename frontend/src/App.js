@@ -37,10 +37,17 @@ class App extends React.Component {
 		};
 		fetch(URL + 'users', configObj)
 			.then((res) => res.json())
-			.then(userData => this.setState({
+			.then(userData => {
+				console.log(userData)
+				const userPuzzles = userData.puzzles.map(puzzle => {
+					const borrowData = userData.borrows.find(borrow => borrow.puzzle_id === puzzle.id)
+					puzzle.due_date = borrowData.due_date
+					return puzzle
+				})
+				this.setState({
 				currentUser: userData.user,
-				userPuzzles: userData.puzzles
-			}));
+				userPuzzles: userPuzzles
+			})});
 
 		// want to redirect to /user after 'logging in'
 		// window.location.href = '/user'
@@ -64,7 +71,7 @@ class App extends React.Component {
 	};
 
 	handleBorrow = (puzzleId) => {
-		console.dir(`userID: ${this.state.currentUser.id} puzzleId: ${puzzleId}`)
+		// console.dir(`userID: ${this.state.currentUser.id} puzzleId: ${puzzleId}`)
 		const body = {puzzle_id: puzzleId, user_id: this.state.currentUser.id}
 		const configObj = {
 			method: 'POST',

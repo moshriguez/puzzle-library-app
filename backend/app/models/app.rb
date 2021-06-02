@@ -25,6 +25,7 @@ class App
             end
 
         elsif req.path.match(/user_puzzles/) && req.post?
+            # borrow a puzzle
             data = JSON.parse req.body.read
             puzzle_id = data["puzzle_id"]
             user_id = data["user_id"]
@@ -34,11 +35,13 @@ class App
 
         elsif req.path.match(/users/) && req.post?
             # finds or creates a new user
+            # returns user's borrowed puzzles and borrow objects
             data = JSON.parse req.body.read
             puts data
             user = User.find_or_create_by name: data["name"]
             user_puzzles = user.puzzles
-            return [200, { 'Content-Type' => 'application/json' }, [{user: user, puzzles: user_puzzles}.to_json ]]
+            borrows = user.user_puzzles
+            return [200, { 'Content-Type' => 'application/json' }, [{user: user, puzzles: user_puzzles, borrows: borrows}.to_json ]]
 
         elsif req.path.match(/puzzles/) && req.post?
             data = JSON.parse req.body.read
