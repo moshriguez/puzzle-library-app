@@ -25,6 +25,7 @@ const UserContainer = (props) => {
 			<div className="puzzle-collection">
             	{renderBorrowedPuzzles()}
 			</div>
+			<button>Delete Account</button>
 		</div>
 	);
 };
