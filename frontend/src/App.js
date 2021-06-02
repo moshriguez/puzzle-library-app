@@ -15,7 +15,7 @@ class App extends React.Component {
 		currentUser: { name: 'no one' },
 		userPuzzles: [],
 		puzzles: [],
-		users: [],
+		// users: [],
 	};
 
 	componentDidMount() {
@@ -26,31 +26,30 @@ class App extends React.Component {
 					puzzles: puzzleData.puzzles,
 				});
 			});
-		fetch(URL + 'user')
-			.then((res) => res.json())
-			.then((userData) => {
-				this.setState({
-					users: userData.users,
-				});
-			});
+		// fetch(URL + 'user')
+		// 	.then((res) => res.json())
+		// 	.then((userData) => {
+		// 		this.setState({
+		// 			users: userData.users,
+		// 		});
+		// 	});
 	}
 
 	handleLogin = (userObj) => {
-		// FETCH HAS CORS ERRORS??
-		// const configObj = {
-		// 	method: 'POST',
-		// 	headers: {
-		// 		'Content-Type': 'application/json',
-		// 	},
-		// 	body: JSON.stringify(userObj),
-		// };
-		// fetch(URL + 'users', configObj)
-		// 	.then((res) => res.json())
-		// 	.then(console.log);
+		const configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(userObj),
+		};
+		fetch(URL + 'users', configObj)
+			.then((res) => res.json())
+			.then(userData => this.setState({
+				currentUser: userData.user,
+				userPuzzles: userData.puzzles
+			}));
 
-		this.setState({
-			currentUser: userObj,
-		});
 		// want to redirect to /user after 'logging in'
 		// window.location.href = '/user'
 	};
@@ -73,6 +72,20 @@ class App extends React.Component {
 		// want to redirect to /puzzles after adding
 		window.location.href = '/puzzles';
 	};
+
+	handleBorrow = (puzzleId) => {
+		console.dir(`userID: ${this.state.currentUser.id} puzzleId: ${puzzleId}`)
+		const configObj = {
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json'
+			},
+			body: JSON.stringify({})
+		}
+		fetch(URL + `borrow/${this.state.currentUser.id}/${puzzleId}`, configObj)
+		.then(res => res.json())
+		.then(console.log)
+	}
 
 	render() {
 		return (
@@ -106,6 +119,7 @@ class App extends React.Component {
 							render={() => (
 								<PuzzleContainer
 									puzzleData={this.state.puzzles}
+									handleBorrow={this.handleBorrow}
 								/>
 							)}
 						/>
@@ -124,8 +138,6 @@ class App extends React.Component {
 							render={() => (
 								<Login
 								handleLogin={this.handleLogin}
-								users={this.state.users}
-								createUser={this.createUser}
 								/>
 							)}
 						/>

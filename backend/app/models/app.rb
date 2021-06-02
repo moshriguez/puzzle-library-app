@@ -9,32 +9,35 @@ class App
 
         elsif req.get?
             if req.path.match(/puzzles/)
+                # fetches all puzzles
                 puzzles = Puzzle.all
                 return [200, { 'Content-Type' => 'application/json' }, [ {puzzles: puzzles}.to_json ]]
-            elsif req.path.match(/user/)
-                # would be better if this was user with puzzles embeded
-                users = User.all
-                # users = users.map {|user| user.p = user.puzzles}
-                return [200, { 'Content-Type' => 'application/json' }, [{users: users}.to_json ]]
-            elsif req.path.match(/\d/)
-                id = req.path.split("/").last
-                user_puzzles = User.find(id).puzzles
-                return [200, { 'Content-Type' => 'application/json' }, [{puzzles: user_puzzles}.to_json ]]
+            # elsif req.path.match(/user/)
+            #     # would be better if this was user with puzzles embeded
+            #     users = User.all
+            #     # users = users.map {|user| user.p = user.puzzles}
+            #     return [200, { 'Content-Type' => 'application/json' }, [{users: users}.to_json ]]
+            # elsif req.path.match(/\d/)
+            #     id = req.path.split("/").last
+            #     user = User.find(id)
+            #     user_puzzles = user.puzzles
+            #     return [200, { 'Content-Type' => 'application/json' }, [{user: user, puzzles: user_puzzles}.to_json ]]
             end
 
-        # elsif req.path.match(/puzzles/) && req.patch?
-        #     id = req.path.split("/puzzles/").last
-        #     puzzle = Puzzle.find(id)
-        #     data = JSON.parse req.body.read
-        #     puts data
-        #     puzzle.update(data)
-        #     return [200, { 'Content-Type' => 'application/json' }, [ {puzzle: puzzle}.to_json ]]
+        elsif req.path.match(/borrow/) && req.patch?
+            path = req.path.split("/")
+            puzzle = Puzzle.find(path.last)
+            user = User.find(path[-2])
+            user.checkout(puzzle)
+            return [200, { 'Content-Type' => 'application/json' }, [ {puzzle: puzzle}.to_json ]]
 
         elsif req.path.match(/users/) && req.post?
-            data = JSON.parse(req.body)
-            user = User.find_or_create_by name: data
-                
-            return [200, { 'Content-Type' => 'application/json' }, [{user: user}.to_json ]]
+            # finds or creates a new user
+            data = JSON.parse req.body.read
+            puts data
+            user = User.find_or_create_by name: data["name"]
+            user_puzzles = user.puzzles
+            return [200, { 'Content-Type' => 'application/json' }, [{user: user, puzzles: user_puzzles}.to_json ]]
 
         elsif req.path.match(/puzzles/) && req.post?
             data = JSON.parse req.body.read

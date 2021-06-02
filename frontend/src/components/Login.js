@@ -11,15 +11,10 @@ class Login extends React.Component {
 		});
 	};
 
-	handleLogin = (e) => {
+	handleSubmit = (e) => {
 		e.preventDefault();
 		const userObj = { name: this.state.username };
-		if (this.props.users.find((user) => user.name === userObj.name)) {
-			const currentUser = this.props.users.find(
-				(user) => user.name === userObj.name
-			);
-			this.props.handleLogin(currentUser);
-		}
+		this.props.handleLogin(userObj)
 		this.setState({
 			username: '',
 		});
@@ -28,7 +23,7 @@ class Login extends React.Component {
 	render() {
 		return (
 			<div id="login">
-				<form onSubmit={this.handleLogin}>
+				<form onSubmit={this.handleSubmit}>
 					<h3>Enter your username:</h3>
 					<input
 						type="text"
