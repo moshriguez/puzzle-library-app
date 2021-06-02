@@ -3,11 +3,13 @@ class UserPuzzle < ActiveRecord::Base
     belongs_to :user
     belongs_to :puzzle
     
-    def checkout(puzzle, user)
+    def self.checkout(puzzle_id, user_id)
         t = DateTime.now
-        self.create(user: user, puzzle: puzzle, check_out_date: t, due_date: (t + 21))
+        self.create(user_id: user_id, puzzle_id: puzzle_id, check_out_date: t, due_date: (t + 21))
+        puzzle = Puzzle.find(puzzle_id)
         puzzle.checked_out = true
         puzzle.save
+        puzzle
     end
     
     def return(puzzle)

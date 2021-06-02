@@ -24,11 +24,12 @@ class App
             #     return [200, { 'Content-Type' => 'application/json' }, [{user: user, puzzles: user_puzzles}.to_json ]]
             end
 
-        elsif req.path.match(/borrow/) && req.patch?
-            path = req.path.split("/")
-            puzzle = Puzzle.find(path.last)
-            user = User.find(path[-2])
-            user.checkout(puzzle)
+        elsif req.path.match(/user_puzzles/) && req.post?
+            data = JSON.parse req.body.read
+            puzzle_id = data["puzzle_id"]
+            user_id = data["user_id"]
+            puzzle = UserPuzzle.checkout(puzzle_id, user_id)
+
             return [200, { 'Content-Type' => 'application/json' }, [ {puzzle: puzzle}.to_json ]]
 
         elsif req.path.match(/users/) && req.post?

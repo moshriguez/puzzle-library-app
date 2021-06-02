@@ -46,8 +46,6 @@ class App extends React.Component {
 		// window.location.href = '/user'
 	};
 
-	createUser = (userObj) => {};
-
 	handleContribute = (puzzleObj) => {
 		const configObj = {
 			method: 'POST',
@@ -67,16 +65,29 @@ class App extends React.Component {
 
 	handleBorrow = (puzzleId) => {
 		console.dir(`userID: ${this.state.currentUser.id} puzzleId: ${puzzleId}`)
+		const body = {puzzle_id: puzzleId, user_id: this.state.currentUser.id}
 		const configObj = {
-			method: 'PATCH',
+			method: 'POST',
 			headers: {
 				'Content-Type': 'application/json'
 			},
-			body: JSON.stringify({})
+			body: JSON.stringify(body)
 		}
-		fetch(URL + `borrow/${this.state.currentUser.id}/${puzzleId}`, configObj)
+		fetch(URL + 'user_puzzles', configObj)
 		.then(res => res.json())
-		.then(console.log)
+		.then(puzzleData => {
+			const updatedPuzzles = this.state.puzzles.map(puzzle => {
+				if (puzzle.id === puzzleData.puzzle.id) {
+					return puzzleData.puzzle
+				} else {
+					return puzzle
+				}
+			})
+			this.setState({
+				userPuzzles: [...this.state.userPuzzles, puzzleData.puzzle],
+				puzzles: updatedPuzzles
+			})	
+		})
 	}
 
 	render() {
