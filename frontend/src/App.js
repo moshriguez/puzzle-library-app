@@ -67,7 +67,7 @@ class App extends React.Component {
 				this.setState({ puzzles: [...this.state.puzzles, data.puzzle] })
 			);
 		// want to redirect to /puzzles after adding
-		window.location.href = '/puzzles';
+		// window.location.href = '/puzzles';
 	};
 
 	handleBorrow = (puzzleId) => {
