@@ -51,6 +51,7 @@ class App
             return [200, { 'Content-Type' => 'application/json' }, [ {puzzle: puzzle}.to_json ]]
         
         elsif req.path.match(/user_puzzles/) && req.delete?
+            # return a puzzle to library
             id = req.path.split("/user_puzzles/").last
             returned_puzzle_id = UserPuzzle.find(id).puzzle_id
             UserPuzzle.find(id).return
