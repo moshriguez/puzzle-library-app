@@ -9,6 +9,7 @@ class PuzzleCard extends Component {
         {/* <img src={this.props.puzzle.image} alt={this.props.puzzle.name} className="puzzle-avatar" /> */}
         <p>{this.props.puzzle.pieces_missing} pieces missing </p>
         <button 
+        disabled={this.props.puzzle.checked_out}
         className="borrow-btn" 
         // onClick={()=> this.props.handleBorrow(this.props.puzzle)}
         >Borrow</button>
