@@ -2,29 +2,33 @@ import React from 'react';
 
 class Login extends React.Component {
 	state = {
-		username: ''
-	}
+		username: '',
+	};
 
 	handleInupt = (e) => {
 		this.setState({
-			username: e.target.value
-		})
-	}
-	
-	handleSubmit = (e) => {
-		e.preventDefault();
-		const userObj = {name: this.state.username}
-		this.props.handleLogin(userObj)
-		this.setState({
-			username: ''
-		})
-	}
-	
-	render() {
+			username: e.target.value,
+		});
+	};
 
+	handleLogin = (e) => {
+		e.preventDefault();
+		const userObj = { name: this.state.username };
+		if (this.props.users.find((user) => user.name === userObj.name)) {
+			const currentUser = this.props.users.find(
+				(user) => user.name === userObj.name
+			);
+			this.props.handleLogin(currentUser);
+		}
+		this.setState({
+			username: '',
+		});
+	};
+
+	render() {
 		return (
 			<div id="login">
-				<form onSubmit={this.handleSubmit}>
+				<form onSubmit={this.handleLogin}>
 					<h3>Enter your username:</h3>
 					<input
 						type="text"
@@ -45,6 +49,6 @@ class Login extends React.Component {
 			</div>
 		);
 	}
-};
+}
 
 export default Login;

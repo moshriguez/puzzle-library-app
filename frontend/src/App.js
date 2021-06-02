@@ -1,5 +1,10 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Redirect, Route, Switch } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Link,
+	Route,
+	Switch,
+} from 'react-router-dom';
 
 import './App.css';
 
@@ -11,8 +16,10 @@ const URL = 'http://localhost:9393/';
 
 class App extends React.Component {
 	state = {
-		user: 'defaultUser',
+		currentUser: {name: 'no one'},
+		userPuzzles: [],
 		puzzles: [],
+		users: []
 	};
 
 	componentDidMount() {
@@ -23,39 +30,57 @@ class App extends React.Component {
 					puzzles: puzzleData.puzzles,
 				});
 			});
+		fetch(URL + 'user')
+			.then((res) => res.json())
+			.then((userData) => {
+				this.setState({
+					users: userData.users,
+				});
+			});
 	}
 
-	loginComponent = () => <Login handleLogin={this.handleLogin}/>
+	loginComponent = () => <Login handleLogin={this.handleLogin} users={this.state.users} createUser={this.createUser} />;
 
 	handleLogin = (userObj) => {
-		const configObj = {
-			method: 'POST',
-			headers: {
-				"Content-Type": "application/json"
-			},
-			body: JSON.stringify(userObj)
-		}
-		fetch(URL + 'users', configObj)
-		.then((res) => res.json())
-		.then(console.log)
-		// this.setState({
-		// 	user: e.target.name.value,
-		// });
+		// FETCH HAS CORS ERRORS??
+		// const configObj = {
+		// 	method: 'POST',
+		// 	headers: {
+		// 		'Content-Type': 'application/json',
+		// 	},
+		// 	body: JSON.stringify(userObj),
+		// };
+		// fetch(URL + 'users', configObj)
+		// 	.then((res) => res.json())
+		// 	.then(console.log);
+		
+		this.setState({
+			currentUser: userObj
+		})
+		// want to redirect to /user after 'logging in'
+		// window.location.href = '/user'
 	};
+
+	createUser = (userObj) => {
+
+	}
 
 	handleContribute = (puzzleObj) => {
 		const configObj = {
 			method: 'POST',
 			headers: {
-				"Content-Type": "application/json"
+				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(puzzleObj)
-		}
+			body: JSON.stringify(puzzleObj),
+		};
 		fetch(URL + 'puzzles', configObj)
-		.then((res) => res.json())
-		.then(data => this.setState({puzzles: [...this.state.puzzles, data.puzzle]}))
-		return <Redirect to="/puzzles" />
-	}
+			.then((res) => res.json())
+			.then((data) =>
+				this.setState({ puzzles: [...this.state.puzzles, data.puzzle] })
+			);
+		// want to redirect to /puzzles after adding
+		window.location.href = '/puzzles'
+	};
 
 	render() {
 		return (
@@ -63,6 +88,7 @@ class App extends React.Component {
 				<header className="App-header">
 					<h1>Puzzle Library</h1>
 					<Router>
+						<p>{this.state.currentUser.name} is currently logged in</p>
 						<ul>
 							<li>
 								<Link to="/">Home</Link>
@@ -90,10 +116,20 @@ class App extends React.Component {
 									/>
 								)}
 							/>
-							<Route exact path="/login" component={this.loginComponent} />
-							<Route exact path="/contribute" render={() => (
-									<Contribute	handleContribute={this.handleContribute}/>
-								)} />
+							<Route
+								exact
+								path="/login"
+								component={this.loginComponent}
+							/>
+							<Route
+								exact
+								path="/contribute"
+								render={() => (
+									<Contribute
+										handleContribute={this.handleContribute}
+									/>
+								)}
+							/>
 						</Switch>
 					</Router>
 				</header>
