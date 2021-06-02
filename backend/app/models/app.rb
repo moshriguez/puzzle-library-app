@@ -16,11 +16,10 @@ class App
                 users = User.all
                 # users = users.map {|user| user.p = user.puzzles}
                 return [200, { 'Content-Type' => 'application/json' }, [{users: users}.to_json ]]
-            # elsif req.path.match(/getuserpuzzles/)
-            #     id = req.path.split("/user/").last
-            #     user = User.find(id)
-            #     puzzles = user.puzzles
-            #     return [200, { 'Content-Type' => 'application/json' }, [{puzzles: puzzles}.to_json ]]
+            elsif req.path.match(/\d/)
+                id = req.path.split("/").last
+                user_puzzles = User.find(id).puzzles
+                return [200, { 'Content-Type' => 'application/json' }, [{puzzles: user_puzzles}.to_json ]]
             end
 
         # elsif req.path.match(/puzzles/) && req.patch?
