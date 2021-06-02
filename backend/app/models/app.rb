@@ -12,16 +12,6 @@ class App
                 # fetches all puzzles
                 puzzles = Puzzle.all
                 return [200, { 'Content-Type' => 'application/json' }, [ {puzzles: puzzles}.to_json ]]
-            # elsif req.path.match(/user/)
-            #     # would be better if this was user with puzzles embeded
-            #     users = User.all
-            #     # users = users.map {|user| user.p = user.puzzles}
-            #     return [200, { 'Content-Type' => 'application/json' }, [{users: users}.to_json ]]
-            # elsif req.path.match(/\d/)
-            #     id = req.path.split("/").last
-            #     user = User.find(id)
-            #     user_puzzles = user.puzzles
-            #     return [200, { 'Content-Type' => 'application/json' }, [{user: user, puzzles: user_puzzles}.to_json ]]
             end
 
         elsif req.path.match(/user_puzzles/) && req.post?
