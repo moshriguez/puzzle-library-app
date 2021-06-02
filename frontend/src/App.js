@@ -1,10 +1,5 @@
 import React from 'react';
-import {
-	BrowserRouter as Router,
-	Link,
-	Route,
-	Switch,
-} from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
 
 import './App.css';
 
@@ -17,10 +12,10 @@ const URL = 'http://localhost:9393/';
 
 class App extends React.Component {
 	state = {
-		currentUser: {name: 'no one'},
+		currentUser: { name: 'no one' },
 		userPuzzles: [],
 		puzzles: [],
-		users: []
+		users: [],
 	};
 
 	componentDidMount() {
@@ -40,7 +35,13 @@ class App extends React.Component {
 			});
 	}
 
-	loginComponent = () => <Login handleLogin={this.handleLogin} users={this.state.users} createUser={this.createUser} />;
+	loginComponent = () => (
+		<Login
+			handleLogin={this.handleLogin}
+			users={this.state.users}
+			createUser={this.createUser}
+		/>
+	);
 
 	handleLogin = (userObj) => {
 		// FETCH HAS CORS ERRORS??
@@ -54,17 +55,15 @@ class App extends React.Component {
 		// fetch(URL + 'users', configObj)
 		// 	.then((res) => res.json())
 		// 	.then(console.log);
-		
+
 		this.setState({
-			currentUser: userObj
-		})
+			currentUser: userObj,
+		});
 		// want to redirect to /user after 'logging in'
 		// window.location.href = '/user'
 	};
 
-	createUser = (userObj) => {
-
-	}
+	createUser = (userObj) => {};
 
 	handleContribute = (puzzleObj) => {
 		const configObj = {
@@ -80,71 +79,70 @@ class App extends React.Component {
 				this.setState({ puzzles: [...this.state.puzzles, data.puzzle] })
 			);
 		// want to redirect to /puzzles after adding
-		window.location.href = '/puzzles'
+		window.location.href = '/puzzles';
 	};
 
 	render() {
 		return (
-			<div className="App">
+			<Router>
 				<header className="App-header">
 					<h1>Puzzle Library</h1>
-					<Router>
-						<p>{this.state.currentUser.name} is currently logged in</p>
-						<ul>
-							<li>
-								<Link to="/">Home</Link>
-							</li>
-							<li>
-								<Link to="/puzzles">Puzzles</Link>
-							</li>
-							<li>
-								<Link to="/user">User</Link>
-							</li>
-							<li>
-								<Link to="/login">Login</Link>
-							</li>
-							<li>
-								<Link to="/contribute">Donate a Puzzle</Link>
-							</li>
-						</ul>
-						<Switch>
-							<Route
-								exact
-								path="/puzzles"
-								render={() => (
-									<PuzzleContainer
-										puzzleData={this.state.puzzles}
-									/>
-								)}
-							/>
-							<Route
-								exact
-								path="/user"
-								render={() => (
-									<UserContainer
-										userData={this.state.currentUser}
-									/>
-								)}
-							/>
-							<Route
-								exact
-								path="/login"
-								component={this.loginComponent}
-							/>
-							<Route
-								exact
-								path="/contribute"
-								render={() => (
-									<Contribute
-										handleContribute={this.handleContribute}
-									/>
-								)}
-							/>
-						</Switch>
-					</Router>
+					<p>{this.state.currentUser.name} is currently logged in</p>
+					<ul>
+						<li>
+							<Link to="/">Home</Link>
+						</li>
+						<li>
+							<Link to="/puzzles">Puzzles</Link>
+						</li>
+						<li>
+							<Link to="/user">User</Link>
+						</li>
+						<li>
+							<Link to="/login">Login</Link>
+						</li>
+						<li>
+							<Link to="/contribute">Donate a Puzzle</Link>
+						</li>
+					</ul>
 				</header>
-				<main></main>
-			</div>
+				<Switch>
+					<main>
+						<Route
+							exact
+							path="/puzzles"
+							render={() => (
+								<PuzzleContainer
+									puzzleData={this.state.puzzles}
+								/>
+							)}
+						/>
+						<Route
+							exact
+							path="/user"
+							render={() => (
+								<UserContainer
+									userData={this.state.currentUser}
+								/>
+							)}
+						/>
+						<Route
+							exact
+							path="/login"
+							component={this.loginComponent}
+						/>
+						<Route
+							exact
+							path="/contribute"
+							render={() => (
+								<Contribute
+									handleContribute={this.handleContribute}
+								/>
+							)}
+						/>
+					</main>
+				</Switch>
+			</Router>
 		);
 	}
 }
