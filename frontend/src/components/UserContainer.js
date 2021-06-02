@@ -13,7 +13,7 @@ const UserContainer = (props) => {
     const renderBorrowedPuzzles = () => {
         return puzzles.map((puzzle) => {
             return (
-                <UserPuzzleCard puzzle={puzzle}/>
+                <UserPuzzleCard key={puzzle.id} puzzle={puzzle}/>
             )
         })
     }
