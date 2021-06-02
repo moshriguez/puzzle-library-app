@@ -6,7 +6,10 @@ const UserContainer = (props) => {
     const renderBorrowedPuzzles = () => {
         return props.puzzles.map((puzzle) => {
             return (
-                <UserPuzzleCard key={puzzle.id} puzzle={puzzle}/>
+                <UserPuzzleCard 
+				key={puzzle.id} 
+				puzzle={puzzle}
+				handleReturn={props.handleReturn}/>
             )
         })
     }

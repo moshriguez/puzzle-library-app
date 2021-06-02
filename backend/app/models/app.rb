@@ -30,8 +30,9 @@ class App
             puzzle_id = data["puzzle_id"]
             user_id = data["user_id"]
             puzzle = UserPuzzle.checkout(puzzle_id, user_id)
+            borrow = UserPuzzle.last
 
-            return [200, { 'Content-Type' => 'application/json' }, [ {puzzle: puzzle}.to_json ]]
+            return [200, { 'Content-Type' => 'application/json' }, [ {puzzle: puzzle, borrow: borrow}.to_json ]]
 
         elsif req.path.match(/users/) && req.post?
             # finds or creates a new user
@@ -44,10 +45,17 @@ class App
             return [200, { 'Content-Type' => 'application/json' }, [{user: user, puzzles: user_puzzles, borrows: borrows}.to_json ]]
 
         elsif req.path.match(/puzzles/) && req.post?
+            # creates a new puzzle
             data = JSON.parse req.body.read
             puzzle = Puzzle.create(data)
             return [200, { 'Content-Type' => 'application/json' }, [ {puzzle: puzzle}.to_json ]]
-      
+        
+        elsif req.path.match(/user_puzzles/) && req.delete?
+            id = req.path.split("/user_puzzles/").last
+            returned_puzzle_id = UserPuzzle.find(id).puzzle_id
+            UserPuzzle.find(id).return
+            return [200, { 'Content-Type' => 'application/json' }, [ {returned_puzzle_id: returned_puzzle_id}.to_json ]]
+
         # elsif req.delete?
         #     id = req.path.split("/user/").last
         #     User.find(id).delete

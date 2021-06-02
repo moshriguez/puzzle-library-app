@@ -12,7 +12,8 @@ class UserPuzzle < ActiveRecord::Base
         puzzle
     end
     
-    def return(puzzle)
+    def return
+        puzzle = Puzzle.find(self.puzzle_id)
         self.destroy
         puzzle.checked_out = false
         puzzle.save

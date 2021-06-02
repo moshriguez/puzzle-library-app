@@ -16,7 +16,7 @@ class UserPuzzleCard extends Component {
         >Renew</button>
         <button 
         className="return-btn" 
-        // onClick={()=> this.props.handleRenew(this.props.puzzle)}
+        onClick={()=> this.props.handleReturn(this.props.puzzle.borrow_id)}
         >Return</button>
       </div>
     );

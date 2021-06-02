@@ -42,6 +42,7 @@ class App extends React.Component {
 				const userPuzzles = userData.puzzles.map(puzzle => {
 					const borrowData = userData.borrows.find(borrow => borrow.puzzle_id === puzzle.id)
 					puzzle.due_date = borrowData.due_date
+					puzzle.borrow_id = borrowData.id
 					return puzzle
 				})
 				this.setState({
@@ -90,10 +91,36 @@ class App extends React.Component {
 					return puzzle
 				}
 			})
+			const borrowedPuzzle = puzzleData.puzzle
+			borrowedPuzzle.due_date = puzzleData.borrow.due_date
+			borrowedPuzzle.borrow_id = puzzleData.borrow.id
 			this.setState({
-				userPuzzles: [...this.state.userPuzzles, puzzleData.puzzle],
+				userPuzzles: [...this.state.userPuzzles, borrowedPuzzle],
 				puzzles: updatedPuzzles
 			})	
+		})
+	}
+
+	handleReturn = (borrow_id) => {
+		const configObj = {
+			method: 'DELETE'
+		}
+		fetch(URL + `user_puzzles/${borrow_id}`, configObj)
+		.then(res => res.json())
+		.then((data)=> {
+			const updatedUserPuzzles = this.state.userPuzzles.filter(puzzle => puzzle.borrow_id !== borrow_id)
+			const updatedPuzzles = this.state.puzzles.map(puzzle => {
+				if (puzzle.id === data.returned_puzzle_id) {
+					puzzle.checked_out = false
+					return puzzle
+				} else {
+					return puzzle
+				}
+			})
+			this.setState({
+				userPuzzles: updatedUserPuzzles,
+				puzzles: updatedPuzzles
+			})
 		})
 	}
 
@@ -140,6 +167,7 @@ class App extends React.Component {
 								<UserContainer
 									userData={this.state.currentUser}
 									puzzles={this.state.userPuzzles}
+									handleReturn={this.handleReturn}
 								/>
 							)}
 						/>
