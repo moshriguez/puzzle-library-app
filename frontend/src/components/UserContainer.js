@@ -22,7 +22,9 @@ const UserContainer = (props) => {
 		<div id="user-container">
 			<h1>{props.userData.name}</h1>
 			<h4>You have borrowed these puzzles:</h4>
-            {renderBorrowedPuzzles()}
+			<div className="puzzle-collection">
+            	{renderBorrowedPuzzles()}
+			</div>
 		</div>
 	);
 };

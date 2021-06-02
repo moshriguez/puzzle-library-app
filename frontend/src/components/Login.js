@@ -40,10 +40,10 @@ class Login extends React.Component {
 					/>
 					<br />
 					<input
+						className="btn"
 						type="submit"
 						name="submit"
 						value="Login"
-						className="submit"
 					/>
 				</form>
 			</div>

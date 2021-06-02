@@ -60,10 +60,10 @@ class Contribute extends React.Component {
 					/>
 					<br />
 					<input
+						className="btn"
 						type="submit"
 						name="submit"
 						value="Submit"
-						className="submit"
 					/>
 				</form>
 			</div>
