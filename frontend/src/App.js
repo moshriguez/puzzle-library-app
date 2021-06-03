@@ -19,7 +19,7 @@ const URL = 'http://localhost:9393/';
 
 class App extends React.Component {
 	state = {
-		currentUser: { name: 'no one' },
+		currentUser: { name: 'no one', id: 0 },
 		userPuzzles: [],
 		puzzles: [],
 	};
@@ -62,7 +62,7 @@ class App extends React.Component {
 
 	handleLogout = () => {
 		this.setState({
-			currentUser: { name: 'no one' },
+			currentUser: { name: 'no one', id: 0 },
 			userPuzzles: [],
 		});
 	};
@@ -184,7 +184,7 @@ class App extends React.Component {
 					}
 				});
 				this.setState({
-					currentUser: { name: 'no one' },
+					currentUser: { name: 'no one', id: 0 },
 					userPuzzles: [],
 					puzzles: updatedPuzzles,
 				});
@@ -202,7 +202,7 @@ class App extends React.Component {
 						<Link to="/puzzles">Puzzles</Link>
 					</li>
 					<li>
-						{this.state.currentUser.name === 'no one' ? (
+						{this.state.currentUser.id === 0 ? (
 							<Link to="/login">Login</Link>
 						) : (
 							<Link to="/user">User</Link>
@@ -217,7 +217,7 @@ class App extends React.Component {
 				</ul>
 				<header className="App-header">
 					<h1>PuzzleTheca</h1>
-					{this.state.currentUser.name === 'no one' ? null : (
+					{this.state.currentUser.id === 0 ? null : (
 						<button id="logout-btn" onClick={this.handleLogout}>
 							Logout
 						</button>
@@ -231,7 +231,7 @@ class App extends React.Component {
 								puzzleData={this.state.puzzles}
 								handleBorrow={this.handleBorrow}
 								noOneLoggedIn={
-									this.state.currentUser.name === 'no one'
+									this.state.currentUser.id === 0
 								}
 							/>
 						</Route>
@@ -243,12 +243,12 @@ class App extends React.Component {
 								handleRenew={this.handleRenew}
 								deleteUser={this.deleteUser}
 								noOneLoggedIn={
-									this.state.currentUser.name === 'no one'
+									this.state.currentUser.id === 0
 								}
 							/>
 						</Route>
 						<Route exact path="/login">
-							{this.state.currentUser.name === 'no one' ? (
+							{this.state.currentUser.id === 0 ? (
 								<Login handleLogin={this.handleLogin} />
 							) : (
 								<Redirect from="/login" to="/user" />
