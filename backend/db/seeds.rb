@@ -23,6 +23,9 @@ puzzle13 = Puzzle.create(name: "mudpuppy - Hotdogs A-Z", checked_out: false, pie
 puzzle14 = Puzzle.create(name: "Pierre-Auguste Renoir - Luncheon of the Boating Party", checked_out: false, pieces_missing: 0, category: "general", img_url: "https://s.yimg.com/aah/pomegranate/luncheon-of-the-boating-party-1-000-piece-jigsaw-puzzle-112.jpg", num_of_pieces: 1000)
 puzzle15 = Puzzle.create(name: "Starry Seasons", checked_out: false, pieces_missing: 0, category: "general", img_url: "https://cdn.shopify.com/s/files/1/1009/5404/products/D119-StarrySeasons-Puzzle-HRw-1_1000x667.jpg?v=1619125807", num_of_pieces: 1000)
 puzzle16 = Puzzle.create(name: "Naranjas", checked_out: false, pieces_missing: 0, category: "general", img_url: "https://cdn.shopify.com/s/files/1/1405/5814/products/naranjas-1000-piece-puzzle-1000-piece-puzzles-galison-274503_2400x.jpg?v=1569242665", num_of_pieces: 1000)
+puzzle17 = Puzzle.create(name: "double-sided Beach from Above", checked_out: false, pieces_missing: 0, category: "general", img_url: "https://res.cloudinary.com/gray-malin/image/upload/c_scale,w_2000,q_80,f_auto/gray-malin/products/Beach_puzzle1.jpg?updated=1540249952", num_of_pieces: 500)
+puzzle18 = Puzzle.create(name: "Monet - double-sided", checked_out: false, pieces_missing: 0, category: "general", img_url: "https://cdn.shopify.com/s/files/1/0130/8502/products/978-0735358133_Monet2-sidedPuzzle3_a_5000x.jpg?v=1603832912", num_of_pieces: 500)
+puzzle19 = Puzzle.create(name: "The Hills Beyond", checked_out: false, pieces_missing: 0, category: "general", img_url: "https://images-na.ssl-images-amazon.com/images/I/61jl%2BmC4F9L._AC_SL1500_.jpg", num_of_pieces: 1000)
 
 puts "Seeding Users..."
 
