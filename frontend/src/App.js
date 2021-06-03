@@ -80,8 +80,6 @@ class App extends React.Component {
 			.then((data) =>
 				this.setState({ puzzles: [...this.state.puzzles, data.puzzle] })
 			)
-			.finally(this.props.history.push('/puzzles'));
-		// want to redirect to /puzzles after adding
 	};
 
 	handleBorrow = (puzzleId) => {

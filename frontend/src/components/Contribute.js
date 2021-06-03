@@ -1,4 +1,6 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
+
 
 class Contribute extends React.Component {
 	state = {
@@ -21,13 +23,14 @@ class Contribute extends React.Component {
         puzzleObj.checked_out = false
 		puzzleObj.category = 'general'
 		this.props.handleContribute(puzzleObj)
-		this.setState({
-			name: '',
-			num_of_pieces: '',
-			pieces_missing: '', 
-			// category: '',
-			img_url: ''
-		})
+		this.props.history.push("/puzzles")
+		// this.setState({
+		// 	name: '',
+		// 	num_of_pieces: '',
+		// 	pieces_missing: '', 
+		// 	// category: '',
+		// 	img_url: ''
+		// })
 	}
 	
 	render() {
@@ -104,4 +107,4 @@ class Contribute extends React.Component {
 	}
 };
 
-export default Contribute;
+export default withRouter(Contribute);
