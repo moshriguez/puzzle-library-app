@@ -1,5 +1,12 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Route, Switch, withRouter } from 'react-router-dom';
+import {
+	BrowserRouter as Router,
+	Link,
+	Redirect,
+	Route,
+	Switch,
+	withRouter,
+} from 'react-router-dom';
 
 import './App.css';
 
@@ -37,20 +44,20 @@ class App extends React.Component {
 		};
 		fetch(URL + 'users', configObj)
 			.then((res) => res.json())
-			.then(userData => {
-				const userPuzzles = userData.puzzles.map(puzzle => {
-					const borrowData = userData.borrows.find(borrow => borrow.puzzle_id === puzzle.id)
-					puzzle.due_date = borrowData.due_date
-					puzzle.borrow_id = borrowData.id
-					return puzzle
-				})
+			.then((userData) => {
+				const userPuzzles = userData.puzzles.map((puzzle) => {
+					const borrowData = userData.borrows.find(
+						(borrow) => borrow.puzzle_id === puzzle.id
+					);
+					puzzle.due_date = borrowData.due_date;
+					puzzle.borrow_id = borrowData.id;
+					return puzzle;
+				});
 				this.setState({
-				currentUser: userData.user,
-				userPuzzles: userPuzzles
-			})})
-			.finally(this.props.history.push('/user'))
-
-		// want to redirect to /user after 'logging in'
+					currentUser: userData.user,
+					userPuzzles: userPuzzles,
+				});
+			});
 	};
 
 	handleContribute = (puzzleObj) => {
@@ -66,110 +73,118 @@ class App extends React.Component {
 			.then((data) =>
 				this.setState({ puzzles: [...this.state.puzzles, data.puzzle] })
 			)
-			.finally(this.props.history.push('/puzzles'))
+			.finally(this.props.history.push('/puzzles'));
 		// want to redirect to /puzzles after adding
 	};
 
 	handleBorrow = (puzzleId) => {
-		const body = {puzzle_id: puzzleId, user_id: this.state.currentUser.id}
+		const body = {
+			puzzle_id: puzzleId,
+			user_id: this.state.currentUser.id,
+		};
 		const configObj = {
 			method: 'POST',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify(body)
-		}
+			body: JSON.stringify(body),
+		};
 		fetch(URL + 'user_puzzles', configObj)
-		.then(res => res.json())
-		.then(puzzleData => {
-			const updatedPuzzles = this.state.puzzles.map(puzzle => {
-				if (puzzle.id === puzzleData.puzzle.id) {
-					return puzzleData.puzzle
-				} else {
-					return puzzle
-				}
-			})
-			const borrowedPuzzle = puzzleData.puzzle
-			borrowedPuzzle.due_date = puzzleData.borrow.due_date
-			borrowedPuzzle.borrow_id = puzzleData.borrow.id
-			this.setState({
-				userPuzzles: [...this.state.userPuzzles, borrowedPuzzle],
-				puzzles: updatedPuzzles
-			})	
-		})
-	}
+			.then((res) => res.json())
+			.then((puzzleData) => {
+				const updatedPuzzles = this.state.puzzles.map((puzzle) => {
+					if (puzzle.id === puzzleData.puzzle.id) {
+						return puzzleData.puzzle;
+					} else {
+						return puzzle;
+					}
+				});
+				const borrowedPuzzle = puzzleData.puzzle;
+				borrowedPuzzle.due_date = puzzleData.borrow.due_date;
+				borrowedPuzzle.borrow_id = puzzleData.borrow.id;
+				this.setState({
+					userPuzzles: [...this.state.userPuzzles, borrowedPuzzle],
+					puzzles: updatedPuzzles,
+				});
+			});
+	};
 
 	handleReturn = (borrow_id) => {
 		const configObj = {
-			method: 'DELETE'
-		}
+			method: 'DELETE',
+		};
 		fetch(URL + `user_puzzles/${borrow_id}`, configObj)
-		.then(res => res.json())
-		.then((data)=> {
-			const updatedUserPuzzles = this.state.userPuzzles.filter(puzzle => puzzle.borrow_id !== borrow_id)
-			const updatedPuzzles = this.state.puzzles.map(puzzle => {
-				if (puzzle.id === data.returned_puzzle_id) {
-					puzzle.checked_out = false
-					return puzzle
-				} else {
-					return puzzle
-				}
-			})
-			this.setState({
-				userPuzzles: updatedUserPuzzles,
-				puzzles: updatedPuzzles
-			})
-		})
-	}
+			.then((res) => res.json())
+			.then((data) => {
+				const updatedUserPuzzles = this.state.userPuzzles.filter(
+					(puzzle) => puzzle.borrow_id !== borrow_id
+				);
+				const updatedPuzzles = this.state.puzzles.map((puzzle) => {
+					if (puzzle.id === data.returned_puzzle_id) {
+						puzzle.checked_out = false;
+						return puzzle;
+					} else {
+						return puzzle;
+					}
+				});
+				this.setState({
+					userPuzzles: updatedUserPuzzles,
+					puzzles: updatedPuzzles,
+				});
+			});
+	};
 
 	handleRenew = (borrow_id) => {
 		const configObj = {
 			method: 'PATCH',
 			headers: {
-				'Content-Type': 'application/json'
+				'Content-Type': 'application/json',
 			},
-			body: JSON.stringify({})
-		}
+			body: JSON.stringify({}),
+		};
 		fetch(URL + `user_puzzles/${borrow_id}`, configObj)
-		.then(res => res.json())
-		.then(borrowData => {
-			const updatedUserPuzzles = this.state.userPuzzles.map(puzzle => {
-				if (puzzle.id === borrowData.borrow.puzzle_id) {
-					puzzle.due_date = borrowData.borrow.due_date
-					return puzzle
-				} else {
-					return puzzle
-				}
-			})
-			this.setState({
-				userPuzzles: updatedUserPuzzles
-			})
-		})
-	}
+			.then((res) => res.json())
+			.then((borrowData) => {
+				const updatedUserPuzzles = this.state.userPuzzles.map(
+					(puzzle) => {
+						if (puzzle.id === borrowData.borrow.puzzle_id) {
+							puzzle.due_date = borrowData.borrow.due_date;
+							return puzzle;
+						} else {
+							return puzzle;
+						}
+					}
+				);
+				this.setState({
+					userPuzzles: updatedUserPuzzles,
+				});
+			});
+	};
 
 	deleteUser = (user) => {
 		const configObj = {
-			method: 'DELETE'
-		}
+			method: 'DELETE',
+		};
 		fetch(URL + `users/${user.id}`, configObj)
-		.then(res => res.json())
-		.then(()=> {
-			const updatedPuzzles = this.state.puzzles.map(puzzle => {
-				if (this.state.userPuzzles.find(up => puzzle.id === up.id)) {
-					puzzle.checked_out = false
-					return puzzle
-				} else {
-					return puzzle
-				}
-			})
-			this.setState({
-				currentUser: { name: 'no one' },
-				userPuzzles: [],
-				puzzles: updatedPuzzles
-			})
-		})
-
-	}
+			.then((res) => res.json())
+			.then(() => {
+				const updatedPuzzles = this.state.puzzles.map((puzzle) => {
+					if (
+						this.state.userPuzzles.find((up) => puzzle.id === up.id)
+					) {
+						puzzle.checked_out = false;
+						return puzzle;
+					} else {
+						return puzzle;
+					}
+				});
+				this.setState({
+					currentUser: { name: 'no one' },
+					userPuzzles: [],
+					puzzles: updatedPuzzles,
+				});
+			});
+	};
 
 	render() {
 		return (
@@ -182,64 +197,54 @@ class App extends React.Component {
 						<Link to="/puzzles">Puzzles</Link>
 					</li>
 					<li>
-						<Link to="/user">User</Link>
+						{this.state.currentUser.name === 'no one' ? (
+							<Link to="/login">Login</Link>
+						) : (
+							<Link to="/user">User</Link>
+						)}
 					</li>
-					<li>
+					{/* <li>
 						<Link to="/login">Login</Link>
-					</li>
+					</li> */}
 					<li>
 						<Link to="/contribute">Donate a Puzzle</Link>
 					</li>
 				</ul>
 				<header className="App-header">
-					<h1>Puzzle Library</h1>
+					<h1>PuzzleTheca</h1>
 					<p>{this.state.currentUser.name} is currently logged in</p>
 				</header>
 				<Switch>
 					<main>
-						<Route
-							exact
-							path="/puzzles"
-							render={() => (
-								<PuzzleContainer
-									puzzleData={this.state.puzzles}
-									handleBorrow={this.handleBorrow}
-									noOneLoggedIn={this.state.currentUser.name === 'no one'}
-								/>
-							)}
-						/>
-						<Route
-							exact
-							path="/user"
-							render={() => (
-								<UserContainer
-									userData={this.state.currentUser}
-									puzzles={this.state.userPuzzles}
-									handleReturn={this.handleReturn}
-									handleRenew={this.handleRenew}
-									deleteUser={this.deleteUser}
-									noOneLoggedIn={this.state.currentUser.name === 'no one'}
-								/>
-							)}
-						/>
-						<Route
-							exact
-							path="/login"	
-							render={() => (
-								<Login
-								handleLogin={this.handleLogin}
-								/>
-							)}
-						/>
-						<Route
-							exact
-							path="/contribute"
-							render={() => (
-								<Contribute
-									handleContribute={this.handleContribute}
-								/>
-							)}
-						/>
+						<Route exact path="/puzzles">
+							<PuzzleContainer
+								puzzleData={this.state.puzzles}
+								handleBorrow={this.handleBorrow}
+								noOneLoggedIn={
+									this.state.currentUser.name === 'no one'
+								}
+							/>
+						</Route>
+						<Route exact path="/user">
+							<UserContainer
+								userData={this.state.currentUser}
+								puzzles={this.state.userPuzzles}
+								handleReturn={this.handleReturn}
+								handleRenew={this.handleRenew}
+								deleteUser={this.deleteUser}
+								noOneLoggedIn={
+									this.state.currentUser.name === 'no one'
+								}
+							/>
+						</Route>
+						<Route exact path="/login">
+							{this.state.currentUser.name === 'no one' ? <Login handleLogin={this.handleLogin} /> : <Redirect from="/login" to="/user"/>}
+						</Route>
+						<Route exact path="/contribute">
+							<Contribute
+								handleContribute={this.handleContribute}
+							/>
+						</Route>
 					</main>
 				</Switch>
 			</Router>

@@ -15,9 +15,6 @@ class Login extends React.Component {
 		e.preventDefault();
 		const userObj = { name: this.state.username };
 		this.props.handleLogin(userObj)
-		this.setState({
-			username: '',
-		});
 	};
 
 	render() {
