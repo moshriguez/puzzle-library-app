@@ -10,10 +10,11 @@ class User < ActiveRecord::Base
     end
 
     def delete_user
-        if self.puzzles.length == 0
+        if self.puzzles.length > 0
+            self.user_puzzles.map {|up| up.return}
             self.destroy
         else
-            "You still has puzzles checked out. Please return all puzzles before deleting your account"
+            self.destroy
         end
     end
     

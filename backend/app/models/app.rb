@@ -53,10 +53,11 @@ class App
             UserPuzzle.find(id).return
             return [200, { 'Content-Type' => 'application/json' }, [ {returned_puzzle_id: returned_puzzle_id}.to_json ]]
 
-        # elsif req.delete?
-        #     id = req.path.split("/user/").last
-        #     User.find(id).delete
-        #     return [200, { 'Content-Type' => 'application/json' }, [ {message: "user gone bye-bye"}.to_json ]]
+        elsif req.path.match(/users/) && req.delete?
+            # delete user
+            id = req.path.split("/users/").last
+            User.find(id).delete_user
+            return [200, { 'Content-Type' => 'application/json' }, [ {message: "user gone bye-bye"}.to_json ]]
                 
         else
             resp.write 'Path not found'
