@@ -60,6 +60,13 @@ class App extends React.Component {
 			});
 	};
 
+	handleLogout = () => {
+		this.setState({
+			currentUser: { name: 'no one' },
+			userPuzzles: [],
+		});
+	};
+
 	handleContribute = (puzzleObj) => {
 		const configObj = {
 			method: 'POST',
@@ -212,6 +219,11 @@ class App extends React.Component {
 				</ul>
 				<header className="App-header">
 					<h1>PuzzleTheca</h1>
+					{this.state.currentUser.name === 'no one' ? null : (
+						<button id="logout-btn" onClick={this.handleLogout}>
+							Logout
+						</button>
+					)}
 					<p>{this.state.currentUser.name} is currently logged in</p>
 				</header>
 				<Switch>
@@ -238,7 +250,11 @@ class App extends React.Component {
 							/>
 						</Route>
 						<Route exact path="/login">
-							{this.state.currentUser.name === 'no one' ? <Login handleLogin={this.handleLogin} /> : <Redirect from="/login" to="/user"/>}
+							{this.state.currentUser.name === 'no one' ? (
+								<Login handleLogin={this.handleLogin} />
+							) : (
+								<Redirect from="/login" to="/user" />
+							)}
 						</Route>
 						<Route exact path="/contribute">
 							<Contribute
