@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Link, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Link, Route, Switch, withRouter } from 'react-router-dom';
 
 import './App.css';
 
@@ -47,10 +47,10 @@ class App extends React.Component {
 				this.setState({
 				currentUser: userData.user,
 				userPuzzles: userPuzzles
-			})});
+			})})
+			.finally(this.props.history.push('/user'))
 
 		// want to redirect to /user after 'logging in'
-		// window.location.href = '/user'
 	};
 
 	handleContribute = (puzzleObj) => {
@@ -65,9 +65,9 @@ class App extends React.Component {
 			.then((res) => res.json())
 			.then((data) =>
 				this.setState({ puzzles: [...this.state.puzzles, data.puzzle] })
-			);
+			)
+			.finally(this.props.history.push('/puzzles'))
 		// want to redirect to /puzzles after adding
-		// window.location.href = '/puzzles';
 	};
 
 	handleBorrow = (puzzleId) => {
@@ -147,6 +147,30 @@ class App extends React.Component {
 		})
 	}
 
+	deleteUser = (user) => {
+		const configObj = {
+			method: 'DELETE'
+		}
+		fetch(URL + `users/${user.id}`, configObj)
+		.then(res => res.json())
+		.then(()=> {
+			const updatedPuzzles = this.state.puzzles.map(puzzle => {
+				if (this.state.userPuzzles.find(up => puzzle.id === up.id)) {
+					puzzle.checked_out = false
+					return puzzle
+				} else {
+					return puzzle
+				}
+			})
+			this.setState({
+				currentUser: { name: 'no one' },
+				userPuzzles: [],
+				puzzles: updatedPuzzles
+			})
+		})
+
+	}
+
 	render() {
 		return (
 			<Router>
@@ -193,6 +217,8 @@ class App extends React.Component {
 									puzzles={this.state.userPuzzles}
 									handleReturn={this.handleReturn}
 									handleRenew={this.handleRenew}
+									deleteUser={this.deleteUser}
+									noOneLoggedIn={this.state.currentUser.name === 'no one'}
 								/>
 							)}
 						/>
@@ -221,4 +247,4 @@ class App extends React.Component {
 	}
 }
 
-export default App;
+export default withRouter(App);
