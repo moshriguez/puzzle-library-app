@@ -248,11 +248,7 @@ class App extends React.Component {
 							/>
 						</Route>
 						<Route exact path="/login">
-							{this.state.currentUser.id === 0 ? (
-								<Login handleLogin={this.handleLogin} />
-							) : (
-								<Redirect from="/login" to="/user" />
-							)}
+							<Login handleLogin={this.handleLogin} />
 						</Route>
 						<Route exact path="/contribute">
 							<Contribute

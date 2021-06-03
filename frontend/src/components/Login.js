@@ -1,4 +1,6 @@
 import React from 'react';
+import {withRouter} from 'react-router-dom';
+
 
 class Login extends React.Component {
 	state = {
@@ -15,6 +17,7 @@ class Login extends React.Component {
 		e.preventDefault();
 		const userObj = { name: this.state.username };
 		this.props.handleLogin(userObj)
+		this.props.history.push("/user")
 	};
 
 	render() {
@@ -43,4 +46,4 @@ class Login extends React.Component {
 	}
 }
 
-export default Login;
+export default withRouter(Login);
