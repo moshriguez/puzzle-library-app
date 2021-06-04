@@ -9,6 +9,7 @@ class PuzzleCard extends Component {
         <img src={this.props.puzzle.img_url} alt={this.props.puzzle.name} className="puzzle-img" />
         <p>{this.props.puzzle.num_of_pieces} pieces</p>
         <p>{this.props.puzzle.pieces_missing} pieces missing</p>
+        <span>{this.props.puzzle.checked_out ? "checked out" : "available"}</span>
         <button 
         disabled={this.props.noOneLoggedIn || this.props.puzzle.checked_out}
         className="borrow-btn" 
