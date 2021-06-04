@@ -197,6 +197,9 @@ class App extends React.Component {
 			<Router>
 				<ul className="navbar">
 					<li>
+						<i class="fas fa-puzzle-piece"></i>
+					</li>
+					<li>
 						<Link to="/">Home</Link>
 					</li>
 					<li>
@@ -217,7 +220,8 @@ class App extends React.Component {
 					</li>
 				</ul>
 				<header className="App-header">
-					<h1>PuzzleTeca</h1>
+					
+					<h1>PuzzleTheque</h1>
 					{this.state.currentUser.id === 0 ? null : (
 						<button id="logout-btn" onClick={this.handleLogout}>
 							Logout

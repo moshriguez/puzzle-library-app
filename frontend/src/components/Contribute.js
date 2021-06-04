@@ -39,8 +39,8 @@ class Contribute extends React.Component {
 			<div id="contribute-form">
 				<form onSubmit={this.handleSubmit}>
 					<h3>Donate a Puzzle:</h3>
-                    <p>Thank you for donating a puzzle. Your contribution is appreciated!</p>
-					<p>Please fill out the form below.</p>
+                    <p>Thank you for donating a puzzle. Your contribution is appreciated!<br />
+					Please fill out the form below.</p>
 					<label>Puzzle Name:</label>
 					<input
 						type="text"
@@ -84,7 +84,7 @@ class Contribute extends React.Component {
 						value={this.state.category}
 					/>
 					<br /> */}
-					<label>Image of Puzzle:<span>(Enter a URL for the puzzle image)</span></label>
+					<label>Image:<span>(Enter a URL for the puzzle image)</span></label>
 					<input
 						type="text"
 						name="img_url"
