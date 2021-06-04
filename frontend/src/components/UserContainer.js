@@ -19,8 +19,7 @@ const UserContainer = (props) => {
 		<div id="user-container">
 			{props.noOneLoggedIn ? (
 				<h4>
-					Login or create an account to see your borrowed puzzles
-					here.
+					Login or create an account to see your borrowed puzzles here.
 				</h4>
 			) : (
 				<React.Fragment>
@@ -29,7 +28,9 @@ const UserContainer = (props) => {
 					<div className="puzzle-collection">
 						{renderBorrowedPuzzles()}
 					</div>
-					<button onClick={() => props.deleteUser(props.userData)}>
+					<button 
+						onClick={() => props.deleteUser(props.userData)}
+						id="delete-btn">
 						Delete Account
 					</button>
 				</React.Fragment>

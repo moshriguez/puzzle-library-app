@@ -14,6 +14,7 @@ import Login from './components/Login';
 import Contribute from './components/Contribute';
 import PuzzleContainer from './components/PuzzleContainer';
 import UserContainer from './components/UserContainer';
+import Splash from './components/Splash'
 
 const URL = 'http://localhost:9393/';
 
@@ -216,7 +217,7 @@ class App extends React.Component {
 					</li>
 				</ul>
 				<header className="App-header">
-					<h1>PuzzleTheca</h1>
+					<h1>PuzzleTeca</h1>
 					{this.state.currentUser.id === 0 ? null : (
 						<button id="logout-btn" onClick={this.handleLogout}>
 							Logout
@@ -226,6 +227,14 @@ class App extends React.Component {
 				</header>
 				<Switch>
 					<main>
+						<img
+						src="https://marketingtechnews.net/wp-content/uploads/sites/6/2021/02/sigmund-B-x4VaIriRc-unsplash.jpg"
+						alt="close up of a puzzle"
+						/>
+
+						<Route exact path="/">
+							<Splash />
+						</Route>
 						<Route exact path="/puzzles">
 							<PuzzleContainer
 								puzzleData={this.state.puzzles}

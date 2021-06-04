@@ -2,6 +2,10 @@
   background-color: rgb(146, 146, 146);
   /* font-size: calc(10px + 2vmin); */
   color: white;
+  width: 90%;
+  position: fixed;
+  right: 0;
+  z-index: 10;
 }
 
 .App-header h1{
@@ -44,16 +48,35 @@ main {
   width: 90%;
   position: absolute;
   right: 0;
-  display: flex;
-  justify-content: center;
-  flex-direction: column;
-  align-items: center;
+  top: 97px;  
+
 }
 
-#contribute-form, #login, #user-container, form {
+#contribute-form, #login, #user-container, form, #splash {
   display: flex;
   align-items: center;  
   flex-direction: column;
+}
+
+p {
+  text-align: center;
+}
+
+#splash h4 {
+  font-size: 1.5em;
+  margin: 7px 0px;
+}
+
+main>img {
+  width: 100%;
+  /* border-radius: 50px; */
+  opacity: .5;
+  z-index: -1;
+  position: fixed;
+}
+
+#splash li {
+  list-style-type: none;
 }
 
 .puzzle-collection {
@@ -66,16 +89,16 @@ main {
   border-radius: 20px;
   margin-bottom: 5px;
   width: 240px;
-  /* width: 33%; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   text-align: center;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  background: white;
 }
 
-.card img {
+.card img, img {
   width: 95%;
   height: auto;
 }
@@ -87,17 +110,6 @@ main {
 .card p {
   margin: 0 0 5px;
 }
-
-.card .r {
-  width: 3.5em;
-  height: 3.5em;
-  position: absolute;
-  top: 9em;
-  left: 13.5em;
-  border-radius: 3.5em;
-  background: white;
-  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
- }
 
 .input-text {
   background-color: rgb(146, 146, 146);
@@ -120,7 +132,7 @@ main {
 }
 
 .btn, button {
-  height: 50px;
+  height: 35px;
   width: 100%;
   border-radius: 5px;
   border: 0;
@@ -129,10 +141,26 @@ main {
   font-weight: bolder;
   color: #fff;
   font-size: 18px;
-  
+  margin-top: 1px;
 }
 
 button:disabled {
   background-color: rgb(219, 193, 121);
   cursor: auto;
+}
+
+#logout-btn {
+  width: auto;
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+#delete-btn {
+  width: auto;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(202, 80, 24);
+
 }
