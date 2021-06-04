@@ -132,6 +132,20 @@ span {
   font-style: oblique;
 }
 
+#filter {
+  outline: 0;
+  background: transparent;
+  /* background-color: rgb(146, 146, 146); */
+  box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
+  border: 0;
+  width: 20em;
+  height: 3em;
+  border-radius: .25em;
+  cursor: pointer;
+  display: block;
+  margin: 0 auto 5px;
+}
+
 .input-text {
   background-color: rgb(146, 146, 146);
   border: 0;
