@@ -6,7 +6,7 @@ class CreatePuzzles < ActiveRecord::Migration[6.1]
       t.integer :pieces_missing
       t.string :category
       t.string :img_url
-      t.string :num_of_pieces
+      t.integer :num_of_pieces
 
       t.timestamps
     end

@@ -10,16 +10,16 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_052031) do
+ActiveRecord::Schema.define(version: 2021_08_26_195606) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "borrows", force: :cascade do |t|
-    t.datetime "check_out_date"
-    t.datetime "due_date"
     t.bigint "user_id", null: false
     t.bigint "puzzle_id", null: false
+    t.datetime "check_out_date"
+    t.datetime "due_date"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.index ["puzzle_id"], name: "index_borrows_on_puzzle_id"
@@ -32,7 +32,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_052031) do
     t.integer "pieces_missing"
     t.string "category"
     t.string "img_url"
-    t.string "num_of_pieces"
+    t.integer "num_of_pieces"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
   end
