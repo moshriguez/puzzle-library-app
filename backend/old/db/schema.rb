@@ -10,21 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_08_26_052031) do
-
-  # These are extensions that must be enabled in order to support this database
-  enable_extension "plpgsql"
-
-  create_table "borrows", force: :cascade do |t|
-    t.datetime "check_out_date"
-    t.datetime "due_date"
-    t.bigint "user_id", null: false
-    t.bigint "puzzle_id", null: false
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
-    t.index ["puzzle_id"], name: "index_borrows_on_puzzle_id"
-    t.index ["user_id"], name: "index_borrows_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2021_06_02_043852) do
 
   create_table "puzzles", force: :cascade do |t|
     t.string "name"
@@ -32,17 +18,18 @@ ActiveRecord::Schema.define(version: 2021_08_26_052031) do
     t.integer "pieces_missing"
     t.string "category"
     t.string "img_url"
-    t.string "num_of_pieces"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
+    t.integer "num_of_pieces"
+  end
+
+  create_table "user_puzzles", force: :cascade do |t|
+    t.integer "user_id"
+    t.integer "puzzle_id"
+    t.datetime "check_out_date"
+    t.datetime "due_date"
   end
 
   create_table "users", force: :cascade do |t|
     t.string "name"
-    t.datetime "created_at", precision: 6, null: false
-    t.datetime "updated_at", precision: 6, null: false
   end
 
-  add_foreign_key "borrows", "puzzles"
-  add_foreign_key "borrows", "users"
 end

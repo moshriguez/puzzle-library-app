@@ -1,14 +1,6 @@
-require 'rack'
-require "rack/cors"
-require 'json'
-require_relative "./config/environment.rb"
+# This file is used by Rack-based servers to start the application.
 
-use Rack::Cors do
-    allow do
-        origins '*'
-        resource '/*', headers: :any, methods: [:get, :post, :patch, :put, :delete]  
-    end
-end
+require_relative "config/environment"
 
-
-run App.new
+run Rails.application
+Rails.application.load_server
