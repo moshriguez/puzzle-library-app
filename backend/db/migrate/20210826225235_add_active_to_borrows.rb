@@ -1,5 +1,5 @@
-class CreateBorrows < ActiveRecord::Migration[6.1]
+class AddActiveToBorrows < ActiveRecord::Migration[6.1]
     def change
-        add_column :borrow, :active, :boolean
+        add_column :borrows, :active, :boolean
     end
 end

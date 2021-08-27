@@ -40,11 +40,11 @@ Puzzle.create(name: "My Neighbor Totoro", checked_out: false, pieces_missing: 0,
 
 puts "Seeding Users..."
 
-user1 = User.create(name: "Marc")
-user2 = User.create(name: "Waiyee")
-user3 = User.create(name: "Leslie")
-user4 = User.create(name: "Jon")
-user5 = User.create(name: "Erick")
+user1 = User.create(name: "Marc", password: 'password')
+user2 = User.create(name: "Waiyee", password: 'password')
+user3 = User.create(name: "Leslie", password: 'password')
+user4 = User.create(name: "Jon", password: 'password')
+user5 = User.create(name: "Erick", password: 'password')
 
 puts "Seeding Borrowss..."
 t = Time.now
@@ -53,7 +53,7 @@ t = Time.now
     puzzle = filtered_puzzles.sample
     puzzle.checked_out = true
     puzzle.save
-    Borrow.create(user: User.all.sample, puzzle: puzzle, check_out_date: t, due_date: (t + 21))
+    Borrow.create(user: User.all.sample, puzzle: puzzle, check_out_date: t, due_date: (t + 21), active: true)
 end
 
 puts "Seeding complete! Woo!"

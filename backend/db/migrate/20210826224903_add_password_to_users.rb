@@ -1,5 +1,5 @@
-class CreateBorrows < ActiveRecord::Migration[6.1]
+class AddPasswordToUsers < ActiveRecord::Migration[6.1]
     def change
-        add_column :user, :password_digest, :string
+        add_column :users, :password_digest, :string
     end
 end
