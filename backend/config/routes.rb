@@ -1,6 +1,8 @@
 Rails.application.routes.draw do
-  resources :borrows
-  resources :puzzles
-  resources :users
-  # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
+  resources :borrows, only: [:create, :update]
+  resources :puzzles, only: [:index, :show, :create]
+  resources :users, only: [:show, :create, :update, :destroy]
+  post '/login', to: 'auth#create'
+  get '/profile', to: 'users#profile'
+  patch '/return/:id' to: 'borrow#return_puzzle'
 end

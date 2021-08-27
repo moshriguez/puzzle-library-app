@@ -6,6 +6,7 @@ class BorrowsController < ApplicationController
         t = Time.now
         borrow.check_out_date = t
         borrow.due_date = (t + 21.days)
+        borrow.active = true
         if borrow.save
             puzzle = Puzzle.find(borrow.puzzle_id)
             puzzle.checked_out = true
@@ -29,12 +30,13 @@ class BorrowsController < ApplicationController
     end
 
     # return a puzzle
-    def destroy
+    def return_puzzle
         borrow = Borrow.find_by(id: params[:id])
+        borrow.active = false
         puzzle = Puzzle.find(borrow.puzzle_id)
         puzzle.checked_out = false
         puzzle.save
-        borrow.destroy
+        borrow.save
         render json: {borrow: borrow}, status: :accepted
     end
 
