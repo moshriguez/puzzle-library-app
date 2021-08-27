@@ -74,3 +74,12 @@ Users will be able to:
 - [ ] Transform into a Ruby on Rails app
 - [ ] Add better User login with proper auth
 - [ ] Work on better responsive layout
+- [ ] Make it so there is a record of what puzzles a user has checked out
+    - [ ] Add an active attribute to Borrow
+    - [ ] Borrows are create with Active set to true
+    - [ ] Active is set to false when the puzzle is returned
+    - [ ] Borrows no longer have to be destroyed
+    - [ ] What happens when a user deletes their account?
+        - could delete all borrows associated with user
+        - could get rid of delete a user's account, only deactivate
+        - could have both options - deactivate and delete user
