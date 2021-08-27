@@ -29,6 +29,7 @@ class App extends React.Component {
 		fetch(URL + 'puzzles')
 			.then((res) => res.json())
 			.then((puzzleData) => {
+				console.log(puzzleData)
 				this.setState({
 					puzzles: puzzleData.puzzles,
 				});
@@ -197,7 +198,7 @@ class App extends React.Component {
 			<Router>
 				<ul className="navbar">
 					<li>
-						<i class="fas fa-puzzle-piece"></i>
+						<i className="fas fa-puzzle-piece"></i>
 					</li>
 					<li>
 						<Link to="/">Home</Link>
