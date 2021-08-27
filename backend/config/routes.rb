@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   resources :users, only: [:show, :create, :update, :destroy]
   post '/login', to: 'auth#create'
   get '/profile', to: 'users#profile'
-  patch '/return/:id', to: 'borrow#return_puzzle'
+  patch '/return/:id', to: 'borrows#return_puzzle'
 end

@@ -1,4 +1,5 @@
 class BorrowsController < ApplicationController
+    skip_before_action :authorized, only: [:create, :update, :return_puzzle]
 
     # check out a puzzle
     def create 
@@ -37,7 +38,7 @@ class BorrowsController < ApplicationController
         puzzle.checked_out = false
         puzzle.save
         borrow.save
-        render json: {borrow: borrow}, status: :accepted
+        render json: {borrow: borrow, puzzle: puzzle}, status: :accepted
     end
 
 
