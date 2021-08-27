@@ -76,6 +76,7 @@ Users will be able to:
 - [ ] Add better User login with proper auth
     - [x] backend
     - [ ] frontend
+- [ ] user can change their password
 - [ ] Work on better responsive layout
 - [ ] Make it so there is a record of what puzzles a user has checked out
     - [x] Add an active attribute to Borrow
