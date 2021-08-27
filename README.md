@@ -68,17 +68,20 @@ Users will be able to:
 ## Stretch Goals:
 - [ ] Limits on renewing and amount of items that can be checked out at a time
 - [ ] Limits on the amount of puzzles that can be checked out by a given user
+- [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
 - [ ] Users can review puzzles with a rating and text review - this will create a new model, reviews, which will have a one to many relationship with users and puzzles. Will need to alias users as reviewers and puzzles as puzzle_reviews so AR doesn’t get confused.
 - [ ] Add a librarian feature so users can’t return their puzzles. Librarian would be a type of user or its own class who has the ability to return puzzles
 - [ ] Library fines - a fines column could live on users and users could get fines for late returns; also librarian class could assign fines for damaged puzzles?
 - [ ] Transform into a Ruby on Rails app
 - [ ] Add better User login with proper auth
+    - [x] backend
+    - [ ] frontend
 - [ ] Work on better responsive layout
 - [ ] Make it so there is a record of what puzzles a user has checked out
-    - [ ] Add an active attribute to Borrow
-    - [ ] Borrows are create with Active set to true
-    - [ ] Active is set to false when the puzzle is returned
-    - [ ] Borrows no longer have to be destroyed
+    - [x] Add an active attribute to Borrow
+    - [x] Borrows are create with Active set to true
+    - [x] Active is set to false when the puzzle is returned
+    - [x] Borrows no longer have to be destroyed
     - [ ] What happens when a user deletes their account?
         - could delete all borrows associated with user
         - could get rid of delete a user's account, only deactivate
