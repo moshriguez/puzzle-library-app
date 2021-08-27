@@ -16,7 +16,7 @@ import PuzzleContainer from './components/PuzzleContainer';
 import UserContainer from './components/UserContainer';
 import Splash from './components/Splash'
 
-const URL = 'http://localhost:9393/';
+const URL = 'http://localhost:3001/';
 
 class App extends React.Component {
 	state = {
