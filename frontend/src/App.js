@@ -21,9 +21,10 @@ const URL = 'http://localhost:3001/';
 class App extends React.Component {
 	state = {
 		currentUser: { name: 'no one', id: 0 },
-		userPuzzles: [],
+		borrows: [],
 		puzzles: [],
 	};
+	token = localStorage.getItem("jwt")
 
 	componentDidMount() {
 		fetch(URL + 'puzzles')
@@ -34,6 +35,26 @@ class App extends React.Component {
 					puzzles: puzzleData.puzzles,
 				});
 			});
+		if (this.token) {
+			fetch(URL + 'profile', {
+				method: "GET",
+				headers: {
+					"Content-Type": "application/json",
+					"Authorization": `Bearer ${this.token}`
+				}
+			})
+			.then(r => r.json())
+			.then(data => {
+				if (data.message === 'Please log in') {
+					// history.replace('/login')
+				} else {
+					this.setState({
+						currentUser: data.user,
+						borrows: data.borrows,
+					})
+				}
+			})
+		}
 	}
 
 	handleLogin = (userObj) => {
@@ -44,28 +65,35 @@ class App extends React.Component {
 			},
 			body: JSON.stringify(userObj),
 		};
-		fetch(URL + 'users', configObj)
+		fetch(URL + 'login', configObj)
 			.then((res) => res.json())
 			.then((userData) => {
-				const userPuzzles = userData.puzzles.map((puzzle) => {
-					const borrowData = userData.borrows.find(
-						(borrow) => borrow.puzzle_id === puzzle.id
-					);
-					puzzle.due_date = borrowData.due_date;
-					puzzle.borrow_id = borrowData.id;
-					return puzzle;
-				});
-				this.setState({
-					currentUser: userData.user,
-					userPuzzles: userPuzzles,
-				});
+				if (userData.error) {
+					console.log(userData.error)
+				} else {
+					console.log(userData)
+					localStorage.setItem("jwt", userData.jwt);
+					// const borrows = userData.puzzles.map((puzzle) => {
+					// 	const borrowData = userData.borrows.find(
+					// 		(borrow) => borrow.puzzle_id === puzzle.id
+					// 	);
+					// 	puzzle.due_date = borrowData.due_date;
+					// 	puzzle.borrow_id = borrowData.id;
+					// 	return puzzle;
+					// });
+					this.setState({
+						currentUser: userData.user,
+						borrows: userData.borrows,
+					});
+				}
 			});
 	};
 
 	handleLogout = () => {
+		localStorage.clear();
 		this.setState({
 			currentUser: { name: 'no one', id: 0 },
-			userPuzzles: [],
+			borrows: [],
 		});
 	};
 
@@ -96,7 +124,7 @@ class App extends React.Component {
 			},
 			body: JSON.stringify(body),
 		};
-		fetch(URL + 'user_puzzles', configObj)
+		fetch(URL + 'borrows', configObj)
 			.then((res) => res.json())
 			.then((puzzleData) => {
 				const updatedPuzzles = this.state.puzzles.map((puzzle) => {
@@ -110,7 +138,7 @@ class App extends React.Component {
 				borrowedPuzzle.due_date = puzzleData.borrow.due_date;
 				borrowedPuzzle.borrow_id = puzzleData.borrow.id;
 				this.setState({
-					userPuzzles: [...this.state.userPuzzles, borrowedPuzzle],
+					borrows: [...this.state.borrows, borrowedPuzzle],
 					puzzles: updatedPuzzles,
 				});
 			});
@@ -120,10 +148,10 @@ class App extends React.Component {
 		const configObj = {
 			method: 'DELETE',
 		};
-		fetch(URL + `user_puzzles/${borrow_id}`, configObj)
+		fetch(URL + `borrows/${borrow_id}`, configObj)
 			.then((res) => res.json())
 			.then((data) => {
-				const updatedUserPuzzles = this.state.userPuzzles.filter(
+				const updatedBorrows = this.state.borrows.filter(
 					(puzzle) => puzzle.borrow_id !== borrow_id
 				);
 				const updatedPuzzles = this.state.puzzles.map((puzzle) => {
@@ -135,7 +163,7 @@ class App extends React.Component {
 					}
 				});
 				this.setState({
-					userPuzzles: updatedUserPuzzles,
+					borrows: updatedBorrows,
 					puzzles: updatedPuzzles,
 				});
 			});
@@ -149,10 +177,10 @@ class App extends React.Component {
 			},
 			body: JSON.stringify({}),
 		};
-		fetch(URL + `user_puzzles/${borrow_id}`, configObj)
+		fetch(URL + `borrows/${borrow_id}`, configObj)
 			.then((res) => res.json())
 			.then((borrowData) => {
-				const updatedUserPuzzles = this.state.userPuzzles.map(
+				const updatedBorrows = this.state.borrows.map(
 					(puzzle) => {
 						if (puzzle.id === borrowData.borrow.puzzle_id) {
 							puzzle.due_date = borrowData.borrow.due_date;
@@ -163,7 +191,7 @@ class App extends React.Component {
 					}
 				);
 				this.setState({
-					userPuzzles: updatedUserPuzzles,
+					borrows: updatedBorrows,
 				});
 			});
 	};
@@ -177,7 +205,7 @@ class App extends React.Component {
 			.then(() => {
 				const updatedPuzzles = this.state.puzzles.map((puzzle) => {
 					if (
-						this.state.userPuzzles.find((up) => puzzle.id === up.id)
+						this.state.borrows.find((up) => puzzle.id === up.id)
 					) {
 						puzzle.checked_out = false;
 						return puzzle;
@@ -187,7 +215,7 @@ class App extends React.Component {
 				});
 				this.setState({
 					currentUser: { name: 'no one', id: 0 },
-					userPuzzles: [],
+					borrows: [],
 					puzzles: updatedPuzzles,
 				});
 			});
@@ -252,7 +280,7 @@ class App extends React.Component {
 						<Route exact path="/user">
 							<UserContainer
 								userData={this.state.currentUser}
-								puzzles={this.state.userPuzzles}
+								puzzles={this.state.borrows}
 								handleReturn={this.handleReturn}
 								handleRenew={this.handleRenew}
 								deleteUser={this.deleteUser}
