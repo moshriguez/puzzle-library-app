@@ -80,7 +80,7 @@ Users will be able to:
     - [x] PuzzleCard
     - [ ] PuzzleContainer
     - [x] Signup
-    - [ ] Splash
+    - [x] Splash
     - [x] UserContainer
     - [x] UserPuzzleCard
     - [ ] App?
