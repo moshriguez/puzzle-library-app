@@ -78,7 +78,7 @@ Users will be able to:
     - [ ] Contribute
     - [ ] Login
     - [x] PuzzleCard
-    - [ ] PuzzleContainer
+    - [x] PuzzleContainer
     - [x] Signup
     - [x] Splash
     - [x] UserContainer
