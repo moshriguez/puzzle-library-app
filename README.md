@@ -81,7 +81,7 @@ Users will be able to:
     - [ ] PuzzleContainer
     - [x] Signup
     - [ ] Splash
-    - [ ] UserContainer
+    - [x] UserContainer
     - [x] UserPuzzleCard
     - [ ] App?
 
