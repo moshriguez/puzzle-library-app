@@ -1,110 +1,97 @@
-import React from 'react';
-import {withRouter} from 'react-router-dom';
+import React, { useState } from 'react';
+import { useHistory } from 'react-router-dom';
 
 
-class Contribute extends React.Component {
-	state = {
-		name: '',
-		num_of_pieces: '',
-        pieces_missing: '', 
-        // category: '',
-		img_url: ''
-	}
+const Contribute = ({ handleContribute }) => {
+	// controlled form for user details
+	const [puzzleForm, setpuzzleForm] = useState({ name: '', num_of_pieces: '', pieces_missing: '', img_url: '' });
+	const handleInupt = (e) => {
+		setpuzzleForm({ ...puzzleForm, [e.target.name]: e.target.value });
+	};
 
-	handleInupt = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value
-		})
-	}
-	
-	handleSubmit = (e) => {
+	// Pass reference to useHistory hook
+	const history = useHistory()
+
+		
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		const puzzleObj = {...this.state}
-        puzzleObj.checked_out = false
-		puzzleObj.category = 'general'
-		this.props.handleContribute(puzzleObj)
-		this.props.history.push("/puzzles")
-		// this.setState({
-		// 	name: '',
-		// 	num_of_pieces: '',
-		// 	pieces_missing: '', 
-		// 	// category: '',
-		// 	img_url: ''
-		// })
+		//? can we make it so new puzzles default to checked_out = false?
+        puzzleForm.checked_out = false
+		//? need to figure out how we want to use the category field
+		puzzleForm.category = 'general'
+		handleContribute(puzzleForm)
+		history.push("/puzzles")
 	}
-	
-	render() {
 
-		return (
-			<div id="contribute-form">
-				<form onSubmit={this.handleSubmit}>
-					<h3>Donate a Puzzle:</h3>
-                    <p>Thank you for donating a puzzle. Your contribution is appreciated!<br />
-					Please fill out the form below.</p>
-					<label>Puzzle Name:</label>
-					<input
-						type="text"
-						name="name"
-						placeholder="Enter a puzzle name..."
-						required
-						className="input-text"
-						onChange={(e) => this.handleInupt(e)}
-						value={this.state.name}
-					/>
-					<br />
-					<label>Number of Pieces:</label>
-                    <input
-						type="number"
-						name="num_of_pieces"
-						placeholder="How many pieces?"
-						required
-						className="input-text"
-						onChange={(e) => this.handleInupt(e)}
-						value={this.state.num_of_pieces}
-					/>
-					<br />
-					<label>Number of Missing Pieces:</label>
-                    <input
-						type="number"
-						name="pieces_missing"
-						placeholder="Are there any pieces missing?"
-						required
-						className="input-text"
-						onChange={(e) => this.handleInupt(e)}
-						value={this.state.pieces_missing}
-					/>
-					<br />
-                    {/* <input
-						type="text"
-						name="category"
-						placeholder="Enter a category..."
-						required
-						className="input-text"
-						onChange={(e) => this.handleInupt(e)}
-						value={this.state.category}
-					/>
-					<br /> */}
-					<label>Image:<span>(Enter a URL for the puzzle image)</span></label>
-					<input
-						type="text"
-						name="img_url"
-						placeholder="Enter an image URL"
-						required
-						className="input-text"
-						onChange={(e) => this.handleInupt(e)}
-						value={this.state.img_url}
-					/>
-					<br />
-					<input
-						className="btn"
-						type="submit"
-						name="submit"
-						value="Submit"
-					/>
-				</form>
-			</div>
-		);
-	}
+	return (
+		<div id="contribute-form">
+			<form onSubmit={handleSubmit}>
+				<h3>Donate a Puzzle:</h3>
+				<p>Thank you for donating a puzzle. Your contribution is appreciated!<br />
+				Please fill out the form below.</p>
+				<label>Puzzle Name:</label>
+				<input
+					type="text"
+					name="name"
+					placeholder="Enter a puzzle name..."
+					required
+					className="input-text"
+					onChange={(e) => handleInupt(e)}
+					value={puzzleForm.name}
+				/>
+				<br />
+				<label>Number of Pieces:</label>
+				<input
+					type="number"
+					name="num_of_pieces"
+					placeholder="How many pieces?"
+					required
+					className="input-text"
+					onChange={(e) => handleInupt(e)}
+					value={puzzleForm.num_of_pieces}
+				/>
+				<br />
+				<label>Number of Missing Pieces:</label>
+				<input
+					type="number"
+					name="pieces_missing"
+					placeholder="Are there any pieces missing?"
+					required
+					className="input-text"
+					onChange={(e) => handleInupt(e)}
+					value={puzzleForm.pieces_missing}
+				/>
+				<br />
+				{/* <input
+					type="text"
+					name="category"
+					placeholder="Enter a category..."
+					required
+					className="input-text"
+					onChange={(e) => handleInupt(e)}
+					value={puzzleForm.category}
+				/>
+				<br /> */}
+				<label>Image:<span>(Enter a URL for the puzzle image)</span></label>
+				<input
+					type="text"
+					name="img_url"
+					placeholder="Enter an image URL"
+					required
+					className="input-text"
+					onChange={(e) => handleInupt(e)}
+					value={puzzleForm.img_url}
+				/>
+				<br />
+				<input
+					className="btn"
+					type="submit"
+					name="submit"
+					value="Submit"
+				/>
+			</form>
+		</div>
+	);
 };
 
-export default withRouter(Contribute);
+export default Contribute;
