@@ -23,6 +23,7 @@ class App extends React.Component {
 		currentUser: { name: 'no one', id: 0 },
 		borrows: [],
 		puzzles: [],
+		errors: []
 	};
 	token = localStorage.getItem("jwt")
 
@@ -48,9 +49,10 @@ class App extends React.Component {
 				if (data.message === 'Please log in') {
 					// history.replace('/login')
 				} else {
+					console.log(data)
 					this.setState({
 						currentUser: data.user,
-						borrows: data.borrows,
+						borrows: this.filterBorrowData(data.user.borrows),
 					})
 				}
 			})
@@ -67,27 +69,27 @@ class App extends React.Component {
 		};
 		fetch(URL + 'login', configObj)
 			.then((res) => res.json())
-			.then((userData) => {
-				if (userData.error) {
-					console.log(userData.error)
-				} else {
-					console.log(userData)
-					localStorage.setItem("jwt", userData.jwt);
-					// const borrows = userData.puzzles.map((puzzle) => {
-					// 	const borrowData = userData.borrows.find(
-					// 		(borrow) => borrow.puzzle_id === puzzle.id
-					// 	);
-					// 	puzzle.due_date = borrowData.due_date;
-					// 	puzzle.borrow_id = borrowData.id;
-					// 	return puzzle;
-					// });
+			.then((data) => {
+				if (data.error) {
+					console.log(data.error)
 					this.setState({
-						currentUser: userData.user,
-						borrows: userData.borrows,
+						error: data.error
+					})
+				} else {
+					console.log(data)
+					localStorage.setItem("jwt", data.jwt);
+					this.setState({
+						currentUser: data.user,
+						borrows: this.filterBorrowData(data.user.borrows),
 					});
 				}
 			});
-	};
+		};
+		
+	filterBorrowData = (borrowArr) => {
+		const borrows = borrowArr.filter(borrow => borrow.active)
+		return borrows
+	}
 
 	handleLogout = () => {
 		localStorage.clear();
@@ -134,7 +136,7 @@ class App extends React.Component {
 						return puzzle;
 					}
 				});
-				const borrowedPuzzle = puzzleData.puzzle;
+				const borrowedPuzzle = puzzleData.puzzle
 				borrowedPuzzle.due_date = puzzleData.borrow.due_date;
 				borrowedPuzzle.borrow_id = puzzleData.borrow.id;
 				this.setState({
@@ -280,7 +282,7 @@ class App extends React.Component {
 						<Route exact path="/user">
 							<UserContainer
 								userData={this.state.currentUser}
-								puzzles={this.state.borrows}
+								borrows={this.state.borrows}
 								handleReturn={this.handleReturn}
 								handleRenew={this.handleRenew}
 								deleteUser={this.deleteUser}

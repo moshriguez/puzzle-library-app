@@ -3,11 +3,11 @@ import UserPuzzleCard from './UserPuzzleCard';
 
 const UserContainer = (props) => {
 	const renderBorrowedPuzzles = () => {
-		return props.puzzles.map((puzzle) => {
+		return props.borrows.map((borrow) => {
 			return (
 				<UserPuzzleCard
-					key={puzzle.id}
-					puzzle={puzzle}
+					key={borrow.id}
+					borrow={borrow}
 					handleReturn={props.handleReturn}
 					handleRenew={props.handleRenew}
 				/>
