@@ -39,6 +39,7 @@ $ yarn start
 
 - User:
     - name
+    - password
 - Puzzle:
     - name
     - checked_out
@@ -51,6 +52,7 @@ $ yarn start
     - puzzle_id
     - check_out_date
     - due_date
+    - active
 
 ## User Stories:
 Users will be able to:
@@ -84,17 +86,19 @@ Users will be able to:
     - [x] UserContainer
     - [x] UserPuzzleCard
     - [ ] App?
-
 - [ ] Add better User login with proper auth
     - [x] backend
     - [ ] frontend
 - [ ] user can change their password
+- [ ] Add 'forgot my password' functionality
 - [ ] Work on better responsive layout
 - [ ] Make it so there is a record of what puzzles a user has checked out
     - [x] Add an active attribute to Borrow
     - [x] Borrows are create with Active set to true
     - [x] Active is set to false when the puzzle is returned
     - [x] Borrows no longer have to be destroyed
+    - [ ] Add a date returned field to Borrow model
+    - [ ] Add some way to interact with borrow history on frontend
     - [ ] What happens when a user deletes their account?
         - could delete all borrows associated with user
         - could get rid of delete a user's account, only deactivate
