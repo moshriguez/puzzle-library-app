@@ -136,11 +136,8 @@ class App extends React.Component {
 						return puzzle;
 					}
 				});
-				const borrowedPuzzle = puzzleData.puzzle
-				borrowedPuzzle.due_date = puzzleData.borrow.due_date;
-				borrowedPuzzle.borrow_id = puzzleData.borrow.id;
 				this.setState({
-					borrows: [...this.state.borrows, borrowedPuzzle],
+					borrows: [...this.state.borrows, puzzleData.borrow],
 					puzzles: updatedPuzzles,
 				});
 			});
@@ -182,13 +179,14 @@ class App extends React.Component {
 		fetch(URL + `borrows/${borrow_id}`, configObj)
 			.then((res) => res.json())
 			.then((borrowData) => {
+				console.log(borrowData)
 				const updatedBorrows = this.state.borrows.map(
-					(puzzle) => {
-						if (puzzle.id === borrowData.borrow.puzzle_id) {
-							puzzle.due_date = borrowData.borrow.due_date;
-							return puzzle;
+					(borrow) => {
+						if (borrow.id === borrowData.borrow.id) {
+							borrow.due_date = borrowData.borrow.due_date;
+							return borrow;
 						} else {
-							return puzzle;
+							return borrow;
 						}
 					}
 				);

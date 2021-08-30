@@ -12,7 +12,7 @@ class BorrowsController < ApplicationController
             puzzle = Puzzle.find(borrow.puzzle_id)
             puzzle.checked_out = true
             puzzle.save
-            render json: {borrow: borrow, puzzle: puzzle}
+            render json: {borrow: BorrowSerializer.new(borrow), puzzle: puzzle}
         else
             render json: {error: borrow.errors.full_messages}, status: :unprocessable_entity
         end
