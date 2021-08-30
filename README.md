@@ -72,7 +72,8 @@ Users will be able to:
 - [ ] Users can review puzzles with a rating and text review - this will create a new model, reviews, which will have a one to many relationship with users and puzzles. Will need to alias users as reviewers and puzzles as puzzle_reviews so AR doesn’t get confused.
 - [ ] Add a librarian feature so users can’t return their puzzles. Librarian would be a type of user or its own class who has the ability to return puzzles
 - [ ] Library fines - a fines column could live on users and users could get fines for late returns; also librarian class could assign fines for damaged puzzles?
-- [ ] Transform into a Ruby on Rails app
+- [x] Transform into a Ruby on Rails app
+- [ ] Transition to using functional components rather than class components
 - [ ] Add better User login with proper auth
     - [x] backend
     - [ ] frontend
