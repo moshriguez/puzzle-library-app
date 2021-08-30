@@ -36,7 +36,7 @@ class UsersController < ApplicationController
     end
 
     def destroy
-        current_user.destroy
+        current_user.delete_user
     end
 
     def profile
@@ -45,7 +45,7 @@ class UsersController < ApplicationController
 
     private
     def user_params
-        params.permit(:name, :password, :bio, :musical_influences)
+        params.permit(:name, :password)
     end
 
 end
