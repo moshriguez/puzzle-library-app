@@ -33,11 +33,8 @@ class BorrowsController < ApplicationController
     # return a puzzle
     def return_puzzle
         borrow = Borrow.find_by(id: params[:id])
-        borrow.active = false
+        borrow.return
         puzzle = Puzzle.find(borrow.puzzle_id)
-        puzzle.checked_out = false
-        puzzle.save
-        borrow.save
         render json: {borrow: borrow, puzzle: puzzle}, status: :accepted
     end
 
