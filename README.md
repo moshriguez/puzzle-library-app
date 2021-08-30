@@ -75,8 +75,8 @@ Users will be able to:
 - [x] Transform into a Ruby on Rails app
 - [ ] Transition to using functional components rather than class components
     ####Components to transition:
-    - [ ] Contribute
-    - [ ] Login
+    - [x] Contribute
+    - [x] Login
     - [x] PuzzleCard
     - [x] PuzzleContainer
     - [x] Signup

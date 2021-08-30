@@ -1,73 +1,63 @@
-import React from 'react';
-import {withRouter} from 'react-router-dom';
+import React, { useState } from 'react';
 
-
-class Login extends React.Component {
-	state = {
-		username: '',
-		password: ''
+const Login = ({ errors, handleLogin }) => {
+	// controlled form for user details
+	const [userForm, setuserForm] = useState({ name: '', password: '' });
+	const handleInupt = (e) => {
+		setuserForm({ ...userForm, [e.target.name]: e.target.value });
 	};
-
-	handleInupt = (e) => {
-		this.setState({
-			[e.target.name]: e.target.value,
-		});
-	};
-
-	handleSubmit = (e) => {
+	
+	const handleSubmit = (e) => {
 		e.preventDefault();
-		const userObj = { name: this.state.username, password: this.state.password };
-		this.props.handleLogin(userObj)
+		handleLogin(userForm)
 	};
 
-	renderErrors = (regex) => {
-		if (this.props.errors) {
+	const renderErrors = (regex) => {
+		if (errors) {
 			const errorRegex = new RegExp(regex)
-			if (errorRegex.test(this.props.errors)) {
-				return <span>{this.props.errors}</span>
+			if (errorRegex.test(errors)) {
+				return <span>{errors}</span>
 			}
 		}
 		return null
 	}
 
-	render() {
-		return (
-			<div id="login">
-				<form onSubmit={this.handleSubmit}>
-					<h3>Enter your username:</h3>
-					<input
-						type="text"
-						name="username"
-						placeholder="Enter your username..."
-						className="input-text"
-						onChange={(e) => this.handleInupt(e)}
-						value={this.state.username}
+	return (
+		<div id="login">
+			<form onSubmit={handleSubmit}>
+				<h3>Enter your username:</h3>
+				<input
+					type="text"
+					name="username"
+					placeholder="Enter your username..."
+					className="input-text"
+					onChange={(e) => handleInupt(e)}
+					value={userForm.username}
+				/>
+				<br />
+				{renderErrors('username')}
+				<input
+					type="password"
+					name="password"
+					placeholder="Enter your password..."
+					className="input-text"
+					onChange={(e) => handleInupt(e)}
+					value={userForm.password}
 					/>
-					<br />
-					{this.renderErrors('username')}
-					<input
-						type="password"
-						name="password"
-						placeholder="Enter your password..."
-						className="input-text"
-						onChange={(e) => this.handleInupt(e)}
-						value={this.state.password}
-						/>
-					<br />
-					{this.renderErrors('password')}
-					<input
-						className="btn"
-						type="submit"
-						name="submit"
-						value="Login"
-					/>
-				</form>
-				<p>Don't have an account?</p>
-		    	<a href="/signup">Sign up</a>
+				<br />
+				{renderErrors('password')}
+				<input
+					className="btn"
+					type="submit"
+					name="submit"
+					value="Login"
+				/>
+			</form>
+			<p>Don't have an account?</p>
+			<a href="/signup">Sign up</a>
 
-			</div>
-		);
-	}
+		</div>
+	);
 }
 
-export default withRouter(Login);
+export default Login;
