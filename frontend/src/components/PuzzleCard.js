@@ -1,23 +1,22 @@
-import React, { Component } from 'react';
+import React from 'react';
 
-class PuzzleCard extends Component {
+const PuzzleCard = ({ puzzle, noOneLoggedIn, handleBorrow }) => {
 
-  render() {
-    return (
-      <div className="card">
-        <h2>{this.props.puzzle.name}</h2>
-        <img src={this.props.puzzle.img_url} alt={this.props.puzzle.name} className="puzzle-img" />
-        <p>{this.props.puzzle.num_of_pieces} pieces</p>
-        <p>{this.props.puzzle.pieces_missing} pieces missing</p>
-        <span>{this.props.puzzle.checked_out ? "checked out" : "available"}</span>
-        <button 
-        disabled={this.props.noOneLoggedIn || this.props.puzzle.checked_out}
-        className="borrow-btn" 
-        onClick={()=> this.props.handleBorrow(this.props.puzzle.id)}
-        >Borrow</button>
-      </div>
-    );
-  }
+  
+  return (
+    <div className="card">
+      <h2>{puzzle.name}</h2>
+      <img src={puzzle.img_url} alt={puzzle.name} className="puzzle-img" />
+      <p>{puzzle.num_of_pieces} pieces</p>
+      <p>{puzzle.pieces_missing} pieces missing</p>
+      <span>{puzzle.checked_out ? "checked out" : "available"}</span>
+      <button 
+      disabled={noOneLoggedIn || puzzle.checked_out}
+      className="borrow-btn" 
+      onClick={()=> handleBorrow(puzzle.id)}
+      >Borrow</button>
+    </div>
+  );
 
 }
 

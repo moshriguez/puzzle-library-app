@@ -74,6 +74,17 @@ Users will be able to:
 - [ ] Library fines - a fines column could live on users and users could get fines for late returns; also librarian class could assign fines for damaged puzzles?
 - [x] Transform into a Ruby on Rails app
 - [ ] Transition to using functional components rather than class components
+    ####Components to transition:
+    - [ ] Contribute
+    - [ ] Login
+    - [x] PuzzleCard
+    - [ ] PuzzleContainer
+    - [x] Signup
+    - [ ] Splash
+    - [ ] UserContainer
+    - [x] UserPuzzleCard
+    - [ ] App?
+
 - [ ] Add better User login with proper auth
     - [x] backend
     - [ ] frontend
