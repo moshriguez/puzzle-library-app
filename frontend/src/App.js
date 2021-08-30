@@ -11,6 +11,7 @@ import {
 import './App.css';
 
 import Login from './components/Login';
+import Signup from './components/Signup';
 import Contribute from './components/Contribute';
 import PuzzleContainer from './components/PuzzleContainer';
 import UserContainer from './components/UserContainer';
@@ -296,6 +297,9 @@ class App extends React.Component {
 						</Route>
 						<Route exact path="/login">
 							<Login handleLogin={this.handleLogin} errors={this.state.errors}/>
+						</Route>
+						<Route exact path="/signup">
+							<Signup />
 						</Route>
 						<Route exact path="/contribute">
 							<Contribute

@@ -62,6 +62,9 @@ class Login extends React.Component {
 						value="Login"
 					/>
 				</form>
+				<p>Don't have an account?</p>
+		    	<a href="/signup">Sign up</a>
+
 			</div>
 		);
 	}
