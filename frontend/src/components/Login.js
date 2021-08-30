@@ -18,8 +18,17 @@ class Login extends React.Component {
 		e.preventDefault();
 		const userObj = { name: this.state.username, password: this.state.password };
 		this.props.handleLogin(userObj)
-		this.props.history.push("/user")
 	};
+
+	renderErrors = (regex) => {
+		if (this.props.errors) {
+			const errorRegex = new RegExp(regex)
+			if (errorRegex.test(this.props.errors)) {
+				return <span>{this.props.errors}</span>
+			}
+		}
+		return null
+	}
 
 	render() {
 		return (
@@ -35,6 +44,7 @@ class Login extends React.Component {
 						value={this.state.username}
 					/>
 					<br />
+					{this.renderErrors('username')}
 					<input
 						type="password"
 						name="password"
@@ -42,8 +52,9 @@ class Login extends React.Component {
 						className="input-text"
 						onChange={(e) => this.handleInupt(e)}
 						value={this.state.password}
-					/>
+						/>
 					<br />
+					{this.renderErrors('password')}
 					<input
 						className="btn"
 						type="submit"

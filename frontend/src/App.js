@@ -73,7 +73,7 @@ class App extends React.Component {
 				if (data.error) {
 					console.log(data.error)
 					this.setState({
-						error: data.error
+						errors: data.error
 					})
 				} else {
 					console.log(data)
@@ -82,6 +82,7 @@ class App extends React.Component {
 						currentUser: data.user,
 						borrows: this.filterBorrowData(data.user.borrows),
 					});
+					// this.props.history.push("/user")
 				}
 			});
 		};
@@ -294,7 +295,7 @@ class App extends React.Component {
 							/>
 						</Route>
 						<Route exact path="/login">
-							<Login handleLogin={this.handleLogin} />
+							<Login handleLogin={this.handleLogin} errors={this.state.errors}/>
 						</Route>
 						<Route exact path="/contribute">
 							<Contribute
