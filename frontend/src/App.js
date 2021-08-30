@@ -205,6 +205,9 @@ class App extends React.Component {
 	deleteUser = (user) => {
 		const configObj = {
 			method: 'DELETE',
+			headers: {
+				Authorization: `Bearer ${this.token}`
+			}
 		};
 		fetch(URL + `users/${user.id}`, configObj)
 			.then((res) => res.json())
@@ -219,6 +222,7 @@ class App extends React.Component {
 						return puzzle;
 					}
 				});
+				localStorage.clear()
 				this.setState({
 					currentUser: { name: 'no one', id: 0 },
 					borrows: [],

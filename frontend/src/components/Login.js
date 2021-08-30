@@ -28,11 +28,11 @@ const Login = ({ errors, handleLogin }) => {
 				<h3>Enter your username:</h3>
 				<input
 					type="text"
-					name="username"
+					name="name"
 					placeholder="Enter your username..."
 					className="input-text"
 					onChange={(e) => handleInupt(e)}
-					value={userForm.username}
+					value={userForm.name}
 				/>
 				<br />
 				{renderErrors('username')}
