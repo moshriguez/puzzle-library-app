@@ -145,16 +145,20 @@ class App extends React.Component {
 
 	handleReturn = (borrow_id) => {
 		const configObj = {
-			method: 'DELETE',
+			method: 'PATCH',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify({}),
 		};
-		fetch(URL + `borrows/${borrow_id}`, configObj)
+		fetch(URL + `return/${borrow_id}`, configObj)
 			.then((res) => res.json())
 			.then((data) => {
 				const updatedBorrows = this.state.borrows.filter(
-					(puzzle) => puzzle.borrow_id !== borrow_id
+					(borrow) => borrow.id !== borrow_id
 				);
 				const updatedPuzzles = this.state.puzzles.map((puzzle) => {
-					if (puzzle.id === data.returned_puzzle_id) {
+					if (puzzle.id === data.puzzle.id) {
 						puzzle.checked_out = false;
 						return puzzle;
 					} else {
