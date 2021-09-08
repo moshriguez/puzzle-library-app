@@ -37,6 +37,7 @@ class UsersController < ApplicationController
 
     def destroy
         current_user.delete_user
+        render json: { message: 'User was successfully deleted.'}
     end
 
     def profile

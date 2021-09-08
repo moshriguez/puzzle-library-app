@@ -203,6 +203,8 @@ class App extends React.Component {
 	};
 
 	deleteUser = (user) => {
+		console.log(user)
+		console.log(this.token)
 		const configObj = {
 			method: 'DELETE',
 			headers: {
@@ -211,7 +213,8 @@ class App extends React.Component {
 		};
 		fetch(URL + `users/${user.id}`, configObj)
 			.then((res) => res.json())
-			.then(() => {
+			.then((data) => {
+				console.log(data)
 				const updatedPuzzles = this.state.puzzles.map((puzzle) => {
 					if (
 						this.state.borrows.find((up) => puzzle.id === up.id)

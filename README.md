@@ -68,7 +68,7 @@ Users will be able to:
 
 
 ## Stretch Goals:
-- [ ] fix backend user model to use field name 'username' - this is causing way too much confusion!
+- [x] fix backend user model to use field name 'username' - this is causing way too much confusion!
 - [ ] Limits on renewing and amount of items that can be checked out at a time
 - [ ] Limits on the amount of puzzles that can be checked out by a given user
 - [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
@@ -86,7 +86,7 @@ Users will be able to:
     - [x] Splash
     - [x] UserContainer
     - [x] UserPuzzleCard
-    - [ ] App?
+    - [ ] App
 - [ ] Add better User login with proper auth
     - [x] backend
     - [ ] frontend
