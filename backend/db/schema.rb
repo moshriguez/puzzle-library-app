@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_225235) do
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.boolean "active"
+    t.datetime "date_returned"
     t.index ["puzzle_id"], name: "index_borrows_on_puzzle_id"
     t.index ["user_id"], name: "index_borrows_on_user_id"
   end
@@ -39,7 +40,7 @@ ActiveRecord::Schema.define(version: 2021_08_26_225235) do
   end
 
   create_table "users", force: :cascade do |t|
-    t.string "name"
+    t.string "username"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
     t.string "password_digest"
