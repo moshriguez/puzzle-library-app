@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const Login = ({ errors, handleLogin }) => {
 	// controlled form for user details
-	const [userForm, setuserForm] = useState({ name: '', password: '' });
+	const [userForm, setuserForm] = useState({ username: '', password: '' });
 	const handleInupt = (e) => {
 		setuserForm({ ...userForm, [e.target.name]: e.target.value });
 	};
@@ -28,7 +28,7 @@ const Login = ({ errors, handleLogin }) => {
 				<h3>Enter your username:</h3>
 				<input
 					type="text"
-					name="name"
+					name="username"
 					placeholder="Enter your username..."
 					className="input-text"
 					onChange={(e) => handleInupt(e)}

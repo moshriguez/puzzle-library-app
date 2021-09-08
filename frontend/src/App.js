@@ -21,7 +21,7 @@ const URL = 'http://localhost:3001/';
 
 class App extends React.Component {
 	state = {
-		currentUser: { name: 'no one', id: 0 },
+		currentUser: { username: 'no one', id: 0 },
 		borrows: [],
 		puzzles: [],
 		errors: []
@@ -96,7 +96,7 @@ class App extends React.Component {
 	handleLogout = () => {
 		localStorage.clear();
 		this.setState({
-			currentUser: { name: 'no one', id: 0 },
+			currentUser: { username: 'no one', id: 0 },
 			borrows: [],
 		});
 	};
@@ -224,7 +224,7 @@ class App extends React.Component {
 				});
 				localStorage.clear()
 				this.setState({
-					currentUser: { name: 'no one', id: 0 },
+					currentUser: { username: 'no one', id: 0 },
 					borrows: [],
 					puzzles: updatedPuzzles,
 				});
@@ -266,7 +266,7 @@ class App extends React.Component {
 							Logout
 						</button>
 					)}
-					<p>{this.state.currentUser.name} is currently logged in</p>
+					<p>{this.state.currentUser.username} is currently logged in</p>
 				</header>
 				<Switch>
 					<main>

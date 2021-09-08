@@ -29,7 +29,7 @@ const Signup = () => {
         Accept: "application/json",
       },
       body: JSON.stringify({
-        name: userForm.username,
+        username: userForm.username,
         password: userForm.password,
       }),
     };

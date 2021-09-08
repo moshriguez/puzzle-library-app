@@ -23,7 +23,7 @@ const UserContainer = ({ borrows, handleReturn, handleRenew, deleteUser, userDat
 				</h4>
 			) : (
 				<React.Fragment>
-					<h1>{userData.name}</h1>
+					<h1>{userData.username}</h1>
 					<h4>You have borrowed these puzzles:</h4>
 					<div className="puzzle-collection">
 						{renderBorrowedPuzzles()}
