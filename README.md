@@ -98,7 +98,7 @@ Users will be able to:
     - [x] Borrows are create with Active set to true
     - [x] Active is set to false when the puzzle is returned
     - [x] Borrows no longer have to be destroyed
-    - [ ] Add a date returned field to Borrow model
+    - [x] Add a date returned field to Borrow model
     - [ ] Add some way to interact with borrow history on frontend
     - [ ] What happens when a user deletes their account?
         - could delete all borrows associated with user
