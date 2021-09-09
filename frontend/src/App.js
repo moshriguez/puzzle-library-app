@@ -234,9 +234,7 @@ const App = () => {
 						<PuzzleContainer
 							puzzleData={puzzles}
 							handleBorrow={handleBorrow}
-							noOneLoggedIn={
-								currentUser.id === 0
-							}
+							userData={currentUser}
 						/>
 					</Route>
 					<Route exact path="/user">

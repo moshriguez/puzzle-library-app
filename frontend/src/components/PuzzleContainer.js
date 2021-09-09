@@ -1,8 +1,10 @@
 import React, { useState } from 'react';
 import PuzzleCard from './PuzzleCard';
 
-const PuzzleContainer = ({ puzzleData, noOneLoggedIn, handleBorrow }) => {
+const PuzzleContainer = ({ puzzleData, userData, handleBorrow }) => {
 	const [filterValue, setFilter] = useState('All');
+
+	const noOneLoggedIn = userData.id === 0
 
 	const checkedOutFilter = () => {
 		return puzzleData.filter((puzzle) => {
