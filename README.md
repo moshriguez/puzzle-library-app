@@ -70,6 +70,7 @@ Users will be able to:
 
 ## Stretch Goals:
 - [x] fix backend user model to use field name 'username' - this is causing way too much confusion!
+- [ ] add a sorting functionality to sort puzzles by number of pieces
 - [ ] Limits on renewing and amount of items that can be checked out at a time
 - [ ] Limits on the amount of puzzles that can be checked out by a given user
 - [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
@@ -77,7 +78,7 @@ Users will be able to:
 - [ ] Add a librarian feature so users can’t return their puzzles. Librarian would be a type of user or its own class who has the ability to return puzzles
 - [ ] Library fines - a fines column could live on users and users could get fines for late returns; also librarian class could assign fines for damaged puzzles?
 - [x] Transform into a Ruby on Rails app
-- [ ] Transition to using functional components rather than class components
+- [x] Transition to using functional components rather than class components
     ####Components to transition:
     - [x] Contribute
     - [x] Login
@@ -88,9 +89,9 @@ Users will be able to:
     - [x] UserContainer
     - [x] UserPuzzleCard
     - [x] App
-- [ ] Add better User login with proper auth
+- [x] Add better User login with proper auth
     - [x] backend
-    - [ ] frontend
+    - [x] frontend
 - [ ] user can change their password
 - [ ] Add 'forgot my password' functionality
 - [ ] Work on better responsive layout
