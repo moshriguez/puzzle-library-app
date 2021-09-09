@@ -262,9 +262,6 @@ const App = () => {
 							handleReturn={handleReturn}
 							handleRenew={handleRenew}
 							deleteUser={deleteUser}
-							noOneLoggedIn={
-								currentUser.id === 0
-							}
 						/>
 					</Route>
 					<Route exact path="/login">
@@ -277,7 +274,11 @@ const App = () => {
 							/>
 					</Route>
 					<Route exact path="/signup">
-						<Signup />
+						<Signup 
+							errors={errors} 
+							setErrors={setErrors}
+							setCurrentUser={setCurrentUser}
+						/>
 					</Route>
 					<Route exact path="/contribute">
 						<Contribute

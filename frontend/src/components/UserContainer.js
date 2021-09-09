@@ -1,7 +1,8 @@
 import React from 'react';
 import UserPuzzleCard from './UserPuzzleCard';
 
-const UserContainer = ({ borrows, handleReturn, handleRenew, deleteUser, userData, noOneLoggedIn }) => {
+const UserContainer = ({ borrows, handleReturn, handleRenew, deleteUser, userData }) => {
+	const noOneLoggedIn = userData.id === 0
 	const renderBorrowedPuzzles = () => {
 		return borrows.map((borrow) => {
 			return (
