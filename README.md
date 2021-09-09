@@ -47,11 +47,12 @@ $ yarn start
     - category
     - img_url
     - num_of_pieces
-- UserPuzzle:
+- Borrow:
     - user_id
     - puzzle_id
     - check_out_date
     - due_date
+    - date_returned
     - active
 
 ## User Stories:
@@ -86,7 +87,7 @@ Users will be able to:
     - [x] Splash
     - [x] UserContainer
     - [x] UserPuzzleCard
-    - [ ] App
+    - [x] App
 - [ ] Add better User login with proper auth
     - [x] backend
     - [ ] frontend
