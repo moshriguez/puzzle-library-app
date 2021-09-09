@@ -6,6 +6,7 @@ import {
 	Route,
 	Switch,
 	useHistory,
+	withRouter
 } from 'react-router-dom';
 
 import './App.css';
@@ -61,31 +62,6 @@ const App = () => {
 			})
 		}
 	}, [token, history])
-
-
-	const handleLogin = (userObj) => {
-		const configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(userObj),
-		};
-		fetch(URL + 'login', configObj)
-			.then((res) => res.json())
-			.then((data) => {
-				if (data.error) {
-					console.log(data.error)
-					setErrors(data.error)
-				} else {
-					console.log(data)
-					localStorage.setItem("jwt", data.jwt);
-					setCurrentUser(data.user)
-					setBorrows(filterBorrowData(data.user.borrows))
-					history.push("/user")
-				}
-			});
-		};
 		
 	const filterBorrowData = (borrowArr) => {
 		const borrows = borrowArr.filter(borrow => borrow.active)
@@ -96,6 +72,7 @@ const App = () => {
 		localStorage.clear();
 		setCurrentUser({ username: 'no one', id: 0 })
 		setBorrows([])
+		history.push("/")
 	};
 
 	const handleContribute = (puzzleObj) => {
@@ -266,9 +243,9 @@ const App = () => {
 					alt="close up of a puzzle"
 					/>
 
-					<Route exact path="/">
-						<Splash />
-					</Route>
+					<Route exact path="/" render={() => <Splash />} />
+						{/* <Splash />
+					</Route> */}
 					<Route exact path="/puzzles">
 						<PuzzleContainer
 							puzzleData={puzzles}
@@ -291,7 +268,13 @@ const App = () => {
 						/>
 					</Route>
 					<Route exact path="/login">
-						<Login handleLogin={handleLogin} errors={errors}/>
+						<Login  
+							errors={errors} 
+							setErrors={setErrors}
+							setBorrows={setBorrows} 
+							setCurrentUser={setCurrentUser}
+							filterBorrowData={filterBorrowData}
+							/>
 					</Route>
 					<Route exact path="/signup">
 						<Signup />
@@ -307,4 +290,4 @@ const App = () => {
 	);
 }
 
-export default App;
+export default withRouter(App);
