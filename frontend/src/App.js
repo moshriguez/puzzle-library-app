@@ -2,7 +2,6 @@ import React, { useEffect, useState } from 'react';
 import {
 	BrowserRouter as Router,
 	Link,
-	Redirect,
 	Route,
 	Switch,
 	useHistory,
@@ -73,21 +72,6 @@ const App = () => {
 		setCurrentUser({ username: 'no one', id: 0 })
 		setBorrows([])
 		history.push("/")
-	};
-
-	const handleContribute = (puzzleObj) => {
-		const configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(puzzleObj),
-		};
-		fetch(URL + 'puzzles', configObj)
-			.then((res) => res.json())
-			.then((data) =>
-				setPuzzles([...puzzles, data.puzzle])
-			)
 	};
 
 	const handleBorrow = (puzzleId) => {
@@ -282,7 +266,8 @@ const App = () => {
 					</Route>
 					<Route exact path="/contribute">
 						<Contribute
-							handleContribute={handleContribute}
+							puzzles={puzzles}
+							setPuzzles={setPuzzles}
 						/>
 					</Route>
 				</main>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
 import { useHistory } from 'react-router-dom';
 
+const URL = 'http://localhost:3001/';
 
-const Contribute = ({ handleContribute }) => {
+const Contribute = ({ puzzles, setPuzzles }) => {
 	// controlled form for user details
 	const [puzzleForm, setpuzzleForm] = useState({ name: '', num_of_pieces: '', pieces_missing: '', img_url: '' });
 	const handleInupt = (e) => {
@@ -22,6 +23,21 @@ const Contribute = ({ handleContribute }) => {
 		handleContribute(puzzleForm)
 		history.push("/puzzles")
 	}
+
+	const handleContribute = (puzzleObj) => {
+		const configObj = {
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(puzzleObj),
+		};
+		fetch(URL + 'puzzles', configObj)
+			.then((res) => res.json())
+			.then((data) =>
+				setPuzzles([...puzzles, data.puzzle])
+			)
+	};
 
 	return (
 		<div id="contribute-form">
