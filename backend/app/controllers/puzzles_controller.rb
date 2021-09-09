@@ -17,6 +17,8 @@ class PuzzlesController < ApplicationController
 
     def create
         puzzle = Puzzle.new(puzzle_params)
+        puzzle.checked_out = false
+        puzzle.category = 'general'
         if puzzle.save
             render json: {puzzle: puzzle}
         else

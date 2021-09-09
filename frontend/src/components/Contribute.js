@@ -13,17 +13,12 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 	// Pass reference to useHistory hook
 	const history = useHistory()
 
-		
 	const handleSubmit = (e) => {
 		e.preventDefault();
-		//? can we make it so new puzzles default to checked_out = false?
-        puzzleForm.checked_out = false
-		//? need to figure out how we want to use the category field
-		puzzleForm.category = 'general'
 		handleContribute(puzzleForm)
 		history.push("/puzzles")
 	}
-
+	
 	const handleContribute = (puzzleObj) => {
 		const configObj = {
 			method: 'POST',
@@ -33,12 +28,12 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 			body: JSON.stringify(puzzleObj),
 		};
 		fetch(URL + 'puzzles', configObj)
-			.then((res) => res.json())
-			.then((data) =>
-				setPuzzles([...puzzles, data.puzzle])
-			)
+		.then((res) => res.json())
+		.then((data) =>
+		setPuzzles([...puzzles, data.puzzle])
+		)
 	};
-
+	
 	return (
 		<div id="contribute-form">
 			<form onSubmit={handleSubmit}>
@@ -54,7 +49,7 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 					className="input-text"
 					onChange={(e) => handleInupt(e)}
 					value={puzzleForm.name}
-				/>
+					/>
 				<br />
 				<label>Number of Pieces:</label>
 				<input
@@ -65,7 +60,7 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 					className="input-text"
 					onChange={(e) => handleInupt(e)}
 					value={puzzleForm.num_of_pieces}
-				/>
+					/>
 				<br />
 				<label>Number of Missing Pieces:</label>
 				<input
@@ -76,9 +71,10 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 					className="input-text"
 					onChange={(e) => handleInupt(e)}
 					value={puzzleForm.pieces_missing}
-				/>
+					/>
 				<br />
 				{/* <input
+				//? need to figure out how we want to use the category field
 					type="text"
 					name="category"
 					placeholder="Enter a category..."
