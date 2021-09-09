@@ -109,7 +109,7 @@ const App = () => {
 		fetch(URL + 'puzzles', configObj)
 			.then((res) => res.json())
 			.then((data) =>
-				setPuzzles(...puzzles, data.puzzle)
+				setPuzzles([...puzzles, data.puzzle])
 			)
 	};
 
@@ -136,7 +136,7 @@ const App = () => {
 					}
 				});
 				setPuzzles(updatedPuzzles)
-				setBorrows(...borrows, puzzleData.borrow)
+				setBorrows([...borrows, puzzleData.borrow])
 			});
 	};
 
