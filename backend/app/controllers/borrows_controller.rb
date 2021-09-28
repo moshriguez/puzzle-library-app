@@ -21,13 +21,17 @@ class BorrowsController < ApplicationController
     # renew a puzzle
     def update
         borrow = Borrow.find_by(id: params[:id])
-        borrow.due_date += 3.weeks
-        if borrow.save
-            render json: {borrow: borrow}, status: :accepted
+        difference = borrow.due_date - borrow.check_out_date
+        if difference < 9.weeks
+            borrow.due_date += 3.weeks
+            if borrow.save
+                render json: {borrow: borrow}, status: :accepted
+            else
+                render json: {errors: borrow.errors.full_messages}, status: :unprocessable_entity
+            end
         else
-            render json: {errors: borrow.errors.full_messages}, status: :unprocessable_entity
+            render json: {error: 'Puzzles cannot be renewed more than 3 times.'}
         end
-
     end
 
     # return a puzzle

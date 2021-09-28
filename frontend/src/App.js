@@ -151,7 +151,8 @@ const App = () => {
 					}
 				);
 				setBorrows(updatedBorrows)
-			});
+			})
+			.catch(error => console.log(error))
 	};
 
 	const deleteUser = (user) => {
