@@ -30,7 +30,7 @@ class BorrowsController < ApplicationController
                 render json: {errors: borrow.errors.full_messages}, status: :unprocessable_entity
             end
         else
-            render json: {error: 'Puzzles cannot be renewed more than 3 times.'}
+            render json: {error: 'Puzzles cannot be renewed more than 3 times.'}, status: :unprocessable_entity
         end
     end
 

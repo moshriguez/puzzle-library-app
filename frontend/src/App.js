@@ -25,6 +25,8 @@ const App = () => {
 	const [borrows, setBorrows] = useState([]);
 	// Errors if user doesn't pass validations
 	const [errors, setErrors] = useState([]);
+	// popup message for user - to let user know when they reach renew/borrow limits
+	const [popupMessage, setPopupMessage] = useState('')
 
 	// Pass reference to useHistory hook
 	const history = useHistory()
@@ -138,21 +140,25 @@ const App = () => {
 		};
 		fetch(URL + `borrows/${borrow_id}`, configObj)
 			.then((res) => res.json())
-			.then((borrowData) => {
-				console.log(borrowData)
-				const updatedBorrows = borrows.map(
-					(borrow) => {
-						if (borrow.id === borrowData.borrow.id) {
-							borrow.due_date = borrowData.borrow.due_date;
-							return borrow;
-						} else {
-							return borrow;
+			.then((data) => {
+				if (data.error) {
+					console.log(data.error)
+					setPopupMessage(data.error)	
+				} else {
+					console.log(data)
+					const updatedBorrows = borrows.map(
+						(borrow) => {
+							if (borrow.id === data.borrow.id) {
+								borrow.due_date = data.borrow.due_date;
+								return borrow;
+							} else {
+								return borrow;
+							}
 						}
-					}
-				);
-				setBorrows(updatedBorrows)
+					);
+					setBorrows(updatedBorrows)
+				}
 			})
-			.catch(error => console.log(error))
 	};
 
 	const deleteUser = (user) => {
