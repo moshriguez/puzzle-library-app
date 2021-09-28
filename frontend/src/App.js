@@ -78,30 +78,34 @@ const App = () => {
 	};
 
 	const handleBorrow = (puzzleId) => {
-		const body = {
-			puzzle_id: puzzleId,
-			user_id: currentUser.id,
-		};
-		const configObj = {
-			method: 'POST',
-			headers: {
-				'Content-Type': 'application/json',
-			},
-			body: JSON.stringify(body),
-		};
-		fetch(URL + 'borrows', configObj)
-			.then((res) => res.json())
-			.then((puzzleData) => {
-				const updatedPuzzles = puzzles.map((puzzle) => {
-					if (puzzle.id === puzzleData.puzzle.id) {
-						return puzzleData.puzzle;
-					} else {
-						return puzzle;
-					}
+		if (borrows.length > 4) {
+			setPopupMessage('A maximum of 5 puzzles are allowed to be borrowed at a time.')
+		} else {
+			const body = {
+				puzzle_id: puzzleId,
+				user_id: currentUser.id,
+			};
+			const configObj = {
+				method: 'POST',
+				headers: {
+					'Content-Type': 'application/json',
+				},
+				body: JSON.stringify(body),
+			};
+			fetch(URL + 'borrows', configObj)
+				.then((res) => res.json())
+				.then((puzzleData) => {
+					const updatedPuzzles = puzzles.map((puzzle) => {
+						if (puzzle.id === puzzleData.puzzle.id) {
+							return puzzleData.puzzle;
+						} else {
+							return puzzle;
+						}
+					});
+					setPuzzles(updatedPuzzles)
+					setBorrows([...borrows, puzzleData.borrow])
 				});
-				setPuzzles(updatedPuzzles)
-				setBorrows([...borrows, puzzleData.borrow])
-			});
+		}
 	};
 
 	const handleReturn = (borrow_id) => {
