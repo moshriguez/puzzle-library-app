@@ -71,7 +71,7 @@ Users will be able to:
 ## Stretch Goals:
 - [x] fix backend user model to use field name 'username' - this is causing way too much confusion!
 - [ ] add a sorting functionality to sort puzzles by number of pieces
-- [ ] Limits on renewing and amount of items that can be checked out at a time
+- [x] Limits on renewing: max 2 renews (9 weeks)
 - [ ] Limits on the amount of puzzles that can be checked out by a given user
 - [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
 - [ ] Users can review puzzles with a rating and text review - this will create a new model, reviews, which will have a one to many relationship with users and puzzles. Will need to alias users as reviewers and puzzles as puzzle_reviews so AR doesn’t get confused.
