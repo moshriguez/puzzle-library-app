@@ -199,3 +199,46 @@ button:disabled {
   background-color: rgb(202, 80, 24);
 
 }
+
+/*** Popup Dialog Box ***/
+.modal-background {
+  position: fixed; /* Stay in place */
+  z-index: 15; /* Sit on top */
+  left: 0;
+  top: 0;
+  width: 100%; /* Full width */
+  height: 100%; /* Full height */
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0, 0, 0, 0.65); /* Black w/ opacity */
+}
+
+.modal-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 35% auto;
+  padding: 20px;
+  width: 80%;
+  animation-name: animatetop;
+  animation-duration: 0.4s;
+  background: #f1d8c9;
+  border-radius: 15px;
+}
+
+.modal-content button {
+  color: rgb(73, 94, 151);
+  background: #ffd360;
+  margin: 5px 0;
+  font-size: 1.35em;
+  line-height: 1em;
+  padding-top: 5px;
+  cursor: pointer;
+  border: 1px solid rgb(73, 94, 151);
+  border-radius: 3px;
+}
+
+.modal-content button:active {
+  background: transparent;
+  
+}

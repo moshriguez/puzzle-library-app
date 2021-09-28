@@ -16,6 +16,7 @@ import Contribute from './components/Contribute';
 import PuzzleContainer from './components/PuzzleContainer';
 import UserContainer from './components/UserContainer';
 import Splash from './components/Splash'
+import Modal from './components/Modal'
 
 const URL = 'http://localhost:3001/';
 
@@ -233,7 +234,7 @@ const App = () => {
 					src="https://marketingtechnews.net/wp-content/uploads/sites/6/2021/02/sigmund-B-x4VaIriRc-unsplash.jpg"
 					alt="close up of a puzzle"
 					/>
-
+					{popupMessage.length ? <Modal popupMessage={popupMessage} setPopupMessage={setPopupMessage}/> : null}
 					<Route exact path="/" render={() => <Splash />} />
 						{/* <Splash />
 					</Route> */}
