@@ -25,7 +25,12 @@ const UserTabs = ({ borrows, handleReturn, handleRenew, deleteUser, userData }) 
             case 'history':
                 return <UserHistory />
             default:
-                return <UserPuzzleContainer />
+                return (
+                    <UserPuzzleContainer 
+                        borrows={borrows}
+                        handleRenew={handleRenew}
+                        handleReturn={handleReturn}
+                    />)
         }
     }
 
