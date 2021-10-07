@@ -4,8 +4,30 @@ import UserAccount from "./UserAccount";
 import UserHistory from "./UserHistory";
 import UserPuzzleContainer from "./UserPuzzleContainer";
 
-const UserTabs = () => {
+const UserTabs = ({ borrows, handleReturn, handleRenew, deleteUser, userData }) => {
     const [activeTab, setActiveTab] = useState('puzzles')
+
+    const renderTabContent = () => {
+        switch (activeTab) {
+            case 'account':
+                return (
+                    <UserAccount 
+                        userData={userData}
+                        deleteUser={deleteUser}
+                    />)
+            case 'puzzles':
+                return (
+                    <UserPuzzleContainer 
+                        borrows={borrows}
+                        handleRenew={handleRenew}
+                        handleReturn={handleReturn}
+                    />)
+            case 'history':
+                return <UserHistory />
+            default:
+                return <UserPuzzleContainer />
+        }
+    }
 
     return (
         <div className="tabs">
@@ -15,7 +37,7 @@ const UserTabs = () => {
                 <li>Account</li>
             </ul>
             <div className="tab-content">
-
+                {renderTabContent()}
             </div>
         </div>
     )
