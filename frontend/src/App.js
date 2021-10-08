@@ -215,9 +215,6 @@ const App = () => {
 						<Link to="/user">User</Link>
 					)}
 				</li>
-				{/* <li>
-					<Link to="/login">Login</Link>
-				</li> */}
 				<li>
 					<Link to="/contribute">Donate a Puzzle</Link>
 				</li>
@@ -240,8 +237,6 @@ const App = () => {
 					/>
 					{popupMessage.length ? <Modal popupMessage={popupMessage} setPopupMessage={setPopupMessage}/> : null}
 					<Route exact path="/" render={() => <Splash />} />
-						{/* <Splash />
-					</Route> */}
 					<Route exact path="/puzzles">
 						<PuzzleContainer
 							puzzleData={puzzles}
