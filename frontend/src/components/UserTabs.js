@@ -39,7 +39,7 @@ const UserTabs = ({ borrows, handleReturn, handleRenew, deleteUser, userData }) 
     }
 
     return (
-        <div className="tabs">
+        <>
             <ul className="user-tabs-nav">
                 <li className={activeTab === "puzzles" ? "active" : ""} onClick={()=> handleClick('puzzles')}>Puzzles</li>
                 <li className={activeTab === "history" ? "active" : ""} onClick={()=> handleClick('history')}>History</li>
@@ -48,7 +48,7 @@ const UserTabs = ({ borrows, handleReturn, handleRenew, deleteUser, userData }) 
             <div className="tab-content">
                 {renderTabContent()}
             </div>
-        </div>
+        </>
     )
 
 }

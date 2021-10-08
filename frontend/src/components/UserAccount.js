@@ -8,7 +8,7 @@ const UserAccount = ({ deleteUser, userData }) => {
                 <h1>{userData.username}</h1>
                 <button 
                     onClick={() => deleteUser(userData)}
-                    id="delete-btn">
+                    className="delete-btn">
                     Delete Account
                 </button>
 			</React.Fragment>

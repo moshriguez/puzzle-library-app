@@ -12,9 +12,8 @@
   background-color: var(--background);
   color: white;
   width: 90%;
-  position: fixed;
+  position: absolute;
   right: 0;
-  z-index: 10;
 }
 
 .App-header h1{
@@ -70,8 +69,27 @@ main {
   position: absolute;
   right: 0;
   top: 97px;  
-
+  /* background: url("https://marketingtechnews.net/wp-content/uploads/sites/6/2021/02/sigmund-B-x4VaIriRc-unsplash.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover; */
 }
+
+/* html::before { 
+  content: "";
+  background: url("https://marketingtechnews.net/wp-content/uploads/sites/6/2021/02/sigmund-B-x4VaIriRc-unsplash.jpg") no-repeat center center fixed; 
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  position: absolute;
+  top: 0px;
+  right: 0px;
+  bottom: -10px;
+  left: 0px;
+  opacity: 0.5;
+} */
 
 #contribute-form, #login, #user-container, form, #splash {
   display: flex;
@@ -182,7 +200,7 @@ span {
 }
 
 .btn, button {
-  height: 35px;
+  padding: 6px;
   width: 100%;
   border-radius: 5px;
   border: 0;
@@ -199,13 +217,9 @@ button:disabled {
   cursor: auto;
 }
 
-#delete-btn {
+.delete-btn {
   width: auto;
-  position: absolute;
-  right: 0;
-  bottom: 0;
   background-color: rgb(202, 80, 24);
-
 }
 
 /*** Popup Dialog Box ***/
@@ -288,4 +302,12 @@ ul.user-tabs-nav li:hover {
 
 ul.user-tabs-nav li.active {
   background: #39A2DB;
+}
+ /*** User Tab Content ***/
+
+.tab-content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  align-items: center;
 }
