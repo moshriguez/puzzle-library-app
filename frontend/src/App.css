@@ -251,7 +251,7 @@ button:disabled {
 
 /*** User Tab Nav ***/
 ul.user-tabs-nav {
-  width: 60%;
+  width: fit-content;
   margin: 0 auto 2rem;
   display: flex;
   align-items: center;
@@ -261,7 +261,6 @@ ul.user-tabs-nav {
 }
 
 ul.user-tabs-nav li {
-  width: 100/3%;
   padding: 1rem;
   list-style: none;
   text-align: center;

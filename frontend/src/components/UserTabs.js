@@ -34,12 +34,16 @@ const UserTabs = ({ borrows, handleReturn, handleRenew, deleteUser, userData }) 
         }
     }
 
+    const handleClick = (str) => {
+        setActiveTab(str)
+    }
+
     return (
         <div className="tabs">
             <ul className="user-tabs-nav">
-                <li>Puzzles</li>
-                <li>History</li>
-                <li>Account</li>
+                <li className={activeTab === "puzzles" ? "active" : ""} onClick={()=> handleClick('puzzles')}>Puzzles</li>
+                <li className={activeTab === "history" ? "active" : ""} onClick={()=> handleClick('history')}>History</li>
+                <li className={activeTab === "account" ? "active" : ""} onClick={()=> handleClick('account')}>Account</li>
             </ul>
             <div className="tab-content">
                 {renderTabContent()}
