@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-	BrowserRouter as Router,
 	Link,
 	Route,
 	Switch,
@@ -197,7 +196,7 @@ const App = () => {
 	};
 
 	return (
-		<Router>
+		<>
 			<ul className="navbar">
 				<li>
 					<i className="fas fa-puzzle-piece"></i>
@@ -229,8 +228,8 @@ const App = () => {
 				<h1>PuzzleTheque</h1>
 				<p>{currentUser.username} is currently logged in</p>
 			</header>
-			<Switch>
-				<main>
+			<main>
+				<Switch>
 					{/* <img
 					src="https://marketingtechnews.net/wp-content/uploads/sites/6/2021/02/sigmund-B-x4VaIriRc-unsplash.jpg"
 					alt="close up of a puzzle"
@@ -275,9 +274,9 @@ const App = () => {
 							setPuzzles={setPuzzles}
 						/>
 					</Route>
-				</main>
-			</Switch>
-		</Router>
+				</Switch>
+			</main>
+		</>
 	);
 }
 

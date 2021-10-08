@@ -68,7 +68,7 @@ const Signup = ({ errors, setErrors, setCurrentUser }) => {
 
   return (
     <div className="form-container">
-      <div className="lcd-display user-form">
+      <div className="user-form">
         <form onSubmit={(e) => handleSignup(e)}>
           <h1>Sign Up</h1>
           <label>Create a username</label>
