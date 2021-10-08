@@ -11,9 +11,9 @@ const PuzzleCard = ({ puzzle, noOneLoggedIn, handleBorrow }) => {
       <p>{puzzle.pieces_missing} pieces missing</p>
       <span>{puzzle.checked_out ? "checked out" : "available"}</span>
       <button 
-      disabled={noOneLoggedIn || puzzle.checked_out}
-      className="borrow-btn" 
-      onClick={()=> handleBorrow(puzzle.id)}
+        disabled={noOneLoggedIn || puzzle.checked_out}
+        className="btn" 
+        onClick={()=> handleBorrow(puzzle.id)}
       >Borrow</button>
     </div>
   );

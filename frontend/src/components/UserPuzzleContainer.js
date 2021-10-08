@@ -18,7 +18,7 @@ const UserPuzzleContainer = ({ borrows, handleReturn, handleRenew }) => {
 
     return (
         <>
-            <h4>You have borrowed these puzzles:</h4>
+            <h3>You have borrowed these puzzles:</h3>
             <div className="puzzle-collection">
                 {renderBorrowedPuzzles()}
             </div>

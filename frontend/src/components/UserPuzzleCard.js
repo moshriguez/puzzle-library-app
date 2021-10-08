@@ -10,12 +10,12 @@ const UserPuzzleCard = ({ borrow, handleRenew, handleReturn }) => {
         <p>{borrow.num_of_pieces} pieces</p>
         <p>{borrow.pieces_missing} pieces missing </p>
         <button 
-        className="renew-btn" 
-        onClick={()=> handleRenew(borrow.id)}
+          className="btn" 
+          onClick={()=> handleRenew(borrow.id)}
         >Renew</button>
         <button 
-        className="return-btn" 
-        onClick={()=> handleReturn(borrow.id)}
+          className="btn" 
+          onClick={()=> handleReturn(borrow.id)}
         >Return</button>
       </div>
     );

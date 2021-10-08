@@ -57,6 +57,7 @@ li button {
   border-radius: 0;
   text-align: left;
   font-weight: 400;
+  font-size: 1em;
 }
 
 li a:hover, li button:hover {
@@ -128,6 +129,7 @@ main>img {
   align-self: stretch;
 }
 
+ /*** Puzzle Card ***/
 .card {
   border-radius: 20px;
   margin-bottom: 5px;
@@ -154,11 +156,6 @@ main>img {
   margin: 0 0 5px;
 }
 
-label {
-  align-self: flex-start;
-  font-weight: 600;
-}
-
 span {
   font-size: small;
   font-weight: 400;
@@ -179,6 +176,7 @@ span {
   margin: 0 auto 5px;
 }
 
+/*** Forms ***/
 .input-text {
   background-color: var(--background);
   border: 0;
@@ -199,6 +197,12 @@ span {
   outline: none;
 }
 
+label {
+  align-self: flex-start;
+  font-weight: 600;
+}
+
+/*** Buttons ***/
 .btn, button {
   padding: 6px;
   width: 100%;

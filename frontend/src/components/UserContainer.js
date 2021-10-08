@@ -7,9 +7,9 @@ const UserContainer = ({ borrows, handleReturn, handleRenew, deleteUser, userDat
 	return (
 		<div id="user-container">
 			{noOneLoggedIn ? (
-				<h4>
+				<h3>
 					Login or create an account to see your borrowed puzzles here.
-				</h4>
+				</h3>
 			) : (
 				<UserTabs 
 					borrows={borrows}
