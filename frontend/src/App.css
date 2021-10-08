@@ -6,7 +6,6 @@
 
 .App-header {
   background-color: rgb(146, 146, 146);
-  /* font-size: calc(10px + 2vmin); */
   color: white;
   width: 90%;
   position: fixed;
@@ -16,7 +15,6 @@
 
 .App-header h1{
   text-align: center;
-  margin: 0;
   font-size: 4em;
 }
 
@@ -44,14 +42,21 @@
   font-size: 1.25em;
 }
 
-li a {
+li a, li button {
   display: block;
   color: #000;
   padding: 8px 16px 8px 8px;
   text-decoration: none;
 }
 
-li a:hover {
+li button {
+  background-color: #929292;
+  border-radius: 0;
+  text-align: left;
+  font-weight: 400;
+}
+
+li a:hover, li button:hover {
   background-color: #555;
   color: white;
 }
@@ -188,13 +193,6 @@ span {
 button:disabled {
   background-color: rgb(219, 193, 121);
   cursor: auto;
-}
-
-#logout-btn {
-  width: auto;
-  position: absolute;
-  right: 0;
-  top: 0;
 }
 
 #delete-btn {

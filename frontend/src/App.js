@@ -218,15 +218,15 @@ const App = () => {
 				<li>
 					<Link to="/contribute">Donate a Puzzle</Link>
 				</li>
+				{currentUser.id === 0 ? null : (
+					<li onClick={handleLogout}>
+						<button>Logout</button>
+					</li>
+				)}
 			</ul>
 			<header className="App-header">
 				
 				<h1>PuzzleTheque</h1>
-				{currentUser.id === 0 ? null : (
-					<button id="logout-btn" onClick={handleLogout}>
-						Logout
-					</button>
-				)}
 				<p>{currentUser.username} is currently logged in</p>
 			</header>
 			<Switch>
