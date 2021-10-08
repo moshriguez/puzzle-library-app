@@ -1,3 +1,9 @@
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
 .App-header {
   background-color: rgb(146, 146, 146);
   /* font-size: calc(10px + 2vmin); */
@@ -92,7 +98,7 @@ main>img {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
-    align-self: stretch;
+  align-self: stretch;
 }
 
 .card {
@@ -241,4 +247,44 @@ button:disabled {
 .modal-content button:active {
   background: transparent;
   
+}
+
+/*** User Tab Nav ***/
+ul.user-tabs-nav {
+  width: 60%;
+  margin: 0 auto 2rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid #39A2DB;
+  border-radius: 2rem;
+}
+
+ul.user-tabs-nav li {
+  width: 100/3%;
+  padding: 1rem;
+  list-style: none;
+  text-align: center;
+  cursor: pointer;
+  transition: all 0.7s;
+  border-bottom-left-radius: 2rem;
+  border-top-left-radius: 2rem;
+}
+
+ul.user-tabs-nav li:nth-child(2) {
+  border-radius: 0;
+}
+
+ul.user-tabs-nav li:nth-child(3) {
+  border-radius: 0;
+  border-bottom-right-radius: 2rem;
+  border-top-right-radius: 2rem;
+}
+
+ul.user-tabs-nav li:hover {
+  background: rgba(50, 224, 196, 0.15);
+}
+
+ul.user-tabs-nav li.active {
+  background: #39A2DB;
 }
