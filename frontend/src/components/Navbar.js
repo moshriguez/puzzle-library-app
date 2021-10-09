@@ -1,5 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
+import { MdClose } from "react-icons/md"
+import { FiMenu } from "react-icons/fi"
 
 const Navbar = ({ currentUser, handleLogout }) => {
     const [navbarOpen, setNavbarOpen] = useState(false)
@@ -10,11 +12,8 @@ const Navbar = ({ currentUser, handleLogout }) => {
 
     return (
         <nav>
-            <button onClick={handleToggle}>{navbarOpen ? "Close" : "Open"}</button>
+            <button onClick={handleToggle}>{navbarOpen ? <MdClose /> : <FiMenu />}</button>
             <ul className={`navbar${navbarOpen ? " show-menu" : ""}`}>
-                <li>
-                    <i className="fas fa-puzzle-piece"></i>
-                </li>
                 <li>
                     <Link to="/" onClick={handleToggle}>Home</Link>
                 </li>

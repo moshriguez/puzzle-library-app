@@ -39,8 +39,10 @@ nav {
 nav>button {
   position: fixed;
   z-index: 10;
-  width: auto;
+  width: 40px;
+  height: 40px;
   background-color: transparent;
+  font-size: 2em;
 }
 
 .navbar.show-menu {
@@ -59,6 +61,11 @@ nav>button {
   overflow: hidden;
   max-width: 290px;
   z-index: 9;
+  transition: all 0.5s;
+}
+
+.navbar li:first-child {
+  margin-top: 3em;
 }
 
 li a, li button {
@@ -83,9 +90,6 @@ li a:hover, li button:hover {
 
 main {
   width: 100%;
-  /* position: absolute;
-  right: 0;
-  top: 97px;   */
   /* background: url("https://marketingtechnews.net/wp-content/uploads/sites/6/2021/02/sigmund-B-x4VaIriRc-unsplash.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
@@ -93,20 +97,20 @@ main {
   background-size: cover; */
 }
 
-/* html::before { 
+html { 
   content: "";
   background: url("https://marketingtechnews.net/wp-content/uploads/sites/6/2021/02/sigmund-B-x4VaIriRc-unsplash.jpg") no-repeat center center fixed; 
   -webkit-background-size: cover;
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  position: absolute;
+  /* position: absolute;
   top: 0px;
   right: 0px;
   bottom: -10px;
   left: 0px;
-  opacity: 0.5;
-} */
+  opacity: 0.5; */
+}
 
 #contribute-form, #login, #user-container, form, #splash {
   display: flex;
