@@ -335,3 +335,10 @@ ul.user-tabs-nav li.active {
   width: 100%;
   align-items: center;
 }
+
+/*** Media Queries ***/
+@media (max-width: 768px) {
+  .navbar {
+    max-width: none;
+  }
+}
