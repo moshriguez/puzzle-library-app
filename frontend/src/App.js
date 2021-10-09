@@ -16,6 +16,7 @@ import PuzzleContainer from './components/PuzzleContainer';
 import UserContainer from './components/UserContainer';
 import Splash from './components/Splash'
 import Modal from './components/Modal'
+import Navbar from "./components/Navbar";
 
 const URL = 'http://localhost:3001/';
 
@@ -197,34 +198,8 @@ const App = () => {
 
 	return (
 		<>
-			<ul className="navbar">
-				<li>
-					<i className="fas fa-puzzle-piece"></i>
-				</li>
-				<li>
-					<Link to="/">Home</Link>
-				</li>
-				<li>
-					<Link to="/puzzles">Puzzles</Link>
-				</li>
-				<li>
-					{currentUser.id === 0 ? (
-						<Link to="/login">Login</Link>
-					) : (
-						<Link to="/user">User</Link>
-					)}
-				</li>
-				<li>
-					<Link to="/contribute">Donate a Puzzle</Link>
-				</li>
-				{currentUser.id === 0 ? null : (
-					<li onClick={handleLogout}>
-						<button>Logout</button>
-					</li>
-				)}
-			</ul>
+			<Navbar currentUser={currentUser} handleLogout={handleLogout}/>
 			<header className="App-header">
-				
 				<h1>PuzzleTheque</h1>
 				<p>{currentUser.username} is currently logged in</p>
 			</header>
