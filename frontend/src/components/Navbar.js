@@ -11,7 +11,7 @@ const Navbar = ({ currentUser, handleLogout }) => {
     return (
         <nav>
             <button onClick={handleToggle}>{navbarOpen ? "Close" : "Open"}</button>
-            <ul className="navbar">
+            <ul className={`navbar${navbarOpen ? " show-menu" : ""}`}>
                 <li>
                     <i className="fas fa-puzzle-piece"></i>
                 </li>
