@@ -16,23 +16,23 @@ const Navbar = ({ currentUser, handleLogout }) => {
                     <i className="fas fa-puzzle-piece"></i>
                 </li>
                 <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/" onClick={handleToggle}>Home</Link>
                 </li>
                 <li>
-                    <Link to="/puzzles">Puzzles</Link>
+                    <Link to="/puzzles" onClick={handleToggle}>Puzzles</Link>
                 </li>
                 <li>
                     {currentUser.id === 0 ? (
-                        <Link to="/login">Login</Link>
+                        <Link to="/login" onClick={handleToggle}>Login</Link>
                     ) : (
-                        <Link to="/user">User</Link>
+                        <Link to="/user" onClick={handleToggle}>User</Link>
                     )}
                 </li>
                 <li>
-                    <Link to="/contribute">Donate a Puzzle</Link>
+                    <Link to="/contribute" onClick={handleToggle}>Donate a Puzzle</Link>
                 </li>
                 {currentUser.id === 0 ? null : (
-                    <li onClick={handleLogout}>
+                    <li onClick={() => {handleLogout(); handleToggle();}}>
                         <button>Logout</button>
                     </li>
                 )}
