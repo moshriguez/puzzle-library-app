@@ -200,8 +200,11 @@ const App = () => {
 		<>
 			<Navbar currentUser={currentUser} handleLogout={handleLogout}/>
 			<header className="App-header">
-				{/* <i className="fas fa-puzzle-piece"></i> */}
-				<h1>PuzzleTheque</h1>
+				<div className="title">
+					<i className="fas fa-puzzle-piece"></i>
+					<h1>PuzzleTheque</h1>
+					<i className="fas fa-puzzle-piece"></i>
+				</div>
 				<p>{currentUser.username} is currently logged in</p>
 			</header>
 			<main>
