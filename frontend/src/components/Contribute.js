@@ -36,10 +36,10 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 	
 	return (
 		<div className="flex-container">
+			<h2>Donate a Puzzle:</h2>
+			<p>Thank you for donating a puzzle. Your contribution is appreciated!<br />
+			Please fill out the form below.</p>
 			<form onSubmit={handleSubmit}>
-				<h2>Donate a Puzzle:</h2>
-				<p>Thank you for donating a puzzle. Your contribution is appreciated!<br />
-				Please fill out the form below.</p>
 				<label>Puzzle Name:</label>
 				<input
 					type="text"
