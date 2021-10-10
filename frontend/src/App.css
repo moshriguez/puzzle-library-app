@@ -8,6 +8,7 @@
   --background: rgb(146, 146, 146);
 }
 
+/*** Header ***/
 .App-header {
   background-color: var(--background);
   color: white;
@@ -25,13 +26,11 @@
 }
 
 .App-header h1{
-  text-align: center;
   font-size: 4em;
 }
 
 .App-header p{
   text-align: right;
-  margin: 0;
   font-size: 1.1em;
   font-weight: 800;
 }
@@ -42,6 +41,7 @@
   padding: 8px;
 }
 
+/*** Navigation Menu ***/
 nav {
   position: relative;
 }
@@ -62,8 +62,6 @@ nav>button {
 .navbar {
   background-color: var(--background);
   list-style-type: none;
-  margin: 0;
-  padding: 0;
   width: 0;
   height: 100vh;
   position: fixed;
@@ -81,7 +79,7 @@ nav>button {
 li a, li button {
   display: block;
   color: #000;
-  padding: 8px 16px 8px 8px;
+  padding: 8px;
   text-decoration: none;
 }
 
@@ -122,7 +120,7 @@ html {
   opacity: 0.5; */
 }
 
-#contribute-form, #login, #user-container, form, #splash {
+.flex-container, form {
   display: flex;
   align-items: center;  
   flex-direction: column;
@@ -134,19 +132,19 @@ p {
   line-height: 1.25em;
 }
 
-h3 {
-  font-size: 1.5em;
+h2 {
   margin: 17px 0px;
 }
 
-main>img {
+/* this was the old way of adding a background image - still might use? */
+/* main>img {
   width: 100%;
   opacity: .5;
   z-index: -1;
   position: fixed;
-}
+} */
 
-#splash li {
+.flex-container li {
   list-style-type: none;
   line-height: 1.5em;
 
@@ -173,14 +171,15 @@ main>img {
   background: white;
 }
 
-.card img, img {
+.card img {
   width: 95%;
   height: auto;
 }
 
-.card h2 {
+/* this does nothing */
+/* .card h2 {
   margin-bottom: 0;
-}
+} */
 
 .card p {
   margin: 0 0 5px;
@@ -365,6 +364,9 @@ ul.user-tabs-nav li.active {
   }
   .App-header p{
     font-size: 0.8em
+  }
+  li a, li button {
+    text-align: center;
   }
 }
 

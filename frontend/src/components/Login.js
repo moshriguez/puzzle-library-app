@@ -53,7 +53,7 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 	}
 
 	return (
-		<div id="login">
+		<div className="flex-container">
 			<form onSubmit={handleSubmit}>
 				<h3>Enter your username:</h3>
 				<input

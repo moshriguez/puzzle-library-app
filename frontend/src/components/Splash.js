@@ -2,7 +2,7 @@ import React from 'react';
 
 const Splash = () => {
 	return (
-		<div id="splash">
+		<div className="flex-container">
 			<h3>When was the last time you did a puzzle a second time?</h3>
 			<h3>Why buy a puzzle when you can borrow one?</h3>
 			<div>
