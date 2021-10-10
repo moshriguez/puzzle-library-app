@@ -67,15 +67,15 @@ const Signup = ({ errors, setErrors, setCurrentUser }) => {
   };
 
   return (
-    <div className="form-container">
-      <div className="user-form">
+      <div className="flex-container">
+        <h2>Sign Up</h2>
         <form onSubmit={(e) => handleSignup(e)}>
-          <h1>Sign Up</h1>
           <label>Create a username</label>
           <input
               onChange={(e) => handleChange(e)}
               value={userForm.username}
               name="username"
+              className="input-text"
               required
             />
           <label>Create a password</label>
@@ -84,16 +84,18 @@ const Signup = ({ errors, setErrors, setCurrentUser }) => {
               value={userForm.password}
               name="password"
               type="password"
+              className="input-text"
               required
             />
           <label>Confirm your password</label>
-            <input
-              onChange={(e) => handleChange(e)}
-              value={userForm.confirm}
-              name="confirm"
-              type="password"
-              required
-            />
+          <input
+            onChange={(e) => handleChange(e)}
+            value={userForm.confirm}
+            name="confirm"
+            type="password"
+            className="input-text"
+            required
+          />
           <button className="btn" type="submit">Create account</button>
         </form>
         {errors.length ? (
@@ -108,10 +110,9 @@ const Signup = ({ errors, setErrors, setCurrentUser }) => {
           </div>
         ) : null}
           <p>Already have an account?</p>
-          <a href="/login" className="btn" >Login</a>
+          <a href="/login" className="btn link" >Login</a>
 
       </div>
-    </div>
   );
 };
 

@@ -263,6 +263,12 @@ button:disabled {
   background-color: rgb(202, 80, 24);
 }
 
+.btn.link {
+  text-decoration: none;
+  width: 80%;
+  text-align: center;
+}
+
 /*** Popup Dialog Box ***/
 .modal-background {
   position: fixed; /* Stay in place */

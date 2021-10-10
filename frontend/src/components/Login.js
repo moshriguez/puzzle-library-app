@@ -54,8 +54,9 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 
 	return (
 		<div className="flex-container">
+			<h2>Sign In:</h2>
 			<form onSubmit={handleSubmit}>
-				<h3>Enter your username:</h3>
+				<label>Username:</label>
 				<input
 					type="text"
 					name="username"
@@ -63,9 +64,10 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 					className="input-text"
 					onChange={(e) => handleInupt(e)}
 					value={userForm.name}
-				/>
+					/>
 				<br />
 				{renderErrors('username')}
+				<label>Password:</label>
 				<input
 					type="password"
 					name="password"
@@ -84,7 +86,7 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 				/>
 			</form>
 			<p>Don't have an account?</p>
-			<a href="/signup">Sign up</a>
+			<a href="/signup" className="btn link">Sign up</a>
 
 		</div>
 	);
