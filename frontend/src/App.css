@@ -159,16 +159,46 @@ h2 {
 
  /*** Puzzle Card ***/
 .card {
-  border-radius: 20px;
-  margin-bottom: 5px;
   width: 240px;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   align-items: center;
   text-align: center;
+  border-radius: 20px;
+  margin-bottom: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   background: white;
+}
+
+.long-card {
+  border-radius: 50px;
+  width: 95%;
+  display: flex;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  background: var(--background);
+  padding: 5px;
+  height: 106px;
+  align-items: center;
+  justify-content: space-between;
+  margin: 110px 0;
+}
+
+.long-card img {
+  width: 45%;
+  height: auto;
+  order: -1;
+  border: 2px solid var(--background);
+  border-radius: 7px;
+}
+
+.long-card .flex-container {
+  padding: 25px;
+}
+
+.long-card h2 {
+  max-width: 25%;
+  text-align: center;
 }
 
 .card img {
