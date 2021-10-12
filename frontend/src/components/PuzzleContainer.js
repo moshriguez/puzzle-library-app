@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import PuzzleCard from './PuzzleCard';
 
-const PuzzleContainer = ({ puzzleData, userData, handleBorrow }) => {
+const PuzzleContainer = ({ windowWidth, puzzleData, userData, handleBorrow }) => {
 	const [filterValue, setFilter] = useState('All');
 
 	const noOneLoggedIn = userData.id === 0
@@ -29,6 +29,7 @@ const PuzzleContainer = ({ puzzleData, userData, handleBorrow }) => {
 			<div className="puzzle-collection">
 				{checkedOutFilter().map((puzzle) => (
 					<PuzzleCard
+						windowWidth={windowWidth}
 						key={puzzle.id}
 						puzzle={puzzle}
 						handleBorrow={handleBorrow}

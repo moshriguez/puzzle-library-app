@@ -1,10 +1,10 @@
 import React from 'react';
 
-const PuzzleCard = ({ puzzle, noOneLoggedIn, handleBorrow }) => {
+const PuzzleCard = ({ windowWidth, puzzle, noOneLoggedIn, handleBorrow }) => {
 
   
   return (
-    <div className="long-card">
+    <div className={windowWidth > 650 ? "long-card" : "card"}>
       <h2>{puzzle.name}</h2>
       <img src={puzzle.img_url} alt={puzzle.name} className="puzzle-img" />
       <div className="flex-container">

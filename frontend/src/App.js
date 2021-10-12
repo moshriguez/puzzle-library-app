@@ -1,6 +1,5 @@
 import React, { useEffect, useState } from 'react';
 import {
-	Link,
 	Route,
 	Switch,
 	useHistory,
@@ -21,6 +20,24 @@ import Navbar from "./components/Navbar";
 const URL = 'http://localhost:3001/';
 
 const App = () => {
+	const width = window.innerWidth 
+    || document.documentElement.clientWidth
+    || document.body.clientWidth;
+    const [windowWidth, setWindowWidth] = useState(width)
+
+
+    useEffect(() => {
+        window.addEventListener('resize', calculateWidth)
+        return () => {window.removeEventListener('resize', calculateWidth)}
+    }, [])
+
+    const calculateWidth = () => {
+        const newWidth = window.innerWidth 
+            || document.documentElement.clientWidth
+            || document.body.clientWidth;
+        setWindowWidth(newWidth)
+    }
+
 	const [currentUser, setCurrentUser] = useState({ username: 'no one', id: 0 });
 	const [puzzles, setPuzzles] = useState([]);
 	const [borrows, setBorrows] = useState([]);
@@ -217,6 +234,7 @@ const App = () => {
 					<Route exact path="/" render={() => <Splash />} />
 					<Route exact path="/puzzles">
 						<PuzzleContainer
+							windowWidth={windowWidth}
 							puzzleData={puzzles}
 							handleBorrow={handleBorrow}
 							userData={currentUser}
