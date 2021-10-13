@@ -339,23 +339,19 @@ button:disabled {
 
 /*** User Tab Nav ***/
 ul.user-tabs-nav {
-  width: fit-content;
-  margin: 0 auto 2rem;
+  margin: 1rem auto;
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  border: 1px solid #39A2DB;
+  border: 2px solid var(--bg);
   border-radius: 2rem;
 }
 
 ul.user-tabs-nav li {
   padding: 1rem;
-  list-style: none;
-  text-align: center;
   cursor: pointer;
   transition: all 0.7s;
   border-bottom-left-radius: 2rem;
   border-top-left-radius: 2rem;
+  font-weight: 500;
 }
 
 ul.user-tabs-nav li:nth-child(2) {
@@ -369,11 +365,13 @@ ul.user-tabs-nav li:nth-child(3) {
 }
 
 ul.user-tabs-nav li:hover {
-  background: rgba(50, 224, 196, 0.15);
+  background: rgb(146, 146, 146, 0.5);
 }
 
 ul.user-tabs-nav li.active {
-  background: #39A2DB;
+  background: var(--bg);
+  color: white;
+  font-weight: 600;
 }
  /*** User Tab Content ***/
 
