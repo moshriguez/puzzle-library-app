@@ -408,6 +408,11 @@ ul.user-tabs-nav li.active {
   .card {
     width: 85%;
   }
+  form {
+    width: 95%;
+    padding: 20px 10px;
+    margin: 15px 0;
+  }
 }
 
 @media (max-width: 320px) {
