@@ -126,6 +126,7 @@ p {
 
 h2 {
   margin: 17px 0px;
+  text-align: center;
 }
 
 .flex-container li {
@@ -158,6 +159,7 @@ h2 {
 
 .long-card {
   width: 95%;
+  max-width: 1000px;
   display: flex;
   padding: 5px;
   align-items: center;
@@ -172,6 +174,7 @@ h2 {
   backdrop-filter: blur(10px);
   margin: 110px 0;
   width: inherit;
+  max-width: inherit;
   height: 106px;
   position: absolute;
   z-index: -1;
