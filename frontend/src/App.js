@@ -226,10 +226,6 @@ const App = () => {
 			</header>
 			<main>
 				<Switch>
-					{/* <img
-					src="https://marketingtechnews.net/wp-content/uploads/sites/6/2021/02/sigmund-B-x4VaIriRc-unsplash.jpg"
-					alt="close up of a puzzle"
-					/> */}
 					{popupMessage.length ? <Modal popupMessage={popupMessage} setPopupMessage={setPopupMessage}/> : null}
 					<Route exact path="/" render={() => <Splash />} />
 					<Route exact path="/puzzles">
