@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router';
+import { Link, useHistory } from 'react-router-dom';
 
 const URL = 'http://localhost:3001/';
 
@@ -86,7 +86,7 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 				/>
 			</form>
 			<p>Don't have an account?</p>
-			<a href="/signup" className="btn link">Sign up</a>
+			<Link to="/signup" className="btn link">Sign up</Link>
 
 		</div>
 	);
