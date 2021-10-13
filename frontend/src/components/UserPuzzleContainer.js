@@ -1,14 +1,15 @@
 import React from "react";
 
-import UserPuzzleCard from "./UserPuzzleCard";
+import PuzzleCard from "./PuzzleCard";
 
 const UserPuzzleContainer = ({ borrows, handleReturn, handleRenew }) => {
     const renderBorrowedPuzzles = () => {
 		return borrows.map((borrow) => {
 			return (
-				<UserPuzzleCard
+				<PuzzleCard
+					type='user'
 					key={borrow.id}
-					borrow={borrow}
+					puzzle={borrow}
 					handleReturn={handleReturn}
 					handleRenew={handleRenew}
 				/>

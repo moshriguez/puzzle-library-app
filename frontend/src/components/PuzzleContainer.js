@@ -29,6 +29,7 @@ const PuzzleContainer = ({ windowWidth, puzzleData, userData, handleBorrow }) =>
 			<div className="puzzle-collection">
 				{checkedOutFilter().map((puzzle) => (
 					<PuzzleCard
+						type='puzzle'
 						windowWidth={windowWidth}
 						key={puzzle.id}
 						puzzle={puzzle}
