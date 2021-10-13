@@ -47,5 +47,5 @@ const PuzzleCard = ({ type, windowWidth, puzzle, noOneLoggedIn, handleBorrow, ha
   );
 
 }
-
+// 
 export default PuzzleCard;

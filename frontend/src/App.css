@@ -5,12 +5,14 @@
 }
 
 :root {
-  --background: rgb(146, 146, 146);
+  --bg: rgb(146, 146, 146);
+  --bg-trans: rgb(146, 146, 146, 0.8);
+
 }
 
 /*** Header ***/
 .App-header {
-  background-color: var(--background);
+  background-color: var(--bg);
   color: white;
   width: 100%;
 }
@@ -60,7 +62,8 @@ nav>button {
 }
 
 .navbar {
-  background-color: var(--background);
+  background-color: var(--bg-trans);
+  backdrop-filter: blur(10px);
   list-style-type: none;
   width: 0;
   height: 100vh;
@@ -84,7 +87,7 @@ li a, li button {
 }
 
 li button {
-  background-color: var(--background);
+  background-color: transparent;
   border-radius: 0;
   text-align: left;
   font-weight: 400;
@@ -98,11 +101,6 @@ li a:hover, li button:hover {
 
 main {
   width: 100%;
-  /* background: url("https://marketingtechnews.net/wp-content/uploads/sites/6/2021/02/sigmund-B-x4VaIriRc-unsplash.jpg") no-repeat center center fixed; 
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
-  -o-background-size: cover;
-  background-size: cover; */
 }
 
 html { 
@@ -112,12 +110,6 @@ html {
   -moz-background-size: cover;
   -o-background-size: cover;
   background-size: cover;
-  /* position: absolute;
-  top: 0px;
-  right: 0px;
-  bottom: -10px;
-  left: 0px;
-  opacity: 0.5; */
 }
 
 .flex-container, form {
@@ -136,18 +128,9 @@ h2 {
   margin: 17px 0px;
 }
 
-/* this was the old way of adding a background image - still might use? */
-/* main>img {
-  width: 100%;
-  opacity: .5;
-  z-index: -1;
-  position: fixed;
-} */
-
 .flex-container li {
   list-style-type: none;
   line-height: 1.5em;
-
 }
 
 .puzzle-collection {
@@ -159,6 +142,7 @@ h2 {
 
  /*** Puzzle Card ***/
 .card {
+  position: relative;
   width: 240px;
   display: flex;
   flex-direction: column;
@@ -168,7 +152,8 @@ h2 {
   border-radius: 20px;
   margin-bottom: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background: white;
+  background: var(--bg-trans);
+  backdrop-filter: blur(10px);
 }
 
 .long-card {
@@ -183,7 +168,8 @@ h2 {
   content: '';
   border-radius: 50px;
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
-  background: var(--background);
+  background: var(--bg-trans);
+  backdrop-filter: blur(10px);
   margin: 110px 0;
   width: inherit;
   height: 106px;
@@ -196,7 +182,7 @@ h2 {
   max-width: 325px;
   height: auto;
   order: -1;
-  border: 2px solid var(--background);
+  border: 2px solid var(--bg);
   border-radius: 7px;
   margin-left: 30px;
 }
@@ -215,11 +201,6 @@ h2 {
   height: auto;
 }
 
-/* this does nothing */
-/* .card h2 {
-  margin-bottom: 0;
-} */
-
 .card p {
   margin: 0 0 5px;
 }
@@ -233,7 +214,7 @@ span {
 #filter {
   outline: 0;
   background: transparent;
-  /* background-color: var(--background); */
+  /* background-color: var(--bg); */
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   border: 0;
   width: 20em;
@@ -246,7 +227,8 @@ span {
 
 /*** Forms ***/
 form {
-  background-color: var(--background);
+  background-color: var(--bg-trans);
+  backdrop-filter: blur(10px);
   padding: 20px;
   border-radius: 15px;
   width: 80%;
@@ -254,7 +236,7 @@ form {
 }
 
 .input-text {
-  background-color: transparent;
+  background-color: var(--bg);
   border: 1px solid #fff;
   width: 100%;
   height: 50px;
@@ -330,7 +312,8 @@ button:disabled {
   width: 80%;
   animation-name: animatetop;
   animation-duration: 0.4s;
-  background: #f1d8c9;
+  background: var(--bg-trans);
+  backdrop-filter: blur(10px);
   border-radius: 15px;
 }
 
@@ -420,6 +403,9 @@ ul.user-tabs-nav li.active {
   }
   li a, li button {
     text-align: center;
+  }
+  .card {
+    width: 85%;
   }
 }
 
