@@ -12,7 +12,7 @@ import Login from './components/Login';
 import Signup from './components/Signup';
 import Contribute from './components/Contribute';
 import PuzzleContainer from './components/PuzzleContainer';
-import UserContainer from './components/UserContainer';
+import UserTabs from "./components/UserTabs";
 import Splash from './components/Splash'
 import Modal from './components/Modal'
 import Navbar from "./components/Navbar";
@@ -237,7 +237,7 @@ const App = () => {
 						/>
 					</Route>
 					<Route exact path="/user">
-						<UserContainer
+						<UserTabs
 							userData={currentUser}
 							borrows={borrows}
 							handleReturn={handleReturn}

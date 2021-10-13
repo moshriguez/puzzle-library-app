@@ -5,6 +5,7 @@ import UserHistory from "./UserHistory";
 import UserPuzzleContainer from "./UserPuzzleContainer";
 
 const UserTabs = ({ borrows, handleReturn, handleRenew, deleteUser, userData }) => {
+    const noOneLoggedIn = userData.id === 0
     const [activeTab, setActiveTab] = useState('puzzles')
 
     const renderTabContent = () => {
@@ -39,16 +40,24 @@ const UserTabs = ({ borrows, handleReturn, handleRenew, deleteUser, userData }) 
     }
 
     return (
-        <>
-            <ul className="user-tabs-nav">
-                <li className={activeTab === "puzzles" ? "active" : ""} onClick={()=> handleClick('puzzles')}>Puzzles</li>
-                <li className={activeTab === "history" ? "active" : ""} onClick={()=> handleClick('history')}>History</li>
-                <li className={activeTab === "account" ? "active" : ""} onClick={()=> handleClick('account')}>Account</li>
-            </ul>
-            <div className="tab-content">
-                {renderTabContent()}
-            </div>
-        </>
+        <div className="flex-container">
+            {noOneLoggedIn ? (
+				<h3>
+					Login or create an account to see your borrowed puzzles here.
+				</h3>
+			) : (
+                <>
+                    <ul className="user-tabs-nav">
+                        <li className={activeTab === "puzzles" ? "active" : ""} onClick={()=> handleClick('puzzles')}>Puzzles</li>
+                        <li className={activeTab === "history" ? "active" : ""} onClick={()=> handleClick('history')}>History</li>
+                        <li className={activeTab === "account" ? "active" : ""} onClick={()=> handleClick('account')}>Account</li>
+                    </ul>
+                    <div className="tab-content">
+                        {renderTabContent()}
+                    </div>
+                </>
+            )}
+        </div>
     )
 
 }
