@@ -225,8 +225,8 @@ const App = () => {
 				<p>{currentUser.username} is currently logged in</p>
 			</header>
 			<main>
+				{popupMessage.length ? <Modal popupMessage={popupMessage} setPopupMessage={setPopupMessage}/> : null}
 				<Switch>
-					{popupMessage.length ? <Modal popupMessage={popupMessage} setPopupMessage={setPopupMessage}/> : null}
 					<Route exact path="/" render={() => <Splash />} />
 					<Route exact path="/puzzles">
 						<PuzzleContainer
