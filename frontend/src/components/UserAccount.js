@@ -14,6 +14,7 @@ const UserAccount = ({ deleteUser, errors, setErrors, userData }) => {
         <>
             {formOpen ? 
                 <ChangePassword 
+                userId={userData.id}
                 setFormOpen={setFormOpen} 
                 setErrors={setErrors} 
                 errors={errors}

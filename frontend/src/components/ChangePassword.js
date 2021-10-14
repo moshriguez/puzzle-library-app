@@ -2,7 +2,9 @@ import React, { useState } from 'react';
 
 const URL = 'http://localhost:3001/';
 
-const ChangePassword = ({ errors, setErrors, setFormOpen }) => {
+const ChangePassword = ({ errors, setErrors, setFormOpen, userId }) => {
+    const token = localStorage.getItem("jwt")
+
 	// controlled form for user details
 	const [passwordForm, setpasswordForm] = useState({ oldPassword: '', newPassword: '', confirm: '' });
 	const handleInupt = (e) => {
@@ -10,14 +12,18 @@ const ChangePassword = ({ errors, setErrors, setFormOpen }) => {
 	};	
 
 	const changePassword = (passwordObj) => {
+        const body = {
+            password: passwordObj.newPassword
+        }
 		const configObj = {
 			method: 'PATCH',
 			headers: {
 				'Content-Type': 'application/json',
+                "Authorization": `Bearer ${token}`
 			},
-			body: JSON.stringify(passwordObj),
+			body: JSON.stringify(body),
 		};
-		fetch(URL + 'users', configObj)
+		fetch(URL + 'users/' + userId, configObj)
         .then((res) => res.json())
         .then((data) => {
             if (data.error) {
@@ -52,7 +58,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen }) => {
 		e.preventDefault();
         const errors = frontendErrorCheck()
         if (errors) {
-        //  changePassword(passwordForm)
+            changePassword(passwordForm)
             console.log(passwordForm)
             setFormOpen(false)
         }
@@ -76,7 +82,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen }) => {
 				<input
 					type="text"
 					name="oldPassword"
-					placeholder="Enter your Old Password..."
+					placeholder="Enter your old password..."
 					className="input-text"
 					onChange={(e) => handleInupt(e)}
 					value={passwordForm.oldPassword}
@@ -109,7 +115,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen }) => {
 					className="btn"
 					type="submit"
 					name="submit"
-					value="Login"
+					value="Submit"
 				/>
 			</form>
 
