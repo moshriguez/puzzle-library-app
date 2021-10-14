@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 
 const URL = 'http://localhost:3001/';
 
-const ChangePassword = ({ errors, setErrors, setFormOpen, userId }) => {
+const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userId }) => {
     const token = localStorage.getItem("jwt")
 
 	// controlled form for user details
@@ -13,7 +13,8 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, userId }) => {
 
 	const changePassword = (passwordObj) => {
         const body = {
-            password: passwordObj.newPassword
+            password: passwordObj.oldPassword,
+            new_password: passwordObj.newPassword
         }
 		const configObj = {
 			method: 'PATCH',
@@ -27,10 +28,12 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, userId }) => {
         .then((res) => res.json())
         .then((data) => {
             if (data.error) {
-                console.log(data.error)
-                setErrors(data.error)
+                // console.log(data.error)
+                setErrors([data.error])
             } else {
-                console.log(data)
+                // console.log(data)
+                setErrors([])
+                setPopupMessage(data.message)
                 setFormOpen(false)
             }
         });
@@ -41,9 +44,6 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, userId }) => {
         const newErrors = [];
         if (passwordForm.newPassword !== passwordForm.confirm) {
             newErrors.push('The password you have entered does not match the password confirmation')
-        }
-        if (passwordForm.oldPassword === passwordForm.newPassword) {
-            newErrors.push('Your new password matches your old password. Are you sure you want to change your password?')
         }
         const passwordRegex = /^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*[a-zA-Z]).+$/
         if (!passwordRegex.test(passwordForm.newPassword)) {
@@ -56,11 +56,10 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, userId }) => {
 
     const handleSubmit = (e) => {
 		e.preventDefault();
-        const errors = frontendErrorCheck()
-        if (errors) {
+        const noErrors = frontendErrorCheck()
+        if (noErrors) {
             changePassword(passwordForm)
             console.log(passwordForm)
-            setFormOpen(false)
         }
 	};
 
@@ -80,7 +79,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, userId }) => {
 			<form onSubmit={handleSubmit}>
 				<label>Old Password:</label>
 				<input
-					type="text"
+					type="password"
 					name="oldPassword"
 					placeholder="Enter your old password..."
 					className="input-text"
@@ -88,7 +87,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, userId }) => {
 					value={passwordForm.oldPassword}
 					/>
 				<br />
-				{renderErrors('hello')}
+				{renderErrors('correct')}
 				<label>New Password:</label>
 				<input
 					type="password"
@@ -100,6 +99,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, userId }) => {
 					/>
 				<br />
 				{renderErrors('capital')}
+				{renderErrors('characters')}
 				<label>Confirn New Password:</label>
 				<input
 					type="password"
@@ -111,6 +111,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, userId }) => {
 					/>
 				<br />
 				{renderErrors('confirmation')}
+				{renderErrors('sure')}
 				<input
 					className="btn"
 					type="submit"
