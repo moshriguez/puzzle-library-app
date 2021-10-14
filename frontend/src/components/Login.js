@@ -84,9 +84,9 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 					name="submit"
 					value="Login"
 				/>
-			</form>
 			<p>Don't have an account?</p>
 			<Link to="/signup" className="btn link">Sign up</Link>
+			</form>
 
 		</div>
 	);

@@ -265,6 +265,16 @@ label {
   font-weight: 600;
 }
 
+form p {
+  margin: 15% 0% 3%;
+  font-weight: 600;
+  font-size: 1.25em;
+}
+
+.error-container {
+  color: white;
+}
+
 /*** Buttons ***/
 .btn, button {
   padding: 6px;
@@ -291,7 +301,6 @@ button:disabled {
 
 .btn.link {
   text-decoration: none;
-  width: 80%;
   text-align: center;
 }
 

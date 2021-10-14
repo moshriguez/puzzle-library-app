@@ -97,20 +97,20 @@ const Signup = ({ errors, setErrors, setCurrentUser }) => {
             required
           />
           <button className="btn" type="submit">Create account</button>
-        </form>
-        {errors.length ? (
-          <div className="error-container">
-            <h2>Errors</h2>
-            <ul>
-              {errors.map((error, idx) => {
-                  return <li key={idx}>{error}</li>
-              }
-              )}
-            </ul>
-          </div>
-        ) : null}
+          {errors.length ? (
+            <div className="error-container">
+              <h2>Errors</h2>
+              <ul>
+                {errors.map((error, idx) => {
+                    return <li key={idx}>{error}</li>
+                }
+                )}
+              </ul>
+            </div>
+          ) : null}
           <p>Already have an account?</p>
           <Link to="/login" className="btn link" >Login</Link>
+        </form>
 
       </div>
   );
