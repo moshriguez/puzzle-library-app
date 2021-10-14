@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 
 const URL = 'http://localhost:3001/';
 
@@ -10,6 +10,11 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
 	const handleInupt = (e) => {
 		setpasswordForm({ ...passwordForm, [e.target.name]: e.target.value });
 	};	
+
+    // clears errors when ChangePassword unmounts
+    useEffect(() => {
+        return setErrors([])
+    }, [setErrors])
 
 	const changePassword = (passwordObj) => {
         const body = {
@@ -32,7 +37,6 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
                 setErrors([data.error])
             } else {
                 // console.log(data)
-                setErrors([])
                 setPopupMessage(data.message)
                 setFormOpen(false)
             }
