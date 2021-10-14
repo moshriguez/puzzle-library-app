@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 const URL = 'http://localhost:3001/';
@@ -11,6 +11,11 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 	};
 
 	const history = useHistory()
+
+	// clears errors when component unmounts
+	useEffect(() => {
+		return setErrors([])
+	}, [setErrors])
 	
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -30,13 +35,13 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 			.then((data) => {
 				if (data.error) {
 					// console.log(data.error)
-					setErrors(data.error)
+					setErrors([data.error])
 				} else {
 					// console.log(data)
 					localStorage.setItem("jwt", data.jwt);
 					setCurrentUser(data.user)
 					setBorrows(filterBorrowData(data.user.borrows))
-					setErrors([])
+					// setErrors([])
 					history.push("/user")
 				}
 			});
@@ -64,7 +69,7 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 					placeholder="Enter your username..."
 					className="input-text"
 					onChange={(e) => handleInupt(e)}
-					value={userForm.name}
+					value={userForm.username}
 					/>
 				<br />
 				{renderErrors('username')}

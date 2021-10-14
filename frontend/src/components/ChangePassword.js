@@ -11,7 +11,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
 		setpasswordForm({ ...passwordForm, [e.target.name]: e.target.value });
 	};	
 
-    // clears errors when ChangePassword unmounts
+    // clears errors when component unmounts
     useEffect(() => {
         return setErrors([])
     }, [setErrors])
