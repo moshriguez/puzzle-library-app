@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 
 import ChangePassword from "./ChangePassword";
 
-const UserAccount = ({ deleteUser, errors, setErrors, userData }) => {
+const UserAccount = ({ deleteUser, errors, setErrors, setPopupMessage, userData }) => {
     const [formOpen, setFormOpen] = useState(false)
 
     const handleClick = () => {
@@ -18,6 +18,7 @@ const UserAccount = ({ deleteUser, errors, setErrors, userData }) => {
                 setFormOpen={setFormOpen} 
                 setErrors={setErrors} 
                 errors={errors}
+                setPopupMessage={setPopupMessage}
                 /> : (
                 <>
                     <h1>{userData.username}</h1>

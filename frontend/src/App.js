@@ -245,6 +245,7 @@ const App = () => {
 							deleteUser={deleteUser}
 							setErrors={setErrors}
 							errors={errors}
+							setPopupMessage={setPopupMessage}
 						/>
 					</Route>
 					<Route exact path="/login">
