@@ -29,13 +29,14 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.error) {
-					console.log(data.error)
+					// console.log(data.error)
 					setErrors(data.error)
 				} else {
-					console.log(data)
+					// console.log(data)
 					localStorage.setItem("jwt", data.jwt);
 					setCurrentUser(data.user)
 					setBorrows(filterBorrowData(data.user.borrows))
+					setErrors([])
 					history.push("/user")
 				}
 			});
