@@ -27,12 +27,15 @@ class UsersController < ApplicationController
 
     def update
         puts user_params
-        user = current_user.update(user_params)
-        if user
-            render json: {user: UserSerializer.new(current_user)}, status: :accepted
-        else
-            render json: {errors: user.errors.full_messages}, status: :not_acceptable
+        if user_params.password == current_user.password
+            
         end
+        # user = current_user.update(user_params)
+        # if user
+        #     render json: {user: UserSerializer.new(current_user)}, status: :accepted
+        # else
+        #     render json: {errors: user.errors.full_messages}, status: :not_acceptable
+        # end
     end
 
     def destroy
