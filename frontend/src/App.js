@@ -243,6 +243,8 @@ const App = () => {
 							handleReturn={handleReturn}
 							handleRenew={handleRenew}
 							deleteUser={deleteUser}
+							setErrors={setErrors}
+							errors={errors}
 						/>
 					</Route>
 					<Route exact path="/login">
