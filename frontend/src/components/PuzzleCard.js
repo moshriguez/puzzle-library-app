@@ -14,7 +14,7 @@ const PuzzleCard = ({ type, windowWidth, puzzle, noOneLoggedIn, handleBorrow, ha
           )
       case 'user':
         return (
-          <>
+          <div className="btn-grp-row">
             <button 
               className="btn" 
               onClick={()=> handleRenew(puzzle.id)}
@@ -23,7 +23,7 @@ const PuzzleCard = ({ type, windowWidth, puzzle, noOneLoggedIn, handleBorrow, ha
               className="btn" 
               onClick={()=> handleReturn(puzzle.id)}
             >Return</button>
-          </>
+          </div>
         )
       case 'history':
         return null
