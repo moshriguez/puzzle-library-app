@@ -38,7 +38,7 @@ $ yarn start
 ![Model Relationships](./model-relationships.png)
 
 - User:
-    - name
+    - username
     - password
 - Puzzle:
     - name
@@ -70,13 +70,8 @@ Users will be able to:
 
 ## Stretch Goals:
 - [x] fix backend user model to use field name 'username' - this is causing way too much confusion!
-- [ ] add a sorting functionality to sort puzzles by number of pieces
 - [x] Limits on renewing: max 2 renews (9 weeks)
 - [x] Limits on the amount of puzzles that can be checked out by a given user
-- [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
-- [ ] Users can review puzzles with a rating and text review - this will create a new model, reviews, which will have a one to many relationship with users and puzzles. Will need to alias users as reviewers and puzzles as puzzle_reviews so AR doesn’t get confused.
-- [ ] Add a librarian feature so users can’t return their puzzles. Librarian would be a type of user or its own class who has the ability to return puzzles
-- [ ] Library fines - a fines column could live on users and users could get fines for late returns; also librarian class could assign fines for damaged puzzles?
 - [x] Transform into a Ruby on Rails app
 - [x] Transition to using functional components rather than class components
     ####Components to transition:
@@ -92,9 +87,17 @@ Users will be able to:
 - [x] Add better User login with proper auth
     - [x] backend
     - [x] frontend
-- [ ] user can change their password
-- [ ] Add 'forgot my password' functionality
+- [x] user can change their password
 - [ ] Work on better responsive layout
+- [ ] Add 'forgot my password' functionality
+- [ ] add a sorting functionality to sort puzzles by number of pieces
+- [ ] Double check that errors are being handled consistantly across app
+- [ ] Add popup message to confirm that user wants to delete their account
+- [ ] user can change their username
+- [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
+- [ ] Users can review puzzles with a rating and text review - this will create a new model, reviews, which will have a one to many relationship with users and puzzles. Will need to alias users as reviewers and puzzles as puzzle_reviews so AR doesn’t get confused.
+- [ ] Add a librarian feature so users can’t return their puzzles. Librarian would be a type of user or its own class who has the ability to return puzzles
+- [ ] Library fines - a fines column could live on users and users could get fines for late returns; also librarian class could assign fines for damaged puzzles?
 - [ ] Make it so there is a record of what puzzles a user has checked out
     - [x] Add an active attribute to Borrow
     - [x] Borrows are create with Active set to true
