@@ -78,7 +78,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
 	}
 
 	return (
-		<div className="flex-container">
+		<>
 			<h2>Change Your Password:</h2>
 			<form onSubmit={handleSubmit}>
 				<label>Old Password:</label>
@@ -124,7 +124,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
 				/>
 			</form>
 
-		</div>
+		</>
 	);
 }
 
