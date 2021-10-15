@@ -63,7 +63,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
         const noErrors = frontendErrorCheck()
         if (noErrors) {
             changePassword(passwordForm)
-            console.log(passwordForm)
+            // console.log(passwordForm)
         }
 	};
 
