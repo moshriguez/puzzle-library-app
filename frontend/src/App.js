@@ -55,7 +55,7 @@ const App = () => {
 		fetch(URL + 'puzzles')
 		.then((res) => res.json())
 		.then((puzzleData) => {
-			console.log(puzzleData)
+			// console.log(puzzleData)
 			setPuzzles(puzzleData.puzzles)
 		});
 	}, [])
@@ -74,7 +74,7 @@ const App = () => {
 				if (data.message === 'Please log in') {
 					history.replace('/login')
 				} else {
-					console.log(data)
+					// console.log(data)
 					setCurrentUser(data.user)
 					setBorrows(filterBorrowData(data.user.borrows))
 				}
@@ -164,10 +164,10 @@ const App = () => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.error) {
-					console.log(data.error)
+					// console.log(data.error)
 					setPopupMessage(data.error)	
 				} else {
-					console.log(data)
+					// console.log(data)
 					const updatedBorrows = borrows.map(
 						(borrow) => {
 							if (borrow.id === data.borrow.id) {
@@ -184,8 +184,8 @@ const App = () => {
 	};
 
 	const deleteUser = (user) => {
-		console.log(user)
-		console.log(token)
+		// console.log(user)
+		// console.log(token)
 		const configObj = {
 			method: 'DELETE',
 			headers: {
@@ -198,7 +198,7 @@ const App = () => {
 				console.log(data)
 				const updatedPuzzles = puzzles.map((puzzle) => {
 					if (
-						borrows.find((up) => puzzle.id === up.id)
+						borrows.find((up) => puzzle.id === up.puzzle_id)
 					) {
 						puzzle.checked_out = false;
 						return puzzle;
@@ -210,6 +210,7 @@ const App = () => {
 				setCurrentUser({ username: 'no one', id: 0 })
 				setBorrows([])
 				setPuzzles(updatedPuzzles)
+				history.push("/")
 			});
 	};
 
