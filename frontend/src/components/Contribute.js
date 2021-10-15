@@ -50,7 +50,6 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 					onChange={(e) => handleInupt(e)}
 					value={puzzleForm.name}
 					/>
-				<br />
 				<label>Number of Pieces:</label>
 				<input
 					type="number"
@@ -61,7 +60,6 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 					onChange={(e) => handleInupt(e)}
 					value={puzzleForm.num_of_pieces}
 					/>
-				<br />
 				<label>Number of Missing Pieces:</label>
 				<input
 					type="number"
@@ -72,7 +70,6 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 					onChange={(e) => handleInupt(e)}
 					value={puzzleForm.pieces_missing}
 					/>
-				<br />
 				{/* <input
 				//? need to figure out how we want to use the category field
 					type="text"
@@ -82,8 +79,7 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 					className="input-text"
 					onChange={(e) => handleInupt(e)}
 					value={puzzleForm.category}
-				/>
-				<br /> */}
+				/>*/}
 				<label>Image:<span>(Enter a URL for the puzzle image)</span></label>
 				<input
 					type="text"
@@ -94,7 +90,6 @@ const Contribute = ({ puzzles, setPuzzles }) => {
 					onChange={(e) => handleInupt(e)}
 					value={puzzleForm.img_url}
 				/>
-				<br />
 				<input
 					className="btn"
 					type="submit"

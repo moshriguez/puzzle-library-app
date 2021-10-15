@@ -71,7 +71,7 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
 		if (errors) {
 			const errorRegex = new RegExp(regex)
 			if (errorRegex.test(errors)) {
-				return <span>{errors.filter(error => errorRegex.test(error) )}</span>
+				return <span className="error">{errors.filter(error => errorRegex.test(error) )}</span>
 			}
 		}
 		return null
@@ -90,7 +90,6 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
 					onChange={(e) => handleInupt(e)}
 					value={passwordForm.oldPassword}
 					/>
-				<br />
 				{renderErrors('correct')}
 				<label>New Password:</label>
 				<input
@@ -101,7 +100,6 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
 					onChange={(e) => handleInupt(e)}
 					value={passwordForm.newPassword}
 					/>
-				<br />
 				{renderErrors('capital')}
 				{renderErrors('characters')}
 				<label>Confirn New Password:</label>
@@ -113,7 +111,6 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
 					onChange={(e) => handleInupt(e)}
 					value={passwordForm.confirm}
 					/>
-				<br />
 				{renderErrors('confirmation')}
 				{renderErrors('sure')}
 				<input

@@ -71,7 +71,6 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 					onChange={(e) => handleInupt(e)}
 					value={userForm.username}
 					/>
-				<br />
 				{renderErrors('username')}
 				<label>Password:</label>
 				<input
@@ -82,7 +81,6 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 					onChange={(e) => handleInupt(e)}
 					value={userForm.password}
 					/>
-				<br />
 				{renderErrors('password')}
 				<input
 					className="btn"
