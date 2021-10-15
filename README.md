@@ -94,6 +94,8 @@ Users will be able to:
 - [ ] add a sorting functionality to sort puzzles by number of pieces
 - [ ] Double check that errors are being handled consistantly across app
 - [ ] user can change their username
+- [ ] add pagination to puzzles page
+- [ ] add the 'login to borrow...' message to a popup message and un-disable the buttons
 - [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
 - [ ] Users can review puzzles with a rating and text review - this will create a new model, reviews, which will have a one to many relationship with users and puzzles. Will need to alias users as reviewers and puzzles as puzzle_reviews so AR doesn’t get confused.
 - [ ] Add a librarian feature so users can’t return their puzzles. Librarian would be a type of user or its own class who has the ability to return puzzles
