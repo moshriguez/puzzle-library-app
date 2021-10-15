@@ -1,5 +1,5 @@
 class BorrowSerializer < ActiveModel::Serializer
-    attributes :id, :check_out_date, :due_date, :active
+    attributes :id, :puzzle_id, :check_out_date, :due_date, :active
 
     attribute :name do
         self.object.puzzle.name
