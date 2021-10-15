@@ -52,7 +52,7 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 		if (errors) {
 			const errorRegex = new RegExp(regex)
 			if (errorRegex.test(errors)) {
-				return <span>{errors}</span>
+				return <span className="error">{errors}</span>
 			}
 		}
 		return null
