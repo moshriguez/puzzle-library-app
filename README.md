@@ -88,11 +88,11 @@ Users will be able to:
     - [x] backend
     - [x] frontend
 - [x] user can change their password
+- [x] Add popup message to confirm that user wants to delete their account
 - [ ] Work on better responsive layout
 - [ ] Add 'forgot my password' functionality
 - [ ] add a sorting functionality to sort puzzles by number of pieces
 - [ ] Double check that errors are being handled consistantly across app
-- [ ] Add popup message to confirm that user wants to delete their account
 - [ ] user can change their username
 - [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
 - [ ] Users can review puzzles with a rating and text review - this will create a new model, reviews, which will have a one to many relationship with users and puzzles. Will need to alias users as reviewers and puzzles as puzzle_reviews so AR doesn’t get confused.
