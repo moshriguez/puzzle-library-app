@@ -317,6 +317,17 @@ button:disabled {
   margin: 10px;
 }
 
+.btn-grp-row {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.btn-grp-row button {
+  width: 25%;
+  margin: 10px;
+}
+
 /*** Popup Dialog Box ***/
 .modal-background {
   position: fixed; /* Stay in place */
@@ -334,6 +345,7 @@ button:disabled {
 .modal-content {
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin: 35% auto;
   padding: 20px;
   width: 80%;

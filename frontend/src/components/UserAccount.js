@@ -21,8 +21,10 @@ const UserAccount = ({ deleteUser, errors, setErrors, setPopupMessage, userData 
                     <div className="modal-background">
                         <div className="modal-content">
                             <p>Are you sure you would like to delete your account?</p>
-                            <button onClick={() => deleteUser(userData)} >Yes</button>
-                            <button onClick={() => setDeleteConfirm(false)} >No</button>
+                            <div className="btn-grp-row">
+                                <button onClick={() => deleteUser(userData)} >Yes</button>
+                                <button onClick={() => setDeleteConfirm(false)} >No</button>
+                            </div>
                         </div>
                     </div>
                 ) : null}
