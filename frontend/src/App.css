@@ -304,6 +304,11 @@ button:disabled {
   text-align: center;
 }
 
+.tab-content > button {
+  width: 25%;
+  margin: 10px;
+}
+
 /*** Popup Dialog Box ***/
 .modal-background {
   position: fixed; /* Stay in place */
@@ -420,6 +425,9 @@ ul.user-tabs-nav li.active {
     width: 95%;
     padding: 20px 10px;
     margin: 15px 0;
+  }
+  .tab-content > button {
+    width: 55%;
   }
 }
 
