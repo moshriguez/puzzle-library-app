@@ -105,7 +105,5 @@ Users will be able to:
     - [x] Borrows no longer have to be destroyed
     - [x] Add a date returned field to Borrow model
     - [ ] Add some way to interact with borrow history on frontend
-    - [ ] What happens when a user deletes their account?
-        - could delete all borrows associated with user
-        - could get rid of delete a user's account, only deactivate
-        - could have both options - deactivate and delete user
+    - [x] What happens when a user deletes their account?
+        - delete all borrows associated with user
