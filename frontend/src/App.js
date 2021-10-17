@@ -240,12 +240,14 @@ const App = () => {
 							puzzleData={puzzles}
 							handleBorrow={handleBorrow}
 							userData={currentUser}
-						/>
+							/>
 					</Route>
 					<Route exact path="/user">
 						<UserTabs
+							windowWidth={windowWidth}
 							userData={currentUser}
 							borrows={borrows}
+							borrowHistory={borrowHistory}
 							handleReturn={handleReturn}
 							handleRenew={handleRenew}
 							deleteUser={deleteUser}
