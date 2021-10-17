@@ -40,8 +40,12 @@ const PuzzleCard = ({ type, windowWidth, puzzle, noOneLoggedIn, handleBorrow, ha
         {type === 'user' ? <p>Due Date: {puzzle.due_date.slice(0, 10)}</p> : null}
         {type === 'history' ? <p>Checked Out: {puzzle.check_out_date.slice(0, 10)}</p> : null}
         {type === 'history' ? <p>Returned: {puzzle.date_returned.slice(0, 10)}</p> : null}
-        <p>{puzzle.num_of_pieces} pieces</p>
-        <span>({puzzle.pieces_missing} missing)</span>
+        {type !== 'history' ? (
+          <>
+            <p>{puzzle.num_of_pieces} pieces</p>
+            <span>({puzzle.pieces_missing} missing)</span>
+          </>
+        ) : null}
         {type === 'puzzle' ? <span>{puzzle.checked_out ? "checked out" : "available"}</span> : null}
         {renderButtons(type)}
       </div>
