@@ -31,9 +31,21 @@ const PuzzleCard = ({ type, windowWidth, puzzle, noOneLoggedIn, handleBorrow, ha
         break;
     }
   }
+
+  const puzzleCardClass = () => {
+    if (windowWidth && windowWidth > 650) {
+      if (type === 'history') {
+        return 'long-card history'
+      } else {
+        return 'long-card'
+      }
+    } else {
+      return 'card'
+    }
+  }
   
   return (
-    <div className={windowWidth && windowWidth > 650 ? "long-card" : "card"}>
+    <div className={puzzleCardClass()}>
       <h2>{puzzle.name}</h2>
       <img src={puzzle.img_url} alt={puzzle.name} className="puzzle-img" />
       <div className="flex-container">

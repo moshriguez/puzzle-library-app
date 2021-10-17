@@ -174,7 +174,6 @@ h2 {
   box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
   background: var(--bg-trans);
   backdrop-filter: blur(10px);
-  margin: 110px 0;
   width: inherit;
   max-width: inherit;
   height: 106px;
@@ -199,6 +198,14 @@ h2 {
 .long-card h2 {
   max-width: 25%;
   text-align: center;
+}
+
+.long-card.history img {
+  width: 15%;
+}
+
+.long-card.history::after {
+  height: 75px;
 }
 
 .card img {
