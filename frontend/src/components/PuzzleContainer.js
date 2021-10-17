@@ -20,7 +20,7 @@ const PuzzleContainer = ({ windowWidth, puzzleData, userData, handleBorrow }) =>
 	};
 	return (
 		<React.Fragment>
-			{noOneLoggedIn ? <p>Login to borrow a puzzle</p> : null}
+			{/* {noOneLoggedIn ? <p>Login to borrow a puzzle</p> : null} */}
 			<p>Filter by Availablity:</p>
 			<select id="filter" onChange={(e) => setFilter(e.target.value)}>
 				<option value="All">All</option>

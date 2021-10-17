@@ -7,7 +7,7 @@ const PuzzleCard = ({ type, windowWidth, puzzle, noOneLoggedIn, handleBorrow, ha
       case 'puzzle':
           return (
             <button 
-              disabled={noOneLoggedIn || puzzle.checked_out}
+              disabled={puzzle.checked_out}
               className="btn" 
               onClick={()=> handleBorrow(puzzle.id)}
             >Borrow</button>  

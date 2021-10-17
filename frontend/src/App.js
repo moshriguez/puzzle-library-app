@@ -98,7 +98,9 @@ const App = () => {
 	};
 
 	const handleBorrow = (puzzleId) => {
-		if (borrows.length > 4) {
+		if (currentUser.id === 0) {
+			setPopupMessage('Login to borrow a puzzle')
+		} else if (borrows.length > 4) {
 			setPopupMessage('A maximum of 5 puzzles are allowed to be borrowed at a time.')
 		} else {
 			const body = {
