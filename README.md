@@ -89,6 +89,15 @@ Users will be able to:
     - [x] frontend
 - [x] user can change their password
 - [x] Add popup message to confirm that user wants to delete their account
+- [x] Make it so there is a record of what puzzles a user has checked out
+    - [x] Add an active attribute to Borrow
+    - [x] Borrows are create with Active set to true
+    - [x] Active is set to false when the puzzle is returned
+    - [x] Borrows no longer have to be destroyed
+    - [x] Add a date returned field to Borrow model
+    - [x] Add some way to interact with borrow history on frontend
+    - [x] What happens when a user deletes their account?
+        - delete all borrows associated with user
 - [ ] Work on better responsive layout
 - [ ] Add 'forgot my password' functionality
 - [ ] add a sorting functionality to sort puzzles by number of pieces
@@ -100,12 +109,3 @@ Users will be able to:
 - [ ] Users can review puzzles with a rating and text review - this will create a new model, reviews, which will have a one to many relationship with users and puzzles. Will need to alias users as reviewers and puzzles as puzzle_reviews so AR doesn’t get confused.
 - [ ] Add a librarian feature so users can’t return their puzzles. Librarian would be a type of user or its own class who has the ability to return puzzles
 - [ ] Library fines - a fines column could live on users and users could get fines for late returns; also librarian class could assign fines for damaged puzzles?
-- [ ] Make it so there is a record of what puzzles a user has checked out
-    - [x] Add an active attribute to Borrow
-    - [x] Borrows are create with Active set to true
-    - [x] Active is set to false when the puzzle is returned
-    - [x] Borrows no longer have to be destroyed
-    - [x] Add a date returned field to Borrow model
-    - [ ] Add some way to interact with borrow history on frontend
-    - [x] What happens when a user deletes their account?
-        - delete all borrows associated with user
