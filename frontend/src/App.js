@@ -86,7 +86,7 @@ const App = () => {
 	const setBorrowsAndHistory = (borrowArr) => {
 		const borrows = borrowArr.filter(borrow => borrow.active)
 		setBorrows(borrows)
-		const hist = borrowArr.filter(borrow => !borrow.active)
+		const hist = borrowArr.filter(borrow => !borrow.active).sort((a, b) => Date.parse(b.check_out_date) - Date.parse(a.check_out_date))
 		setBorrowHistory(hist)
 	}
 
@@ -152,7 +152,7 @@ const App = () => {
 				});
 				setBorrows(updatedBorrows)
 				setPuzzles(updatedPuzzles)
-				setBorrowHistory([...borrowHistory, borrow])
+				setBorrowHistory([borrow, ...borrowHistory])
 			});
 	};
 
