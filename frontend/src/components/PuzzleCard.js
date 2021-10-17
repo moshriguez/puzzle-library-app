@@ -38,6 +38,8 @@ const PuzzleCard = ({ type, windowWidth, puzzle, noOneLoggedIn, handleBorrow, ha
       <img src={puzzle.img_url} alt={puzzle.name} className="puzzle-img" />
       <div className="flex-container">
         {type === 'user' ? <p>Due Date: {puzzle.due_date.slice(0, 10)}</p> : null}
+        {type === 'history' ? <p>Checked Out: {puzzle.check_out_date.slice(0, 10)}</p> : null}
+        {type === 'history' ? <p>Returned: {puzzle.date_returned.slice(0, 10)}</p> : null}
         <p>{puzzle.num_of_pieces} pieces</p>
         <span>({puzzle.pieces_missing} missing)</span>
         {type === 'puzzle' ? <span>{puzzle.checked_out ? "checked out" : "available"}</span> : null}
