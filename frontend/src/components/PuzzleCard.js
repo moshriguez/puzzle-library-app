@@ -21,7 +21,7 @@ const PuzzleCard = ({ type, windowWidth, puzzle, noOneLoggedIn, handleBorrow, ha
             >Renew</button>
             <button 
               className="btn" 
-              onClick={()=> handleReturn(puzzle.id)}
+              onClick={()=> handleReturn(puzzle)}
             >Return</button>
           </div>
         )

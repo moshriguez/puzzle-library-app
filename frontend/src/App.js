@@ -41,6 +41,7 @@ const App = () => {
 	const [currentUser, setCurrentUser] = useState({ username: 'no one', id: 0 });
 	const [puzzles, setPuzzles] = useState([]);
 	const [borrows, setBorrows] = useState([]);
+	const [borrowHistory, setBorrowHistory] = useState([]);
 	// Errors if user doesn't pass validations
 	const [errors, setErrors] = useState([]);
 	// popup message for user - to let user know when they reach renew/borrow limits
@@ -76,15 +77,17 @@ const App = () => {
 				} else {
 					// console.log(data)
 					setCurrentUser(data.user)
-					setBorrows(filterBorrowData(data.user.borrows))
+					setBorrowsAndHistory(data.user.borrows)
 				}
 			})
 		}
 	}, [token, history])
 		
-	const filterBorrowData = (borrowArr) => {
+	const setBorrowsAndHistory = (borrowArr) => {
 		const borrows = borrowArr.filter(borrow => borrow.active)
-		return borrows
+		setBorrows(borrows)
+		const hist = borrowArr.filter(borrow => !borrow.active)
+		setBorrowHistory(hist)
 	}
 
 	const handleLogout = () => {
@@ -125,7 +128,7 @@ const App = () => {
 		}
 	};
 
-	const handleReturn = (borrow_id) => {
+	const handleReturn = (borrow) => {
 		const configObj = {
 			method: 'PATCH',
 			headers: {
@@ -133,11 +136,11 @@ const App = () => {
 			},
 			body: JSON.stringify({}),
 		};
-		fetch(URL + `return/${borrow_id}`, configObj)
+		fetch(URL + `return/${borrow.id}`, configObj)
 			.then((res) => res.json())
 			.then((data) => {
 				const updatedBorrows = borrows.filter(
-					(borrow) => borrow.id !== borrow_id
+					(b) => b.id !== borrow.id
 				);
 				const updatedPuzzles = puzzles.map((puzzle) => {
 					if (puzzle.id === data.puzzle.id) {
@@ -149,6 +152,7 @@ const App = () => {
 				});
 				setBorrows(updatedBorrows)
 				setPuzzles(updatedPuzzles)
+				setBorrowHistory([...borrowHistory, borrow])
 			});
 	};
 
@@ -209,6 +213,7 @@ const App = () => {
 				localStorage.clear()
 				setCurrentUser({ username: 'no one', id: 0 })
 				setBorrows([])
+				setBorrowHistory([])
 				setPuzzles(updatedPuzzles)
 				history.push("/")
 			});
@@ -253,9 +258,8 @@ const App = () => {
 						<Login  
 							errors={errors} 
 							setErrors={setErrors}
-							setBorrows={setBorrows} 
 							setCurrentUser={setCurrentUser}
-							filterBorrowData={filterBorrowData}
+							setBorrowsAndHistory={setBorrowsAndHistory}
 							/>
 					</Route>
 					<Route exact path="/signup">

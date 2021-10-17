@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom';
 
 const URL = 'http://localhost:3001/';
 
-const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData }) => {
+const Login = ({ errors, setErrors, setBorrowsAndHistory, setCurrentUser }) => {
 	// controlled form for user details
 	const [userForm, setuserForm] = useState({ username: '', password: '' });
 	const handleInupt = (e) => {
@@ -40,7 +40,7 @@ const Login = ({ errors, setErrors, setBorrows, setCurrentUser, filterBorrowData
 					// console.log(data)
 					localStorage.setItem("jwt", data.jwt);
 					setCurrentUser(data.user)
-					setBorrows(filterBorrowData(data.user.borrows))
+					setBorrowsAndHistory(data.user.borrows)
 					// setErrors([])
 					history.push("/user")
 				}
