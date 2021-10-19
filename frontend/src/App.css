@@ -330,7 +330,7 @@ button:disabled {
   width: 100%;
 }
 
-.btn-grp-row button {
+.btn-grp-row button, .btn-grp-row a {
   width: fit-content;
   min-width: 25%;
   margin: 10px;
