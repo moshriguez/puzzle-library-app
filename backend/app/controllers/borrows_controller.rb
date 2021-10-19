@@ -39,7 +39,7 @@ class BorrowsController < ApplicationController
         borrow = Borrow.find_by(id: params[:id])
         borrow.return
         puzzle = Puzzle.find(borrow.puzzle_id)
-        render json: {borrow: borrow, puzzle: puzzle}, status: :accepted
+        render json: {borrow: BorrowSerializer.new(borrow), puzzle: puzzle}, status: :accepted
     end
 
 

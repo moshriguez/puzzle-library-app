@@ -154,7 +154,7 @@ const App = () => {
 				});
 				setBorrows(updatedBorrows)
 				setPuzzles(updatedPuzzles)
-				setBorrowHistory([borrow, ...borrowHistory])
+				setBorrowHistory([data.borrow, ...borrowHistory])
 			});
 	};
 
