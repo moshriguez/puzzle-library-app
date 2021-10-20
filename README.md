@@ -99,13 +99,22 @@ Users will be able to:
     - [x] What happens when a user deletes their account?
         - delete all borrows associated with user
 - [x] add the 'login to borrow...' message to a popup message and un-disable the buttons
-- [ ] Work on better responsive layout
+- [x] Work on better responsive layout
 - [ ] Add 'forgot my password' functionality
 - [ ] add a sorting functionality to sort puzzles by number of pieces
 - [ ] Double check that errors are being handled consistantly across app
 - [ ] user can change their username
 - [ ] add pagination to puzzles page
-- [ ] add unit testing
+- [ ] add testing
+    #### High Value Features:
+    - [ ] user can borrow puzzle
+    - [ ] user can return puzzle
+    #### Edge Cases in High Value Features:
+    - [ ] user can only borrow 5 puzzles
+    - [ ] user cannot borrow an unavailable puzzle
+    #### Unit Tests:
+    
+
 - [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
 - [ ] Users can review puzzles with a rating and text review - this will create a new model, reviews, which will have a one to many relationship with users and puzzles. Will need to alias users as reviewers and puzzles as puzzle_reviews so AR doesn’t get confused.
 - [ ] Add a librarian feature so users can’t return their puzzles. Librarian would be a type of user or its own class who has the ability to return puzzles
