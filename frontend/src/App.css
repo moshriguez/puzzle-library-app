@@ -131,6 +131,20 @@ h2 {
   text-align: center;
 }
 
+h3 {
+  text-align: center;
+  margin: 3%;
+  font-size: 1.35em;
+}
+
+.benefits {
+  border-radius: 30px;
+  box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%), 0 6px 20px 0 rgb(0 0 0 / 19%);
+  background: var(--bg-trans);
+  backdrop-filter: blur(10px);
+  padding: 20px;
+}
+
 .flex-container li {
   list-style-type: none;
   line-height: 1.5em;

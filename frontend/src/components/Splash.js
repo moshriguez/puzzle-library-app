@@ -6,7 +6,7 @@ const Splash = () => {
 		<div className="flex-container">
 			<h3>When was the last time you did a puzzle a second time?</h3>
 			<h3>Why buy a puzzle when you can borrow one?</h3>
-			<div>
+			<div className="benefits">
 				<p>Borrowing puzzles:</p>
 				<ul>
 					<li>Saves you money!</li>
