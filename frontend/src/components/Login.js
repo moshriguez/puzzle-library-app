@@ -1,21 +1,18 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useHistory } from 'react-router-dom';
 
 const URL = 'http://localhost:3001/';
 
-const Login = ({ errors, setErrors, setBorrowsAndHistory, setCurrentUser }) => {
+const Login = ({ setBorrowsAndHistory, setCurrentUser }) => {
 	// controlled form for user details
 	const [userForm, setuserForm] = useState({ username: '', password: '' });
+	// errors for when username or password are not correct
+	const [errors, setErrors] = useState([])
 	const handleInupt = (e) => {
 		setuserForm({ ...userForm, [e.target.name]: e.target.value });
 	};
 
 	const history = useHistory()
-
-	// clears errors when component unmounts
-	useEffect(() => {
-		return setErrors([])
-	}, [setErrors])
 	
 	const handleSubmit = (e) => {
 		e.preventDefault();
@@ -34,14 +31,13 @@ const Login = ({ errors, setErrors, setBorrowsAndHistory, setCurrentUser }) => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.error) {
-					// console.log(data.error)
+					console.log(data.error)
 					setErrors([data.error])
 				} else {
-					// console.log(data)
+					console.log(data)
 					localStorage.setItem("jwt", data.jwt);
 					setCurrentUser(data.user)
 					setBorrowsAndHistory(data.user.borrows)
-					// setErrors([])
 					history.push("/user")
 				}
 			});
@@ -62,9 +58,10 @@ const Login = ({ errors, setErrors, setBorrowsAndHistory, setCurrentUser }) => {
 		<div className="flex-container">
 			<h2>Sign In:</h2>
 			<form onSubmit={handleSubmit}>
-				<label>Username:</label>
+				<label htmlFor="username">Username:</label>
 				<input
 					type="text"
+					id="username"
 					name="username"
 					placeholder="Enter your username..."
 					className="input-text"
@@ -72,9 +69,10 @@ const Login = ({ errors, setErrors, setBorrowsAndHistory, setCurrentUser }) => {
 					value={userForm.username}
 					/>
 				{renderErrors('username')}
-				<label>Password:</label>
+				<label htmlFor="password">Password:</label>
 				<input
 					type="password"
+					id="password"
 					name="password"
 					placeholder="Enter your password..."
 					className="input-text"
