@@ -8,22 +8,26 @@ PuzzleTheque helps facilitate the borrowing of puzzles. Users can login and borr
 ## Technologies
 Project is created with:
 - React 17.0.2
+- React Icons 4.3.1
 - React-Router 5.2.0
 - Ruby 2.6.1
-- Rack 2.2
-- Shotgun 0.9.2
+- Rails 6.1.4
+- Postgres 1.1
 - Rack-cors 1.1
+- JWT 2.2
+- bcrypt 3.1.7
 - JSON 2.5
 - Active Record 6.1
+- Active Model Serializers 0.10.12
 
 ## Launch
 To launch the backend, cd into the backend directory and run:
 
 ```
 $ bundle install
-$ rake db:migrate
-$ rake db:seed
-$ shotgun
+$ rails db:migrate
+$ rails db:seed
+$ rails s
 ```
 Then to launch the frontend, cd into the frontend directory and run:
 ```
@@ -113,7 +117,7 @@ Users will be able to:
     - [ ] user can only borrow 5 puzzles
     - [ ] user cannot borrow an unavailable puzzle
     #### Unit Tests:
-    
+
 
 - [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
 - [ ] Users can review puzzles with a rating and text review - this will create a new model, reviews, which will have a one to many relationship with users and puzzles. Will need to alias users as reviewers and puzzles as puzzle_reviews so AR doesn’t get confused.
