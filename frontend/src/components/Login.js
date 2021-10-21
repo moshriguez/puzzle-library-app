@@ -6,12 +6,13 @@ const URL = 'http://localhost:3001/';
 const Login = ({ setBorrowsAndHistory, setCurrentUser }) => {
 	// controlled form for user details
 	const [userForm, setuserForm] = useState({ username: '', password: '' });
-	// errors for when username or password are not correct
-	const [errors, setErrors] = useState([])
 	const handleInupt = (e) => {
 		setuserForm({ ...userForm, [e.target.name]: e.target.value });
 	};
+	// errors for when username or password are not correct
+	const [errors, setErrors] = useState([])
 
+	// Pass reference to useHistory hook
 	const history = useHistory()
 	
 	const handleSubmit = (e) => {

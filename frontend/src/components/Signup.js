@@ -3,7 +3,7 @@ import { Link, useHistory } from 'react-router-dom'
 
 const userUrl = "http://localhost:3001/users";
 
-const Signup = ({ errors, setErrors, setCurrentUser }) => {
+const Signup = ({ setCurrentUser }) => {
   // controlled form for user details
   const [userForm, setUserForm] = useState({
     username: "",
@@ -13,6 +13,8 @@ const Signup = ({ errors, setErrors, setCurrentUser }) => {
   const handleChange = (e) => {
     setUserForm({ ...userForm, [e.target.name]: e.target.value });
   };
+  	// errors for when username or password are not correct
+	const [errors, setErrors] = useState([])
 
   // Pass reference to useHistory hook
   const history = useHistory()
