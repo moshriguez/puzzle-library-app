@@ -260,16 +260,12 @@ const App = () => {
 					</Route>
 					<Route exact path="/login">
 						<Login  
-							errors={errors} 
-							setErrors={setErrors}
 							setCurrentUser={setCurrentUser}
 							setBorrowsAndHistory={setBorrowsAndHistory}
 							/>
 					</Route>
 					<Route exact path="/signup">
 						<Signup 
-							errors={errors} 
-							setErrors={setErrors}
 							setCurrentUser={setCurrentUser}
 						/>
 					</Route>
