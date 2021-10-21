@@ -36,9 +36,10 @@ const Signup = ({ setCurrentUser }) => {
       .then((r) => r.json())
       .then((data) => {
         if (data.error) {
-            const newErrors = [];
-            data.error.forEach(error => newErrors.push(error))
-            setErrors(newErrors)
+          console.log(data)
+          const newErrors = [];
+          data.error.forEach(error => newErrors.push(error))
+          setErrors(newErrors)
         } else {
             setCurrentUser(data.user)
             localStorage.setItem("jwt", data.jwt);
