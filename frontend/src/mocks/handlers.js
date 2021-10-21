@@ -27,19 +27,19 @@ export const handlers = [
         if (username === 'duplicateName') {
             return res(
                 ctx.status(406),
-                ctx.json({error: 'Username has already been taken'})
+                ctx.json({error: ['Username has already been taken']})
             )
         }
         if (password.length > 20) {
             return res(
                 ctx.status(406),
-                ctx.json({error: 'Password is too long (maximum is 20 characters)'})
+                ctx.json({error: ['Password is too long (maximum is 20 characters)']})
             )
         }
         if (password.length < 6) {
             return res(
                 ctx.status(406),
-                ctx.json({error: 'Password is too short (minimum is 6 characters)'})
+                ctx.json({error: ['Password is too short (minimum is 6 characters)']})
             )
         }
         return res(

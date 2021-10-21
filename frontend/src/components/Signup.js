@@ -73,27 +73,30 @@ const Signup = ({ setCurrentUser }) => {
       <div className="flex-container">
         <h2>Sign Up</h2>
         <form onSubmit={(e) => handleSignup(e)}>
-          <label>Create a username</label>
+          <label htmlFor="username">Create a username</label>
           <input
               onChange={(e) => handleChange(e)}
               value={userForm.username}
+              id="username"
               name="username"
               className="input-text"
               required
             />
-          <label>Create a password</label>
+          <label htmlFor="password">Create a password</label>
           <input
               onChange={(e) => handleChange(e)}
               value={userForm.password}
+              id="password"
               name="password"
               type="password"
               className="input-text"
               required
             />
-          <label>Confirm your password</label>
+          <label htmlFor="confirm">Confirm your password</label>
           <input
             onChange={(e) => handleChange(e)}
             value={userForm.confirm}
+            id="confirm"
             name="confirm"
             type="password"
             className="input-text"
