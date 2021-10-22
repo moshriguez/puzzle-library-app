@@ -63,7 +63,7 @@ test('creates new user if no errors', async () => {
     await waitFor(() => expect(user.username).toBeDefined())
     await waitFor(() => expect(user.username).toEqual('Test'))
 })
-test('when new user is created, jwt is saved to localStorage', async () => {
+test('when new user is created, jwt is saved to localStorage', () => {
     render(<Signup setCurrentUser={setCurrentUser} />, {wrapper: Router})
     
     userEvent.type(screen.getByLabelText(/username/i), 'Test')
