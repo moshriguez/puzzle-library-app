@@ -67,7 +67,10 @@ const Signup = ({ setCurrentUser }) => {
   // checks for errors on frontend, then sends info to back end
   const handleSignup = (e) => {
     e.preventDefault();
-    frontendErrorCheck() ? sendAuthInfo() : console.log();
+    const errorCheck = frontendErrorCheck()
+    if (errorCheck) {
+      sendAuthInfo()
+    }
   };
 
   return (
