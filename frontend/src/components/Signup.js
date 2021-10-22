@@ -105,7 +105,7 @@ const Signup = ({ setCurrentUser }) => {
           <button className="btn" type="submit">Create account</button>
           {errors.length ? (
             <div className="error-container">
-              <h2>Errors</h2>
+              <h2>{errors.length > 1 ? 'Errors' : 'Error'}</h2>
               <ul>
                 {errors.map((error, idx) => {
                     return <li key={idx}>{error}</li>
