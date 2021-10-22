@@ -104,9 +104,9 @@ Users will be able to:
         - delete all borrows associated with user
 - [x] add the 'login to borrow...' message to a popup message and un-disable the buttons
 - [x] Work on better responsive layout
+- [x] Double check that errors are being handled consistantly across app
 - [ ] Add 'forgot my password' functionality
 - [ ] add a sorting functionality to sort puzzles by number of pieces
-- [ ] Double check that errors are being handled consistantly across app
 - [ ] user can change their username
 - [ ] add pagination to puzzles page
 - [ ] add testing
@@ -115,8 +115,9 @@ Users will be able to:
     - [ ] user can return puzzle
     #### Edge Cases in High Value Features:
     - [ ] user can only borrow 5 puzzles
-    - [ ] user cannot borrow an unavailable puzzle
+    - [x] user cannot borrow an unavailable puzzle
     #### Unit Tests:
+    - [x] all error messages for Login, Signup & ChangePassword
 
 
 - [ ] Require user to return all puzzles before deleting account - right now they are taking all our puzzles!!!
