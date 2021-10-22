@@ -49,14 +49,14 @@ export const handlers = [
         )
     }),
     rest.patch(URL + 'users/1', (req, res, ctx) => {
-        const { password, newPassword } = req.body
+        const { password, new_password } = req.body
         if (password === 'wrongPassword') {
             return res(
                 ctx.status(401),
                 ctx.json({error: 'Your password is not correct.'})
             )
         }
-        if (password === newPassword) {
+        if (password === new_password) {
             return res(
                 ctx.status(400),
                 ctx.json({error: 'Your new password matches your old password. Are you sure you want to change your password?'})

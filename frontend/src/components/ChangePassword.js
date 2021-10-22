@@ -79,9 +79,10 @@ const ChangePassword = ({ setFormOpen, setPopupMessage, userId }) => {
 		<>
 			<h2>Change Your Password:</h2>
 			<form onSubmit={handleSubmit}>
-				<label>Old Password:</label>
+				<label htmlFor="oldPassword">Old Password:</label>
 				<input
 					type="password"
+					id="oldPassword"
 					name="oldPassword"
 					placeholder="Enter your old password..."
 					className="input-text"
@@ -89,9 +90,10 @@ const ChangePassword = ({ setFormOpen, setPopupMessage, userId }) => {
 					value={passwordForm.oldPassword}
 					/>
 				{renderErrors('correct')}
-				<label>New Password:</label>
+				<label htmlFor="newPassword">New Password:</label>
 				<input
 					type="password"
+					id="newPassword"
 					name="newPassword"
 					placeholder="Enter your new password..."
 					className="input-text"
@@ -100,9 +102,10 @@ const ChangePassword = ({ setFormOpen, setPopupMessage, userId }) => {
 					/>
 				{renderErrors('capital')}
 				{renderErrors('characters')}
-				<label>Confirn New Password:</label>
+				<label htmlFor="confirm">Confirm New Password:</label>
 				<input
 					type="password"
+					id="confirm"
 					name="confirm"
 					placeholder="Confirm your new password..."
 					className="input-text"
