@@ -4,7 +4,7 @@ import UserAccount from "./UserAccount";
 import UserHistory from "./UserHistory";
 import UserPuzzleContainer from "./UserPuzzleContainer";
 
-const UserTabs = ({ borrows, borrowHistory, errors, handleReturn, handleRenew, deleteUser, setErrors, setPopupMessage, windowWidth, userData }) => {
+const UserTabs = ({ borrows, borrowHistory, handleReturn, handleRenew, deleteUser, setPopupMessage, windowWidth, userData }) => {
     const noOneLoggedIn = userData.id === 0
     const [activeTab, setActiveTab] = useState('puzzles')
 
@@ -15,8 +15,6 @@ const UserTabs = ({ borrows, borrowHistory, errors, handleReturn, handleRenew, d
                     <UserAccount 
                         userData={userData}
                         deleteUser={deleteUser}
-                        setErrors={setErrors}
-                        errors={errors}
                         setPopupMessage={setPopupMessage}
                     />)
             case 'puzzles':

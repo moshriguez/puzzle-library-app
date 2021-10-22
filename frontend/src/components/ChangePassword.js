@@ -1,8 +1,8 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 
 const URL = 'http://localhost:3001/';
 
-const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userId }) => {
+const ChangePassword = ({ setFormOpen, setPopupMessage, userId }) => {
     const token = localStorage.getItem("jwt")
 
 	// controlled form for user details
@@ -10,11 +10,8 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
 	const handleInupt = (e) => {
 		setpasswordForm({ ...passwordForm, [e.target.name]: e.target.value });
 	};	
-
-    // clears errors when component unmounts
-    useEffect(() => {
-        return setErrors([])
-    }, [setErrors])
+	// errors for when username or password are not correct
+	const [errors, setErrors] = useState([])
 
 	const changePassword = (passwordObj) => {
         const body = {
@@ -70,8 +67,9 @@ const ChangePassword = ({ errors, setErrors, setFormOpen, setPopupMessage, userI
 	const renderErrors = (regex) => {
 		if (errors) {
 			const errorRegex = new RegExp(regex)
-			if (errorRegex.test(errors)) {
-				return <span className="error">{errors.filter(error => errorRegex.test(error) )}</span>
+			const errMessage = errors.find(error => errorRegex.test(error))
+			if (errMessage) {
+				return <span className="error">{errMessage}</span>
 			}
 		}
 		return null

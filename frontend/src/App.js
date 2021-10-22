@@ -42,8 +42,6 @@ const App = () => {
 	const [puzzles, setPuzzles] = useState([]);
 	const [borrows, setBorrows] = useState([]);
 	const [borrowHistory, setBorrowHistory] = useState([]);
-	// Errors if user doesn't pass validations
-	const [errors, setErrors] = useState([]);
 	// popup message for user - to let user know when they reach renew/borrow limits
 	const [popupMessage, setPopupMessage] = useState('')
 
@@ -253,8 +251,6 @@ const App = () => {
 							handleReturn={handleReturn}
 							handleRenew={handleRenew}
 							deleteUser={deleteUser}
-							setErrors={setErrors}
-							errors={errors}
 							setPopupMessage={setPopupMessage}
 						/>
 					</Route>

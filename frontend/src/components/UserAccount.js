@@ -2,7 +2,7 @@ import { useState } from "react";
 
 import ChangePassword from "./ChangePassword";
 
-const UserAccount = ({ deleteUser, errors, setErrors, setPopupMessage, userData }) => {
+const UserAccount = ({ deleteUser, setPopupMessage, userData }) => {
     const [formOpen, setFormOpen] = useState(false)
     const [deleteConfirm, setDeleteConfirm] = useState(false)
 
@@ -32,8 +32,6 @@ const UserAccount = ({ deleteUser, errors, setErrors, setPopupMessage, userData 
                 <ChangePassword 
                 userId={userData.id}
                 setFormOpen={setFormOpen} 
-                setErrors={setErrors} 
-                errors={errors}
                 setPopupMessage={setPopupMessage}
                 /> : (
                 <>
