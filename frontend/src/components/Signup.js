@@ -36,14 +36,15 @@ const Signup = ({ setCurrentUser }) => {
       .then((r) => r.json())
       .then((data) => {
         if (data.error) {
-          console.log(data)
+          // console.log(data)
           const newErrors = [];
           data.error.forEach(error => newErrors.push(error))
           setErrors(newErrors)
         } else {
-            setCurrentUser(data.user)
-            localStorage.setItem("jwt", data.jwt);
-            history.replace('/user')
+          // console.log(data.user)
+          setCurrentUser(data.user)
+          localStorage.setItem("jwt", data.jwt);
+          history.replace('/user')
         }
       });
   };    

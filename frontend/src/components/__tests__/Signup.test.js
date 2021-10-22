@@ -1,4 +1,4 @@
-import { render, screen } from "@testing-library/react";
+import { render, screen, waitFor } from "@testing-library/react";
 import userEvent from "@testing-library/user-event";
 import {BrowserRouter as Router} from 'react-router-dom'
 import Signup from "../Signup";
@@ -52,4 +52,14 @@ test('renders error message when password is too long', async () => {
     userEvent.type(screen.getByLabelText(/confirm/i), 'Test11111111111111111')
     userEvent.click(screen.getByRole('button', {name: /create account/i}))
     await screen.findByText(/Password is too long/i)
+})
+test('creates new user if no errors', async () => {
+    render(<Signup setCurrentUser={setCurrentUser} />, {wrapper: Router})
+    
+    userEvent.type(screen.getByLabelText(/username/i), 'Test')
+    userEvent.type(screen.getByLabelText(/create a password/i), 'Password1')
+    userEvent.type(screen.getByLabelText(/confirm/i), 'Password1')
+    userEvent.click(screen.getByRole('button', {name: /create account/i}))
+    await waitFor(() => expect(user.username).toBeDefined())
+    await waitFor(() => expect(user.username).toEqual('Test'))
 })
