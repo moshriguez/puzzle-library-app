@@ -32,10 +32,10 @@ const Login = ({ setBorrowsAndHistory, setCurrentUser }) => {
 			.then((res) => res.json())
 			.then((data) => {
 				if (data.error) {
-					console.log(data.error)
+					// console.log(data.error)
 					setErrors([data.error])
 				} else {
-					console.log(data)
+					// console.log(data)
 					localStorage.setItem("jwt", data.jwt);
 					setCurrentUser(data.user)
 					setBorrowsAndHistory(data.user.borrows)

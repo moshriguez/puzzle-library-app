@@ -19,7 +19,7 @@ export const handlers = [
         }
         return res(
             ctx.status(200),
-            ctx.json({ user: {id: 1, username: 'Test', borrows: [{id: 1, active: true, check_out_date: '2021-01-01T12:00:00.000Z', date_returned: '2021-01-02T12:00:00.000Z', due_date: '2021-01-15T12:00:00.000Z', img_url: '', name: 'Puzzle1', num_of_pieces: 100, pieces_missing: 0, puzzle_id: 1}]}, jwt: 'testToken'})
+            ctx.json({ user: {id: 1, username: username, borrows: [{id: 1, active: true, check_out_date: '2021-01-01T12:00:00.000Z', date_returned: '2021-01-02T12:00:00.000Z', due_date: '2021-01-15T12:00:00.000Z', img_url: '', name: 'Puzzle1', num_of_pieces: 100, pieces_missing: 0, puzzle_id: 1}]}, jwt: 'testToken'})
         )
     }),
     rest.post(URL + 'users', (req, res, ctx) => {
@@ -44,7 +44,7 @@ export const handlers = [
         }
         return res(
             ctx.status(201),
-            ctx.json({user: {id: 1, username: 'Test', borrows: []}, jwt: 'testToken'})
+            ctx.json({user: {id: 1, username: username, borrows: []}, jwt: 'testToken'})
         )
     })
     
