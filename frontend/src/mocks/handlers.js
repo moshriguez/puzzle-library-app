@@ -2,6 +2,25 @@ import { rest } from "msw";
 import { render } from "react-dom";
 
 const URL = 'http://localhost:3001/';
+const puzzleList = [
+    {category: "general",
+    checked_out: false,
+    created_at: "2021-09-09T22:48:57.712Z",
+    id: 97,
+    img_url: "https://cdn11.bigcommerce.com/s-psv5s7bpr6/images/stencil/796.1999999999999x796.1999999999999/products/1403/1875/33-15507-Candyscape__19072.1628702839.jpg",
+    name: "Candyscape",
+    num_of_pieces: 1500,
+    pieces_missing: 0,
+    updated_at: "2021-10-17T02:44:18.959Z"}, 
+    {category: "general",
+    checked_out: false,
+    created_at: "2021-09-08T21:37:17.461Z",
+    id: 69,
+    img_url: "https://cdn.shopify.com/s/files/1/0522/9979/2582/products/PZTSLO---Sloths.jpg?v=1611352983",
+    name: "Sloths",
+    num_of_pieces: 1000,
+    pieces_missing: 0,
+    updated_at: "2021-10-15T07:03:29.150Z"}]
 
 export const handlers = [
     rest.post(URL + 'login', (req, res, ctx) => {
@@ -82,8 +101,24 @@ export const handlers = [
     rest.get(URL + 'puzzles', (req, res, ctx) => {
         return res(
             ctx.status(200),
-            ctx.json({puzzles: {}})
+            ctx.json({puzzles: puzzleList})
         )
+    }),
+    rest.get(URL + 'profile', (req, res, ctx) => {
+        const token = req.headers._headers.authorization
+        if (token !== 'Bearer testToken') {
+            return res(
+                ctx.status(401),
+                ctx.json({message: 'Please log in'})
+            )
+        } else {
+            return res(
+                ctx.status(200),
+                ctx.json({user: {id: 1, username: username, borrows: [{id: 1, active: true, check_out_date: '2021-01-01T12:00:00.000Z', date_returned: '2021-01-02T12:00:00.000Z', due_date: '2021-01-15T12:00:00.000Z', img_url: '', name: 'Puzzle1', num_of_pieces: 100, pieces_missing: 0, puzzle_id: 1}]}})
+            )
+
+        }
     })
     
 ]
+
