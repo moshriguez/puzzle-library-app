@@ -62,13 +62,13 @@ export const handlers = [
                 ctx.json({error: 'Your new password matches your old password. Are you sure you want to change your password?'})
             )
         }
-        if (newPassword.length > 20) {
+        if (new_password.length > 20) {
             return res(
                 ctx.status(406),
                 ctx.json({error: ['Password is too long (maximum is 20 characters)']})
             )
         }
-        if (newPassword.length < 6) {
+        if (new_password.length < 6) {
             return res(
                 ctx.status(406),
                 ctx.json({error: ['Password is too short (minimum is 6 characters)']})
