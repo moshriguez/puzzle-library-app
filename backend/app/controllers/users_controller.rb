@@ -35,7 +35,7 @@ class UsersController < ApplicationController
                     render json: {error: user.errors.full_messages}, status: :not_acceptable
                 end
             else
-                render json: {error: 'Your new password matches your old password. Are you sure you want to change your password?'}
+                render json: {error: 'Your new password matches your old password. Are you sure you want to change your password?'}, status: :bad_request
             end
         else
             render json: {error: 'Your password is not correct.'}, status: :unauthorized
