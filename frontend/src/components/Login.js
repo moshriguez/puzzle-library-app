@@ -48,8 +48,9 @@ const Login = ({ setBorrowsAndHistory, setCurrentUser }) => {
 	const renderErrors = (regex) => {
 		if (errors) {
 			const errorRegex = new RegExp(regex)
-			if (errorRegex.test(errors)) {
-				return <span className="error">{errors}</span>
+			const errMessage = errors.find(error => errorRegex.test(error))
+			if (errMessage) {
+				return <span className="error">{errMessage}</span>
 			}
 		}
 		return null
