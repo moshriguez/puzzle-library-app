@@ -3,8 +3,10 @@ import {BrowserRouter as Router} from 'react-router-dom'
 
 import App from './App';
 
-test('renders learn react link', () => {
-  render(<App />, {wrapper: Router});
-  // const linkElement = screen.getByText(/learn react/i);
-  // expect(linkElement).toBeInTheDocument();
-});
+describe('App', () => {
+  test('loads all puzzles on render', () => {
+    render(<App />, {wrapper: Router});
+    screen.getByRole('link', {name: /puzzles/i})
+  })
+
+})

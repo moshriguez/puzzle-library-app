@@ -78,6 +78,12 @@ export const handlers = [
             ctx.status(202),
             ctx.json({message: 'Your password was updated.'})
         )
+    }),
+    rest.get(URL + 'puzzles', (req, res, ctx) => {
+        return res(
+            ctx.status(200),
+            ctx.json({puzzles: {}})
+        )
     })
     
 ]
