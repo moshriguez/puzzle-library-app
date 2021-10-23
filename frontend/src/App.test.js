@@ -13,6 +13,8 @@ describe('App', () => {
   test('if jwt is present in localStorage, user is automatically logged in', () => {
     localStorage.setItem("jwt", 'testToken')
     render(<App />, {wrapper: Router});
+    userEvent.click(screen.getByRole('link', {name: /user/i}))
+    screen.getByRole('')
   })
 
 })
