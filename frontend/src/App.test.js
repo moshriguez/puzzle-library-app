@@ -15,12 +15,13 @@ describe('App', () => {
     // const borrowButtons = await screen.findAllByRole('button', {name: /borrow/i})
     // userEvent.click(borrowButtons[0])
   })
-  // test('if jwt is present in localStorage, user is automatically logged in', async () => {
-  //   localStorage.setItem("jwt", 'testToken')
-  //   render(<App />, {wrapper: Router});
-  //   const userLink = await screen.findByRole('link', {name: /user/i})
-  //   userEvent.click(userLink)
-  //   screen.getByRole('')
-  // })
+  test('if jwt is present in localStorage, user is automatically logged in', async () => {
+    localStorage.setItem("jwt", 'testToken')
+    render(<App />, {wrapper: Router});
+    const userLink = await screen.findByRole('link', {name: /user/i})
+    expect(userLink).toBeInTheDocument()
+    const dialog = await screen.findByText(/test is currently logged in/i)
+    expect(dialog).toBeInTheDocument()
+  })
 
 })

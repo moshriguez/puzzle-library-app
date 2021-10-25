@@ -106,6 +106,7 @@ export const handlers = [
     }),
     rest.get(URL + 'profile', (req, res, ctx) => {
         const token = req.headers._headers.authorization
+        console.log(typeof token, token)
         if (token !== 'Bearer testToken') {
             return res(
                 ctx.status(401),
@@ -114,7 +115,7 @@ export const handlers = [
         } else {
             return res(
                 ctx.status(200),
-                ctx.json({user: {id: 1, username: username, borrows: [{id: 1, active: true, check_out_date: '2021-01-01T12:00:00.000Z', date_returned: '2021-01-02T12:00:00.000Z', due_date: '2021-01-15T12:00:00.000Z', img_url: '', name: 'Puzzle1', num_of_pieces: 100, pieces_missing: 0, puzzle_id: 1}]}})
+                ctx.json({user: {id: 1, username: 'Test', borrows: [{id: 1, active: true, check_out_date: '2021-01-01T12:00:00.000Z', date_returned: '2021-01-02T12:00:00.000Z', due_date: '2021-01-15T12:00:00.000Z', img_url: '', name: 'Puzzle1', num_of_pieces: 100, pieces_missing: 0, puzzle_id: 1}]}})
             )
 
         }

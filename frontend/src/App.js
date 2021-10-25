@@ -71,6 +71,7 @@ const App = () => {
 			.then(r => r.json())
 			.then(data => {
 				if (data.message === 'Please log in') {
+					// console.log(data)
 					history.replace('/login')
 				} else {
 					// console.log(data)
