@@ -38,7 +38,34 @@ const puzzleList = [
     name: "Otters",
     num_of_pieces: 1000,
     pieces_missing: 0,
-    updated_at: "2021-10-17T02:43:57.603Z"}]
+    updated_at: "2021-10-17T02:43:57.603Z"},
+    {category: "general",
+    checked_out: true,
+    created_at: "2021-09-09T22:52:58.703Z",
+    id: 98,
+    img_url: "https://cdn11.bigcommerce.com/s-psv5s7bpr6/images/stencil/796.1999999999999x796.1999999999999/products/1378/1856/33-15515-CentralParkParadise__51270.1623420812.jpg",
+    name: "Central Park",
+    num_of_pieces: 1500,
+    pieces_missing: 0,
+    updated_at: "2021-10-17T02:43:54.970Z"},
+    {category: "general",
+    checked_out: false,
+    created_at: "2021-09-08T21:37:17.453Z",
+    id: 67,
+    img_url: "https://cdn.shopify.com/s/files/1/0522/9979/2582/products/PZTCRR---Coral-Reef.jpg?v=1611351189",
+    name: "Coral Reef",
+    num_of_pieces: 1000,
+    pieces_missing: 0,
+    updated_at: "2021-10-17T21:44:48.727Z"},
+    {category: "general",
+    checked_out: false,
+    created_at: "2021-09-08T21:37:17.465Z",
+    id: 70,
+    img_url: "https://cdn.shopify.com/s/files/1/0522/9979/2582/products/PZTZOD---Zodiac.jpg?v=1611352340",
+    name: "Zodiac",
+    num_of_pieces: 1000,
+    pieces_missing: 0,
+    updated_at: "2021-10-19T05:57:10.865Z"}]
 const user = {
     id: 1, 
     username: 'Test', 
@@ -150,7 +177,7 @@ export const handlers = [
         puzzle.checked_out = true
         const now = new Date()
         const dueDate = now + (60 * 60 * 24 * 7 * 3)
-        const borrow = { active: true, check_out_date: now.toString(), date_returned: null, due_date: dueDate.toString(), puzzle_id: puzzle_id, img_url: puzzle.img_url, name: puzzle.name, num_of_pieces: puzzle.num_of_pieces, pieces_missing: puzzle.pieces_missing }
+        const borrow = { active: true, check_out_date: now.toString(), date_returned: null, due_date: dueDate.toString(), id: 2, puzzle_id: puzzle_id, img_url: puzzle.img_url, name: puzzle.name, num_of_pieces: puzzle.num_of_pieces, pieces_missing: puzzle.pieces_missing }
         return res(
             ctx.status(200),
             ctx.json({borrow: borrow, puzzle: puzzle})
