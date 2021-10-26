@@ -23,5 +23,10 @@ describe('App', () => {
     const dialog = await screen.findByText(/test is currently logged in/i)
     expect(dialog).toBeInTheDocument()
   })
+  test('a logged in user can borrow an available puzzle', async () => {
+    localStorage.setItem("jwt", 'testToken')
+    render(<App />, {wrapper: Router});
+    userEvent.click(screen.getByRole('link', {name: /puzzles/i}))
 
+  })
 })
