@@ -13,14 +13,38 @@ const puzzleList = [
     pieces_missing: 0,
     updated_at: "2021-10-17T02:44:18.959Z"}, 
     {category: "general",
-    checked_out: false,
+    checked_out: true,
     created_at: "2021-09-08T21:37:17.461Z",
     id: 69,
     img_url: "https://cdn.shopify.com/s/files/1/0522/9979/2582/products/PZTSLO---Sloths.jpg?v=1611352983",
     name: "Sloths",
     num_of_pieces: 1000,
     pieces_missing: 0,
-    updated_at: "2021-10-15T07:03:29.150Z"}]
+    updated_at: "2021-10-15T07:03:29.150Z"},
+    {category: "general",
+    checked_out: false,
+    created_at: "2021-09-08T21:37:17.472Z",
+    id: 72,
+    img_url: "https://cdn.shopify.com/s/files/1/0522/9979/2582/products/PZTHKW.jpg?v=1611350951",
+    name: "Hike in the Woods",
+    num_of_pieces: 1000,
+    pieces_missing: 0,
+    updated_at: "2021-10-15T07:03:31.311Z"},
+    {category: "general",
+    checked_out: true,
+    created_at: "2021-09-08T21:37:17.548Z",
+    id: 91,
+    img_url: "https://cdn.shopify.com/s/files/1/0522/9979/2582/products/PZTOTR---Otters_1296x.jpg?v=1611351540",
+    name: "Otters",
+    num_of_pieces: 1000,
+    pieces_missing: 0,
+    updated_at: "2021-10-17T02:43:57.603Z"}]
+const user = {
+    id: 1, 
+    username: 'Test', 
+    borrows: [
+        {id: 1, active: true, check_out_date: '2021-01-01T12:00:00.000Z', date_returned: null, due_date: '2021-01-15T12:00:00.000Z', img_url: 'https://cdn.shopify.com/s/files/1/0522/9979/2582/products/PZTOTR---Otters_1296x.jpg?v=1611351540', name: 'Otters', num_of_pieces: 1000, pieces_missing: 0, puzzle_id: 91}
+    ]}
 
 export const handlers = [
     rest.post(URL + 'login', (req, res, ctx) => {
@@ -39,7 +63,7 @@ export const handlers = [
         }
         return res(
             ctx.status(200),
-            ctx.json({ user: {id: 1, username: username, borrows: [{id: 1, active: true, check_out_date: '2021-01-01T12:00:00.000Z', date_returned: '2021-01-02T12:00:00.000Z', due_date: '2021-01-15T12:00:00.000Z', img_url: '', name: 'Puzzle1', num_of_pieces: 100, pieces_missing: 0, puzzle_id: 1}]}, jwt: 'testToken'})
+            ctx.json({ user: user, jwt: 'testToken'})
         )
     }),
     rest.post(URL + 'users', (req, res, ctx) => {
@@ -115,11 +139,22 @@ export const handlers = [
         } else {
             return res(
                 ctx.status(200),
-                ctx.json({user: {id: 1, username: 'Test', borrows: [{id: 1, active: true, check_out_date: '2021-01-01T12:00:00.000Z', date_returned: '2021-01-02T12:00:00.000Z', due_date: '2021-01-15T12:00:00.000Z', img_url: '', name: 'Puzzle1', num_of_pieces: 100, pieces_missing: 0, puzzle_id: 1}]}})
+                ctx.json({user: user})
             )
 
         }
-    })
-    
+    }),
+    rest.post(URL + 'borrows', (req, res, ctx) => {
+        const { puzzle_id } = req.body
+        const puzzle = puzzleList.filter(el => el.id === puzzle_id)
+        puzzle.checked_out = true
+        const now = new Date()
+        const dueDate = now + (60 * 60 * 24 * 7 * 3)
+        const borrow = { active: true, check_out_date: now.toString(), date_returned: null, due_date: dueDate.toString(), puzzle_id: puzzle_id, img_url: puzzle.img_url, name: puzzle.name, num_of_pieces: puzzle.num_of_pieces, pieces_missing: puzzle.pieces_missing }
+        return res(
+            ctx.status(200),
+            ctx.json({borrow: borrow, puzzle: puzzle})
+        )
+     })
 ]
 
