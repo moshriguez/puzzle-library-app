@@ -27,6 +27,10 @@ describe('App', () => {
     localStorage.setItem("jwt", 'testToken')
     render(<App />, {wrapper: Router});
     userEvent.click(screen.getByRole('link', {name: /puzzles/i}))
-
+    const borrowBtns = await screen.findAllByRole('button', /borrow/ig)
+    screen.getByRole("")
+    // console.log(borrowBtns.length)
+    // expect(borrowBtns[0]).toBeEnabled()
+    // expect(borrowBtns[1]).toBeDisabled()
   })
 })

@@ -40,7 +40,7 @@ const puzzleList = [
     pieces_missing: 0,
     updated_at: "2021-10-17T02:43:57.603Z"},
     {category: "general",
-    checked_out: true,
+    checked_out: false,
     created_at: "2021-09-09T22:52:58.703Z",
     id: 98,
     img_url: "https://cdn11.bigcommerce.com/s-psv5s7bpr6/images/stencil/796.1999999999999x796.1999999999999/products/1378/1856/33-15515-CentralParkParadise__51270.1623420812.jpg",
@@ -157,7 +157,7 @@ export const handlers = [
     }),
     rest.get(URL + 'profile', (req, res, ctx) => {
         const token = req.headers._headers.authorization
-        console.log(typeof token, token)
+        // console.log(typeof token, token)
         if (token !== 'Bearer testToken') {
             return res(
                 ctx.status(401),
